@@ -1,10 +1,11 @@
-package de.sloth.system;
+package de.sloth.system.console;
 
 import java.util.Scanner;
 
 import de.sloth.component.Position2DComp;
+import de.sloth.system.GameSystem;
 
-public class ControllSystem extends GameSystem {
+public class ConsoleControllSystem extends GameSystem {
 
 	@Override
 	public void run() {

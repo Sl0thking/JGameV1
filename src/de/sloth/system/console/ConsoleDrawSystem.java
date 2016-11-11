@@ -1,17 +1,18 @@
-package de.sloth.system;
+package de.sloth.system.console;
 
 import java.io.IOException;
 
 import de.sloth.component.Position2DComp;
 import de.sloth.entity.Entity;
+import de.sloth.system.GameSystem;
 
-public class DrawSystem extends GameSystem {
+public class ConsoleDrawSystem extends GameSystem {
 	
 	private String[][] field;
 	private int width;
 	private int height;
 	
-	public DrawSystem(int width, int height) {
+	public ConsoleDrawSystem(int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.field = new String[width][height];

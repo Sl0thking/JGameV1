@@ -6,6 +6,11 @@ import java.util.List;
 import de.sloth.component.Component;
 
 public class Entity {
+	@Override
+	public String toString() {
+		return "Entity [id=" + id + ", name=" + name + ", components=" + components + "]";
+	}
+
 	private int id;
 	private String name;
 	private List<Component> components;
@@ -55,13 +60,12 @@ public class Entity {
 		return this.components;
 	}
 	
-	public List<Component> getComponents(Class<?> compClass) {
-		List<Component> relatedComps = new LinkedList<Component>();
+	public Component getComponent(Class<?> compClass) {
 		for(Component comp : components) {
 			if(comp.getClass().equals(compClass)) {
-				relatedComps.add(comp);
+				return comp;
 			}
 		}
-		return relatedComps;
+		return null;
 	}
 }
