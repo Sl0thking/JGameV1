@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.component.FocusComp;
-import de.sloth.component.Position2DComp;
+import de.sloth.component.Position3DComp;
 import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
 import de.sloth.event.MoveEvent;
@@ -14,13 +14,15 @@ import javafx.scene.input.KeyEvent;
 
 public class SimpleControllHandler implements EventHandler<KeyEvent> {
 
-	private int speed;
+	private int spriteWidth;
+	private int spriteHeight;
 	private ConcurrentLinkedQueue<Entity> entities;
 	private ConcurrentLinkedQueue<GameEvent> eventQueue;
 	
-	public SimpleControllHandler(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue, int speed) {
+	public SimpleControllHandler(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue, int spriteWidth, int spriteHeight) {
 		this.entities = entities;
-		this.speed = speed;
+		this.spriteWidth = spriteWidth;
+		this.spriteHeight = spriteHeight;
 		this.eventQueue = eventQueue;
 	}
 	
@@ -34,9 +36,9 @@ public class SimpleControllHandler implements EventHandler<KeyEvent> {
 		} else if(event.getCode().equals(KeyCode.G)) {
 			Entity entity = new Entity();
 			entity.setId(getId()+1);
-			entity.addComponent(new Position2DComp());
-			((Position2DComp) entity.getComponent(Position2DComp.class)).setX(128);
-			((Position2DComp) entity.getComponent(Position2DComp.class)).setY(256);
+			entity.addComponent(new Position3DComp());
+			((Position3DComp) entity.getComponent(Position3DComp.class)).setX(128);
+			((Position3DComp) entity.getComponent(Position3DComp.class)).setY(256);
 			entities.add(entity);
 		} else if(event.getCode().equals(KeyCode.ESCAPE)) {
 			System.exit(0);
@@ -66,20 +68,20 @@ public class SimpleControllHandler implements EventHandler<KeyEvent> {
 		for(Entity focusEntity : filteredEntities) {
 			
 			if(kCode.equals(KeyCode.W)) {
-				Position2DComp comp = (Position2DComp) focusEntity.getComponent(Position2DComp.class);
-				moveEvent.setTargetY(comp.getY()-speed);
+				Position3DComp comp = (Position3DComp) focusEntity.getComponent(Position3DComp.class);
+				moveEvent.setTargetY(comp.getY()-spriteHeight);
 				moveEvent.setTargetX(comp.getX());
 			} else if(kCode.equals(KeyCode.S)) {
-				Position2DComp comp = (Position2DComp) focusEntity.getComponent(Position2DComp.class);
-				moveEvent.setTargetY(comp.getY()+speed);
+				Position3DComp comp = (Position3DComp) focusEntity.getComponent(Position3DComp.class);
+				moveEvent.setTargetY(comp.getY()+spriteHeight);
 				moveEvent.setTargetX(comp.getX());
 			} else if(kCode.equals(KeyCode.A)) {
-				Position2DComp comp = (Position2DComp) focusEntity.getComponent(Position2DComp.class);
-				moveEvent.setTargetX(comp.getX()-speed);
+				Position3DComp comp = (Position3DComp) focusEntity.getComponent(Position3DComp.class);
+				moveEvent.setTargetX(comp.getX()-spriteWidth);
 				moveEvent.setTargetY(comp.getY());
 			} else if(kCode.equals(KeyCode.D)) {
-				Position2DComp comp = (Position2DComp) focusEntity.getComponent(Position2DComp.class);
-				moveEvent.setTargetX(comp.getX()+speed);
+				Position3DComp comp = (Position3DComp) focusEntity.getComponent(Position3DComp.class);
+				moveEvent.setTargetX(comp.getX()+spriteWidth);
 				moveEvent.setTargetY(comp.getY());
 			}
 			moveEvent.setSrcEntity(focusEntity);

@@ -8,10 +8,10 @@ import javafx.scene.layout.BorderPane;
 public class MainPane extends BorderPane {
 	private Canvas canvas;
 	
-	public MainPane(double width, double heigth, double canWidth, double canHeigth) {
+	public MainPane(double width, double heigth, Canvas canvas) {
 		this.setWidth(width);
 		this.setHeight(heigth);
-		canvas = new Canvas(canWidth, canHeigth);
+		this.canvas = canvas;
 		BorderPane pane = new BorderPane();
 		pane.setMinWidth(800);
 		pane.setMinHeight(100);

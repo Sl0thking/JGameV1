@@ -14,7 +14,7 @@ public class SystemCore extends GameSystem {
 	public SystemCore(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue, GraphicsContext gc) {
 		super(entities, eventQueue);
 		this.gc = gc;
-		this.cRenderer = new SimpleRendererSystem(entities, gc);
+		this.cRenderer = new SpriteRendererSystem(entities, gc);
 	}
 
 	@Override

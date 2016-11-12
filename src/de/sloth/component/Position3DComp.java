@@ -16,4 +16,11 @@ public class Position3DComp extends Position2DComp {
 	public void setZ(int z) {
 		this.z = z;
 	}
+
+	@Override
+	public String toString() {
+		return "Position3DComp [z=" + z + ", getX()=" + getX() + ", getY()=" + getY() + "]";
+	}
+	
+	
 }

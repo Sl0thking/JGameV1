@@ -1,7 +1,6 @@
 package de.sloth.system;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import de.sloth.component.Position2DComp;
 import de.sloth.component.Position3DComp;
 import de.sloth.entity.Entity;
 import de.sloth.event.CollisionEvent;

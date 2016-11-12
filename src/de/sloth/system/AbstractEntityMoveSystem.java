@@ -4,9 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import de.sloth.component.Position2DComp;
+import de.sloth.component.Position3DComp;
 import de.sloth.entity.Entity;
-import de.sloth.event.CollisionEvent;
 import de.sloth.event.GameEvent;
 import de.sloth.event.MoveEvent;
 import javafx.scene.canvas.GraphicsContext;
@@ -27,13 +26,13 @@ public abstract class AbstractEntityMoveSystem extends GameSystem {
 				if(event.getClass().equals(MoveEvent.class)) {
 					MoveEvent movEvent = (MoveEvent) event;
 					Entity srcEntity = movEvent.getSrcEntity();
-					Position2DComp twodcomp = (Position2DComp) srcEntity.getComponent(Position2DComp.class);
+					Position3DComp posComp = (Position3DComp) srcEntity.getComponent(Position3DComp.class);
 					boolean isCollided = checkCollision(srcEntity, movEvent);
 					if(movEvent.getTargetX() >= 0 && movEvent.getTargetX() < gc.getCanvas().getWidth() &&
 					   movEvent.getTargetY() >= 0 && movEvent.getTargetY() < gc.getCanvas().getHeight() &&
 					   !isCollided) {
-						twodcomp.setX(movEvent.getTargetX());
-						twodcomp.setY(movEvent.getTargetY());
+						posComp.setX(movEvent.getTargetX());
+						posComp.setY(movEvent.getTargetY());
 					}
 					delList.add(event);
 				}
@@ -48,18 +47,4 @@ public abstract class AbstractEntityMoveSystem extends GameSystem {
 		}
 	}
 	protected abstract boolean checkCollision(Entity srcEntity, MoveEvent movEvent);
-	
-	/*protected abstract boolean checkCollision(Entity srcEntity, MoveEvent movEvent) {
-		for(Entity entity : this.getEntities()) {
-			if(entity.getId() != srcEntity.getId()) {
-				Position2DComp twodcomp = (Position2DComp) entity.getComponent(Position2DComp.class);
-				if(twodcomp != null && twodcomp.getX() == movEvent.getTargetX() && twodcomp.getY() == movEvent.getTargetY()) {
-					GameEvent collision = new CollisionEvent(srcEntity, entity);
-					this.getEventQueue().add(collision);
-					return true;
-				}
-			}
-		}
-		return false;
-	}*/
 }
