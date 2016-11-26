@@ -26,8 +26,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		int spriteHeight = 35;
 		int spriteWidth = 40;
-		int xFields = 16;
-		int yFields = 16;
+		int xFields = 15;
+		int yFields = 15;
 		Canvas canvas = new FieldCanvas(yFields, xFields, spriteHeight, spriteWidth);
 		MainPane pane = new MainPane(800, 740, canvas);
 		Scene scene = new Scene(pane);
@@ -46,9 +46,25 @@ public class Main extends Application {
 		entities.add(main);
 		for(int y = 0; y < yFields; y++) {
 			for(int x = 0; x < xFields; x++) {
+				Entity floor = new Entity();
+				int id = 0;
+				for(Entity entity : entities) {
+					if(entity.getId() > id) {
+						id = entity.getId();
+					}
+				}
+				floor.setId(id+1);
+				floor.setName("Floor");
+				Position3DComp posComp = new Position3DComp();
+				posComp.setX(x*spriteWidth);
+				posComp.setY(y*spriteHeight);
+				posComp.setZ(-1);
+				floor.addComponent(posComp);
+				floor.addComponent(new SpriteComp("file:./sprites/floor.png"));
+				entities.add(floor);
 				if(y == 0 || y == yFields-1 || x == 0 || x == xFields-1) {
 					Entity wall = new Entity();
-					int id = 0;
+					id = 0;
 					for(Entity entity : entities) {
 						if(entity.getId() > id) {
 							id = entity.getId();
@@ -56,7 +72,7 @@ public class Main extends Application {
 					}
 					wall.setId(id+1);
 					wall.setName("Wall");
-					Position3DComp posComp = new Position3DComp();
+					posComp = new Position3DComp();
 					posComp.setX(x*spriteWidth);
 					posComp.setY(y*spriteHeight);
 					wall.addComponent(posComp);
@@ -66,7 +82,7 @@ public class Main extends Application {
 				} else if((y != 1 || x != 1) && Math.random() < 0.3) {
 					
 					Entity enemy = new Entity();
-					int id = 0;
+					id = 0;
 					for(Entity entity : entities) {
 						if(entity.getId() > id) {
 							id = entity.getId();
@@ -74,7 +90,7 @@ public class Main extends Application {
 					}
 					enemy.setId(id+1);
 					enemy.setName("Enemy");
-					Position3DComp posComp = new Position3DComp();
+					posComp = new Position3DComp();
 					posComp.setX(x*spriteWidth);
 					posComp.setY(y*spriteHeight);
 					enemy.addComponent(posComp);

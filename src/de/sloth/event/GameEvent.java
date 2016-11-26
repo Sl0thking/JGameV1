@@ -7,6 +7,5 @@ public class GameEvent {
 	@SuppressWarnings("unused")
 	private GameSystem source;
 	
-	public GameEvent() {
-	}
+	public GameEvent() {}
 }
