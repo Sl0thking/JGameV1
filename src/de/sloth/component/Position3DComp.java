@@ -6,7 +6,7 @@ public class Position3DComp extends Position2DComp {
 	
 	public Position3DComp() {
 		super();
-		z = 0;
+		z = 1;
 	}
 
 	public int getZ() {

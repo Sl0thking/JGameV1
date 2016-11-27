@@ -10,7 +10,8 @@ import de.sloth.controllHandler.SimpleControllHandler;
 import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
 import de.sloth.hmi.FieldCanvas;
-import de.sloth.hmi.MainPane;
+import de.sloth.hmi.LayeredFieldCanvasPane;
+import de.sloth.hmi.GameHMI;
 import de.sloth.system.BattleSystem;
 import de.sloth.system.CollisionTestSystem;
 import de.sloth.system.SimpleEntityMoveSystem;
@@ -18,6 +19,7 @@ import de.sloth.system.GameCore;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -25,12 +27,16 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		int screenWidth = (int) Screen.getPrimary().getBounds().getWidth();
+		int screenHeight = (int) Screen.getPrimary().getBounds().getHeight(); 
+		System.out.println(screenWidth);
+		System.out.println(screenHeight);
 		int spriteHeight = 35;
 		int spriteWidth = 40;
-		int xFields = 16;
-		int yFields = 16;
-		Canvas canvas = new FieldCanvas(yFields, xFields, spriteHeight, spriteWidth);
-		MainPane pane = new MainPane(800, 740, canvas);
+		int xFields = screenWidth / spriteWidth;
+		int yFields = screenHeight / spriteHeight;
+		LayeredFieldCanvasPane lfcp = new LayeredFieldCanvasPane(2, screenWidth, screenHeight);
+		GameHMI pane = new GameHMI(screenWidth, screenHeight, lfcp);
 		Scene scene = new Scene(pane);
 		primaryStage.setScene(scene);
 		ConcurrentLinkedQueue<Entity> entities = new ConcurrentLinkedQueue<Entity>();
@@ -59,7 +65,7 @@ public class Main extends Application {
 				Position3DComp posComp = new Position3DComp();
 				posComp.setX(x*spriteWidth);
 				posComp.setY(y*spriteHeight);
-				posComp.setZ(-1);
+				posComp.setZ(0);
 				floor.addComponent(posComp);
 				floor.addComponent(new SpriteComp("file:./sprites/floor.png"));
 				entities.add(floor);
@@ -104,7 +110,7 @@ public class Main extends Application {
 		}
 		SimpleControllHandler stdControll = new SimpleControllHandler(entities, eventQueue, spriteWidth, spriteHeight);
 		scene.setOnKeyPressed(stdControll);
-		GameCore core = new GameCore(entities, eventQueue, pane.getCanvasContext());
+		GameCore core = new GameCore(entities, eventQueue, lfcp);
 		pane.getLabel().textProperty().bindBidirectional(core.getFpsProperty(), new StringConverter<Number>() {
 			@Override
 			public Number fromString(String arg0) {
@@ -117,7 +123,7 @@ public class Main extends Application {
 			}
 		});
 				
-		SimpleEntityMoveSystem mov = new SimpleEntityMoveSystem(entities, eventQueue, pane.getCanvasContext());
+		SimpleEntityMoveSystem mov = new SimpleEntityMoveSystem(entities, eventQueue, lfcp.getGraphicContext(0));
 		CollisionTestSystem cts = new CollisionTestSystem(entities, eventQueue);
 		BattleSystem bsys = new BattleSystem(entities, eventQueue);
 		

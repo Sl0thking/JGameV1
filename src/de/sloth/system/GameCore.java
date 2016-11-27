@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
 import de.sloth.hmi.FPSCalculator;
+import de.sloth.hmi.LayeredFieldCanvasPane;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.canvas.GraphicsContext;
@@ -18,15 +19,15 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class GameCore extends AnimationTimer {
 
-	GraphicsContext gc;
+	LayeredFieldCanvasPane lfcp;
 	AbstractRendererSystem cRenderer;
 	List<GameSystem> gameSystems;
 	final int MS_PER_FRAME = 1000/60;
 	FPSCalculator fpsCalc;
 
-	public GameCore(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue, GraphicsContext gc) {
-		this.gc = gc;
-		this.cRenderer = new SpriteRendererSystem(entities, gc);
+	public GameCore(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue, LayeredFieldCanvasPane lfcp) {
+		this.lfcp = lfcp;
+		this.cRenderer = new SpriteRendererSystem(entities, lfcp);
 		this.gameSystems = new LinkedList<GameSystem>();
 		this.fpsCalc = new FPSCalculator();
 	}

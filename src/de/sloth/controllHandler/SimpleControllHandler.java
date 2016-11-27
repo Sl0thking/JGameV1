@@ -66,50 +66,29 @@ public class SimpleControllHandler implements EventHandler<KeyEvent> {
 			}
 		}
 		for(Entity focusEntity : filteredEntities) {
-			
 			if(kCode.equals(KeyCode.W)) {
 				Position3DComp comp = (Position3DComp) focusEntity.getComponent(Position3DComp.class);
 				moveEvent.setTargetY(comp.getY()-spriteHeight);
 				moveEvent.setTargetX(comp.getX());
+				moveEvent.setTargetZ(1);
 			} else if(kCode.equals(KeyCode.S)) {
 				Position3DComp comp = (Position3DComp) focusEntity.getComponent(Position3DComp.class);
 				moveEvent.setTargetY(comp.getY()+spriteHeight);
 				moveEvent.setTargetX(comp.getX());
+				moveEvent.setTargetZ(1);
 			} else if(kCode.equals(KeyCode.A)) {
 				Position3DComp comp = (Position3DComp) focusEntity.getComponent(Position3DComp.class);
 				moveEvent.setTargetX(comp.getX()-spriteWidth);
 				moveEvent.setTargetY(comp.getY());
+				moveEvent.setTargetZ(1);
 			} else if(kCode.equals(KeyCode.D)) {
 				Position3DComp comp = (Position3DComp) focusEntity.getComponent(Position3DComp.class);
 				moveEvent.setTargetX(comp.getX()+spriteWidth);
 				moveEvent.setTargetY(comp.getY());
+				moveEvent.setTargetZ(1);
 			}
 			moveEvent.setSrcEntity(focusEntity);
 			this.eventQueue.add(moveEvent);
 		}
-		/*
-		List<Entity> filteredEntities = new ArrayList<Entity>();
-	
-		for(Entity entity : this.entities) {
-			if(entity.getComponents(FocusComp.class).size() != 0) {
-				filteredEntities.add(entity);
-			}
-		}
-		for(Entity focusEntity : filteredEntities) {
-			if(kCode.equals(KeyCode.W)) {
-				Position2DComp comp = (Position2DComp) focusEntity.getComponents(Position2DComp.class).get(0);
-				comp.setY(comp.getY()-speed);
-			} else if(kCode.equals(KeyCode.S)) {
-				Position2DComp comp = (Position2DComp) focusEntity.getComponents(Position2DComp.class).get(0);
-				comp.setY(comp.getY()+speed);
-			} else if(kCode.equals(KeyCode.A)) {
-				Position2DComp comp = (Position2DComp) focusEntity.getComponents(Position2DComp.class).get(0);
-				comp.setX(comp.getX()-speed);
-			} else if(kCode.equals(KeyCode.D)) {
-				Position2DComp comp = (Position2DComp) focusEntity.getComponents(Position2DComp.class).get(0);
-				comp.setX(comp.getX()+speed);
-			}
-		}
-		*/
 	}
 }
