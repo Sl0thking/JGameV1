@@ -15,7 +15,7 @@ public class SimpleRendererSystem extends AbstractRendererSystem {
 	}
 
 	@Override
-	public void handle(long now) {
+	public void executeSystem() {
 		this.getGc().clearRect(0, 0, this.getGc().getCanvas().getWidth(), this.getGc().getCanvas().getHeight());
 		for(Entity entity : this.getEntities()) {
 			Position3DComp comp = (Position3DComp) entity.getComponent(Position3DComp.class);
@@ -32,12 +32,6 @@ public class SimpleRendererSystem extends AbstractRendererSystem {
 					this.getGc().fillRect(comp.getX(), comp.getY(), 32, 32);
 				}
 			}
-		}
-		try {
-			Thread.sleep(1000/60);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 }

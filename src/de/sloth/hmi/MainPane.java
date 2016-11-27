@@ -7,6 +7,7 @@ import javafx.scene.layout.BorderPane;
 
 public class MainPane extends BorderPane {
 	private Canvas canvas;
+	private Label label;
 	
 	public MainPane(double width, double heigth, Canvas canvas) {
 		this.setWidth(width);
@@ -15,7 +16,7 @@ public class MainPane extends BorderPane {
 		BorderPane pane = new BorderPane();
 		pane.setMinWidth(800);
 		pane.setMinHeight(100);
-		Label label = new Label("Test");
+		label = new Label("Test");
 		pane.setCenter(label);
 		this.setCenter(canvas);
 		this.setBottom(pane);
@@ -23,5 +24,9 @@ public class MainPane extends BorderPane {
 	
 	public GraphicsContext getCanvasContext() {
 		return canvas.getGraphicsContext2D();
+	}
+	
+	public Label getLabel() {
+		return label;
 	}
 }

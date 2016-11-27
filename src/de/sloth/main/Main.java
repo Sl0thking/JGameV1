@@ -14,11 +14,12 @@ import de.sloth.hmi.MainPane;
 import de.sloth.system.BattleSystem;
 import de.sloth.system.CollisionTestSystem;
 import de.sloth.system.SimpleEntityMoveSystem;
-import de.sloth.system.SystemCore;
+import de.sloth.system.GameCore;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 public class Main extends Application {
 
@@ -28,6 +29,7 @@ public class Main extends Application {
 		int spriteWidth = 40;
 		int xFields = 16;
 		int yFields = 16;
+		
 		Canvas canvas = new FieldCanvas(yFields, xFields, spriteHeight, spriteWidth);
 		MainPane pane = new MainPane(800, 740, canvas);
 		Scene scene = new Scene(pane);
@@ -87,14 +89,27 @@ public class Main extends Application {
 		}
 		SimpleControllHandler stdControll = new SimpleControllHandler(entities, eventQueue, spriteWidth, spriteHeight);
 		scene.setOnKeyPressed(stdControll);
-		SystemCore core = new SystemCore(entities, eventQueue, pane.getCanvasContext());
+		GameCore core = new GameCore(entities, eventQueue, pane.getCanvasContext());
+		pane.getLabel().textProperty().bindBidirectional(core.getFpsProperty(), new StringConverter<Number>() {
+			@Override
+			public Number fromString(String arg0) {
+				return Integer.parseInt(arg0);
+			}
+
+			@Override
+			public String toString(Number arg0) {
+				return arg0.toString();
+			}
+		});
+				
 		SimpleEntityMoveSystem mov = new SimpleEntityMoveSystem(entities, eventQueue, pane.getCanvasContext());
 		CollisionTestSystem cts = new CollisionTestSystem(entities, eventQueue);
 		BattleSystem bsys = new BattleSystem(entities, eventQueue);
-		mov.start();
-		cts.start();
+		
+		core.registerSystem(mov);
+		core.registerSystem(cts);
+		core.registerSystem(bsys);
 		core.start();
-		bsys.start();
 		//primaryStage.setAlwaysOnTop(true);
 		primaryStage.setFullScreen(true);
 		primaryStage.show();

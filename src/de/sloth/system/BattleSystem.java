@@ -19,34 +19,25 @@ public class BattleSystem extends GameSystem {
 	public BattleSystem() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
-	public void run() {
-		while(true) {
-			List<GameEvent> delEvents = new LinkedList<GameEvent>();
-			for(GameEvent event:this.getEventQueue()) {
-				if(event.getClass().equals(BattleEvent.class)) {
-					BattleEvent bEvent = (BattleEvent) event;
-					Entity attacker = bEvent.getCollisionSrc();
-					Entity defender = bEvent.getCollisionTarget();
-					LivingComp attackerStatus = (LivingComp) attacker.getComponent(LivingComp.class);
-					LivingComp defenderStatus = (LivingComp) defender.getComponent(LivingComp.class);
-					defenderStatus.setHp(defenderStatus.getHp() - (attackerStatus.getAttack() - defenderStatus.getDefense()));
-					System.out.println(defender);
-					if(defenderStatus.getHp() <= 0) {
-						this.getEntities().remove(defender);
-					}
-					delEvents.add(event);
+	public void executeSystem() {
+		List<GameEvent> delEvents = new LinkedList<GameEvent>();
+		for(GameEvent event:this.getEventQueue()) {
+			if(event.getClass().equals(BattleEvent.class)) {
+				BattleEvent bEvent = (BattleEvent) event;
+				Entity attacker = bEvent.getCollisionSrc();
+				Entity defender = bEvent.getCollisionTarget();
+				LivingComp attackerStatus = (LivingComp) attacker.getComponent(LivingComp.class);
+				LivingComp defenderStatus = (LivingComp) defender.getComponent(LivingComp.class);
+				defenderStatus.setHp(defenderStatus.getHp() - (attackerStatus.getAttack() - defenderStatus.getDefense()));
+				System.out.println(defender);
+				if(defenderStatus.getHp() <= 0) {
+					this.getEntities().remove(defender);
 				}
-			}
-			this.getEventQueue().removeAll(delEvents);
-			try {
-				Thread.sleep(1000/60);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				delEvents.add(event);
 			}
 		}
+		this.getEventQueue().removeAll(delEvents);
 	}
-
 }

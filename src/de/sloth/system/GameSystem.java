@@ -7,21 +7,19 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
 
-public abstract class GameSystem extends Thread {
+public abstract class GameSystem {
 
 	private ConcurrentLinkedQueue<Entity> entities;
 	private ConcurrentLinkedQueue<GameEvent> eventQueue;
 	
 	public GameSystem(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue) {
 		super();
-		this.setDaemon(true);
 		this.entities = entities;
 		this.eventQueue = eventQueue;
 	}
 	
 	public GameSystem() {
 		super();
-		this.setDaemon(true);
 		this.entities = new ConcurrentLinkedQueue<Entity>();
 		this.eventQueue = new ConcurrentLinkedQueue<GameEvent>();
 	}
@@ -62,8 +60,5 @@ public abstract class GameSystem extends Thread {
 		return matchingEntities;
 	}
 	
-	@Override
-	public void run() {
-		super.run();
-	}
+	public abstract void executeSystem();
 }

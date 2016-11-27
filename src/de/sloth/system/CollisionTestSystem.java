@@ -18,29 +18,20 @@ public class CollisionTestSystem extends GameSystem {
 	}
 
 	@Override
-	public void run() {
-		while(true) {
-			List<GameEvent> delEvents = new LinkedList<GameEvent>();
-			for(GameEvent event:this.getEventQueue()) {
-				if(event.getClass().equals(CollisionEvent.class)) {
-					CollisionEvent cEvent = (CollisionEvent) event;
-					System.out.println(cEvent);
-					LivingComp type = (LivingComp) cEvent.getCollisionTarget().getComponent(LivingComp.class);
-					if(type != null && type.isLiving()) {
-						BattleEvent bEvent = new BattleEvent(cEvent.getCollisionSrc(), cEvent.getCollisionTarget());
-						this.getEventQueue().add(bEvent);
-					}
-					delEvents.add(event);
+	public void executeSystem() {
+		List<GameEvent> delEvents = new LinkedList<GameEvent>();
+		for(GameEvent event:this.getEventQueue()) {
+			if(event.getClass().equals(CollisionEvent.class)) {
+				CollisionEvent cEvent = (CollisionEvent) event;
+				System.out.println(cEvent);
+				LivingComp type = (LivingComp) cEvent.getCollisionTarget().getComponent(LivingComp.class);
+				if(type != null && type.isLiving()) {
+					BattleEvent bEvent = new BattleEvent(cEvent.getCollisionSrc(), cEvent.getCollisionTarget());
+					this.getEventQueue().add(bEvent);
 				}
-			}
-			this.getEventQueue().removeAll(delEvents);
-			try {
-				Thread.sleep(1000/60);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				delEvents.add(event);
 			}
 		}
-		
+		this.getEventQueue().removeAll(delEvents);
 	}
 }

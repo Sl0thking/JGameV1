@@ -3,10 +3,9 @@ package de.sloth.system;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.entity.Entity;
-import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 
-public abstract class AbstractRendererSystem extends AnimationTimer {
+public abstract class AbstractRendererSystem extends GameSystem{
 	private ConcurrentLinkedQueue<Entity> entities;
 	private GraphicsContext gc;
 	
@@ -14,7 +13,7 @@ public abstract class AbstractRendererSystem extends AnimationTimer {
 		this.entities = entities;
 		this.gc = gc;
 	}
-
+	
 	public ConcurrentLinkedQueue<Entity> getEntities() {
 		return entities;
 	}
