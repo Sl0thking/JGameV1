@@ -6,13 +6,12 @@ import de.sloth.component.FocusComp;
 import de.sloth.component.Position3DComp;
 import de.sloth.component.SpriteComp;
 import de.sloth.entity.Entity;
-import de.sloth.hmi.LayeredFieldCanvasPane;
 import javafx.scene.canvas.GraphicsContext;
 
 public class SpriteRendererSystem extends AbstractRendererSystem {
 	
-	public SpriteRendererSystem(ConcurrentLinkedQueue<Entity> entities, LayeredFieldCanvasPane lfcp) {
-		super(entities, lfcp);
+	public SpriteRendererSystem(ConcurrentLinkedQueue<Entity> entities, GraphicsContext gc) {
+		super(entities, gc);
 	}
 
 	@Override
@@ -33,23 +32,26 @@ public class SpriteRendererSystem extends AbstractRendererSystem {
 				break;
 			}
 		}
-		for(int i = 0; i < this.getLFCP().getLayers(); i++) {
-			this.getGc(i).clearRect(0, 0, this.getGc(i).getCanvas().getWidth(), this.getGc(i).getCanvas().getHeight());
-			if(i == 0) {
-				this.getGc(i).fillRect(0, 0, this.getGc(i).getCanvas().getWidth(), this.getGc(i).getCanvas().getHeight());
-			}
-		}
 		
-		for(Entity entity : this.getEntities()) {
-			Position3DComp comp = (Position3DComp) entity.getComponent(Position3DComp.class);
-			SpriteComp sprite = (SpriteComp) entity.getComponent(SpriteComp.class);
-			int transformedPosX = comp.getX() + transX;
-			int transformedPosY = comp.getY() + transY;
-			int z = comp.getZ();
-			if(comp != null && sprite != null &&
-			   transformedPosX >= 0 && transformedPosX < 1366 &&
-			   transformedPosY >= 0 && transformedPosY < 768) {
-				this.getGc(z).drawImage(sprite.getSprite(), transformedPosX, transformedPosY);
+		System.out.println(this.getGc());
+		
+		this.getGc().clearRect(0, 0, this.getGc().getCanvas().getWidth(), this.getGc().getCanvas().getHeight());
+		this.getGc().fillRect(0, 0, this.getGc().getCanvas().getWidth(), this.getGc().getCanvas().getHeight());
+	
+		for(int i = 0; i < 3; i++) {
+			for(Entity entity : this.getEntities()) {
+				Position3DComp comp = (Position3DComp) entity.getComponent(Position3DComp.class);
+				SpriteComp sprite = (SpriteComp) entity.getComponent(SpriteComp.class);
+				int transformedPosX = comp.getX() + transX;
+				int transformedPosY = comp.getY() + transY;
+				int z = comp.getZ();
+				if(z == i) {
+					if(comp != null && sprite != null &&
+						transformedPosX >= 0 && transformedPosX < 1366 &&
+						transformedPosY >= 0 && transformedPosY < 768) {
+						this.getGc().drawImage(sprite.getSprite(), transformedPosX, transformedPosY);
+					}
+				}
 			}
 		}
 	}

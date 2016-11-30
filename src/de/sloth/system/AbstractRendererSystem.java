@@ -8,11 +8,11 @@ import javafx.scene.canvas.GraphicsContext;
 
 public abstract class AbstractRendererSystem extends GameSystem{
 	private ConcurrentLinkedQueue<Entity> entities;
-	private LayeredFieldCanvasPane lfcp;
+	private GraphicsContext gc;
 	
-	public AbstractRendererSystem(ConcurrentLinkedQueue<Entity> entities, LayeredFieldCanvasPane lfcp) {
+	public AbstractRendererSystem(ConcurrentLinkedQueue<Entity> entities, GraphicsContext gc) {
 		this.entities = entities;
-		this.lfcp = lfcp;
+		this.gc = gc;
 	}
 	
 	public ConcurrentLinkedQueue<Entity> getEntities() {
@@ -23,11 +23,7 @@ public abstract class AbstractRendererSystem extends GameSystem{
 		this.entities = entities;
 	}
 
-	public GraphicsContext getGc(int layer) {
-		return lfcp.getGraphicContext(layer);
-	}
-	
-	public LayeredFieldCanvasPane getLFCP() {
-		return lfcp;
+	public GraphicsContext getGc() {
+		return gc;
 	}
 }

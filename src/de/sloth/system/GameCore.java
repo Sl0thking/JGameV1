@@ -25,9 +25,8 @@ public class GameCore extends AnimationTimer {
 	final int MS_PER_FRAME = 1000/60;
 	FPSCalculator fpsCalc;
 
-	public GameCore(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue, LayeredFieldCanvasPane lfcp) {
-		this.lfcp = lfcp;
-		this.cRenderer = new SpriteRendererSystem(entities, lfcp);
+	public GameCore(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue, GraphicsContext gContext) {
+		this.cRenderer = new SpriteRendererSystem(entities, gContext);
 		this.gameSystems = new LinkedList<GameSystem>();
 		this.fpsCalc = new FPSCalculator();
 	}

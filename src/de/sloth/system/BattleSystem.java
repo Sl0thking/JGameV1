@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.component.LivingComp;
+import de.sloth.component.LvlComp;
 import de.sloth.entity.Entity;
 import de.sloth.event.BattleEvent;
 import de.sloth.event.GameEvent;
@@ -31,9 +32,11 @@ public class BattleSystem extends GameSystem {
 				LivingComp attackerStatus = (LivingComp) attacker.getComponent(LivingComp.class);
 				LivingComp defenderStatus = (LivingComp) defender.getComponent(LivingComp.class);
 				defenderStatus.setHp(defenderStatus.getHp() - (attackerStatus.getAttack() - defenderStatus.getDefense()));
+				attackerStatus.setHp(attackerStatus.getHp() - (defenderStatus.getAttack() - defenderStatus.getDefense()));
 				System.out.println(defender);
 				if(defenderStatus.getHp() <= 0) {
 					this.getEntities().remove(defender);
+					((LvlComp) attacker.getComponent(LvlComp.class)).gainExp(10);
 				}
 				delEvents.add(event);
 			}

@@ -1,26 +1,29 @@
 package de.sloth.component;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ObservableValue;
+
 public class LivingComp extends Component {
 	private boolean isLiving;
-	private int hp;
-	private int hpMax;
+	private SimpleIntegerProperty hp;
+	private SimpleIntegerProperty hpMax;
 	private int attack;
 	private int defense;
 
 	public int getHp() {
-		return hp;
+		return hp.getValue();
 	}
 
 	public void setHp(int hp) {
-		this.hp = hp;
+		this.hp.setValue(hp);
 	}
 
 	public int getHpMax() {
-		return hpMax;
+		return hpMax.getValue();
 	}
 
 	public void setHpMax(int hpMax) {
-		this.hpMax = hpMax;
+		this.hpMax.setValue(hpMax);
 	}
 
 	public int getAttack() {
@@ -42,8 +45,10 @@ public class LivingComp extends Component {
 	public LivingComp(boolean isLiving) {
 		super();
 		this.isLiving = isLiving;
-		this.hp = 10;
-		this.hpMax = 10;
+		this.hp = new SimpleIntegerProperty();
+		this.hp.setValue(10);
+		this.hpMax = new SimpleIntegerProperty();
+		this.hpMax.setValue(10);
 		this.attack = 5;
 		this.defense = 2;
 	}
@@ -60,6 +65,16 @@ public class LivingComp extends Component {
 	public String toString() {
 		return "LivingComp [isLiving=" + isLiving + ", hp=" + hp + ", hpMax=" + hpMax + ", attack=" + attack
 				+ ", defense=" + defense + "]";
+	}
+
+	public ObservableValue<? extends Number> getHpProperty() {
+		// TODO Auto-generated method stub
+		return hp;
+	}
+
+	public ObservableValue<? extends Number> getHpMaxProperty() {
+		// TODO Auto-generated method stub
+		return hpMax;
 	}
 	
 	

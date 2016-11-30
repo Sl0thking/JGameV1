@@ -6,19 +6,19 @@ import de.sloth.component.FocusComp;
 import de.sloth.component.Position3DComp;
 import de.sloth.component.SpriteComp;
 import de.sloth.component.LivingComp;
+import de.sloth.component.LvlComp;
 import de.sloth.controllHandler.SimpleControllHandler;
 import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
-import de.sloth.hmi.FieldCanvas;
 import de.sloth.hmi.LayeredFieldCanvasPane;
 import de.sloth.hmi.GameHMI;
 import de.sloth.system.BattleSystem;
 import de.sloth.system.CollisionTestSystem;
+import de.sloth.system.EndConditionSystem;
 import de.sloth.system.SimpleEntityMoveSystem;
 import de.sloth.system.GameCore;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -35,8 +35,8 @@ public class Main extends Application {
 		int spriteWidth = 40;
 		int xFields = screenWidth / spriteWidth;
 		int yFields = screenHeight / spriteHeight;
-		LayeredFieldCanvasPane lfcp = new LayeredFieldCanvasPane(2, screenWidth, screenHeight);
-		GameHMI pane = new GameHMI(screenWidth, screenHeight, lfcp);
+		//LayeredFieldCanvasPane lfcp = new LayeredFieldCanvasPane(2, screenWidth, screenHeight);
+		GameHMI pane = new GameHMI(screenWidth, screenHeight, spriteWidth, spriteHeight);
 		Scene scene = new Scene(pane);
 		primaryStage.setScene(scene);
 		ConcurrentLinkedQueue<Entity> entities = new ConcurrentLinkedQueue<Entity>();
@@ -47,7 +47,16 @@ public class Main extends Application {
 		((Position3DComp) main.getComponent(Position3DComp.class)).setX(spriteWidth);
 		((Position3DComp) main.getComponent(Position3DComp.class)).setY(spriteHeight);
 		main.addComponent(new FocusComp(true));
-		main.addComponent(new LivingComp(true));
+		LivingComp lComp = new LivingComp(true);
+		lComp.setHp(50);
+		lComp.setHpMax(50);
+		LvlComp lvlcomp = new LvlComp();
+		pane.getEBar().getCurrValue().bind(lvlcomp.getCurrExp());
+		pane.getEBar().getMaxValue().bind(lvlcomp.getMaxExp());
+		pane.gethBar().getCurrValue().bind(lComp.getHpProperty());
+		pane.gethBar().getMaxValue().bind(lComp.getHpMaxProperty());
+		main.addComponent(lComp);
+		main.addComponent(lvlcomp);
 		main.addComponent(new SpriteComp("file:./sprites/hero.png"));
 		//main.addComponent(new SimpleGraphicComp("playable"));
 		entities.add(main);
@@ -110,26 +119,26 @@ public class Main extends Application {
 		}
 		SimpleControllHandler stdControll = new SimpleControllHandler(entities, eventQueue, spriteWidth, spriteHeight);
 		scene.setOnKeyPressed(stdControll);
-		GameCore core = new GameCore(entities, eventQueue, lfcp);
+		GameCore core = new GameCore(entities, eventQueue, pane.getCanvasContext());
 		pane.getLabel().textProperty().bindBidirectional(core.getFpsProperty(), new StringConverter<Number>() {
 			@Override
 			public Number fromString(String arg0) {
 				return Integer.parseInt(arg0);
 			}
-
 			@Override
 			public String toString(Number arg0) {
 				return arg0.toString();
 			}
 		});
 				
-		SimpleEntityMoveSystem mov = new SimpleEntityMoveSystem(entities, eventQueue, lfcp.getGraphicContext(0));
+		SimpleEntityMoveSystem mov = new SimpleEntityMoveSystem(entities, eventQueue, pane.getCanvasContext());
 		CollisionTestSystem cts = new CollisionTestSystem(entities, eventQueue);
 		BattleSystem bsys = new BattleSystem(entities, eventQueue);
-		
+		EndConditionSystem ecs = new EndConditionSystem(entities, eventQueue);
 		core.registerSystem(mov);
 		core.registerSystem(cts);
 		core.registerSystem(bsys);
+		core.registerSystem(ecs);
 		core.start();
 		//primaryStage.setAlwaysOnTop(true);
 		primaryStage.setFullScreen(true);
