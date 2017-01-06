@@ -7,16 +7,24 @@ import de.sloth.component.Position3DComp;
 import de.sloth.component.SpriteComp;
 import de.sloth.component.LivingComp;
 import de.sloth.component.LvlComp;
+import de.sloth.controllHandler.InventoryControllHandler;
 import de.sloth.controllHandler.SimpleControllHandler;
 import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
-import de.sloth.hmi.LayeredFieldCanvasPane;
+import de.sloth.hmi.PlayerInformationLayer;
+import de.sloth.hmi.RestartEvent;
+import de.sloth.hmi.WinLooseGameLayer;
 import de.sloth.hmi.GameHMI;
+import de.sloth.hmi.GeneralGameInformation;
+import de.sloth.hmi.InventoryGameLayer;
 import de.sloth.system.BattleSystem;
 import de.sloth.system.CollisionTestSystem;
 import de.sloth.system.EndConditionSystem;
 import de.sloth.system.SimpleEntityMoveSystem;
+import de.sloth.system.StartEvent;
 import de.sloth.system.GameCore;
+import de.sloth.system.HMIManagementSystem;
+import de.sloth.system.StartGameSystem;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
@@ -24,103 +32,37 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 public class Main extends Application {
-
+	
 	@Override
 	public void start(Stage primaryStage) {
 		int screenWidth = (int) Screen.getPrimary().getBounds().getWidth();
 		int screenHeight = (int) Screen.getPrimary().getBounds().getHeight(); 
-		System.out.println(screenWidth);
-		System.out.println(screenHeight);
+
 		int spriteHeight = 35;
 		int spriteWidth = 40;
-		int xFields = screenWidth / spriteWidth;
-		int yFields = screenHeight / spriteHeight;
-		//LayeredFieldCanvasPane lfcp = new LayeredFieldCanvasPane(2, screenWidth, screenHeight);
-		GameHMI pane = new GameHMI(screenWidth, screenHeight, spriteWidth, spriteHeight);
-		Scene scene = new Scene(pane);
+
+		GameHMI gameHmi = new GameHMI(screenWidth, screenHeight);
+		
+		Scene scene = new Scene(gameHmi);
 		primaryStage.setScene(scene);
 		ConcurrentLinkedQueue<Entity> entities = new ConcurrentLinkedQueue<Entity>();
 		ConcurrentLinkedQueue<GameEvent> eventQueue = new ConcurrentLinkedQueue<GameEvent>();
-		Entity main = new Entity();
-		main.setId(1);
-		main.addComponent(new Position3DComp());
-		((Position3DComp) main.getComponent(Position3DComp.class)).setX(spriteWidth);
-		((Position3DComp) main.getComponent(Position3DComp.class)).setY(spriteHeight);
-		main.addComponent(new FocusComp(true));
-		LivingComp lComp = new LivingComp(true);
-		lComp.setHp(50);
-		lComp.setHpMax(50);
-		LvlComp lvlcomp = new LvlComp();
-		pane.getEBar().getCurrValue().bind(lvlcomp.getCurrExp());
-		pane.getEBar().getMaxValue().bind(lvlcomp.getMaxExp());
-		pane.gethBar().getCurrValue().bind(lComp.getHpProperty());
-		pane.gethBar().getMaxValue().bind(lComp.getHpMaxProperty());
-		main.addComponent(lComp);
-		main.addComponent(lvlcomp);
-		main.addComponent(new SpriteComp("file:./sprites/hero.png"));
-		//main.addComponent(new SimpleGraphicComp("playable"));
-		entities.add(main);
-		for(int y = 0; y < yFields; y++) {
-			for(int x = 0; x < xFields; x++) {
-				Entity floor = new Entity();
-				int id = 0;
-				for(Entity entity : entities) {
-					if(entity.getId() > id) {
-						id = entity.getId();
-					}
-				}
-				floor.setId(id+1);
-				floor.setName("Floor");
-				Position3DComp posComp = new Position3DComp();
-				posComp.setX(x*spriteWidth);
-				posComp.setY(y*spriteHeight);
-				posComp.setZ(0);
-				floor.addComponent(posComp);
-				floor.addComponent(new SpriteComp("file:./sprites/floor.png"));
-				entities.add(floor);
-				if(y == 0 || y == yFields-1 || x == 0 || x == xFields-1) {
-					Entity wall = new Entity();
-					id = 0;
-					for(Entity entity : entities) {
-						if(entity.getId() > id) {
-							id = entity.getId();
-						}
-					}
-					wall.setId(id+1);
-					wall.setName("Wall");
-					posComp = new Position3DComp();
-					posComp.setX(x*spriteWidth);
-					posComp.setY(y*spriteHeight);
-					wall.addComponent(posComp);
-					wall.addComponent(new SpriteComp("file:./sprites/wall.png"));
-					System.out.println(wall);
-					entities.add(wall);
-				} else if((y != 1 || x != 1) && Math.random() < 0.3) {
-					
-					Entity enemy = new Entity();
-					id = 0;
-					for(Entity entity : entities) {
-						if(entity.getId() > id) {
-							id = entity.getId();
-						}
-					}
-					enemy.setId(id+1);
-					enemy.setName("Enemy");
-					posComp = new Position3DComp();
-					posComp.setX(x*spriteWidth);
-					posComp.setY(y*spriteHeight);
-					enemy.addComponent(posComp);
-					enemy.addComponent(new SpriteComp("file:./sprites/enemy.png"));
-					enemy.addComponent(new LivingComp(true));
-					System.out.println(enemy);
-					entities.add(enemy);
-				}
-			}
-		}
+		PlayerInformationLayer pil = new PlayerInformationLayer("playerInfo", eventQueue);
+		WinLooseGameLayer wlgl = new WinLooseGameLayer("wl", eventQueue);
+		InventoryGameLayer igl = new InventoryGameLayer("igl", eventQueue);
+		GeneralGameInformation ggi = new GeneralGameInformation("ggi", eventQueue);
+		gameHmi.registerGameInterfaceLayer(ggi);
+		gameHmi.registerGameInterfaceLayer(pil);
+		gameHmi.registerGameInterfaceLayer(wlgl);
+		gameHmi.registerGameInterfaceLayer(igl);
+		
 		SimpleControllHandler stdControll = new SimpleControllHandler(entities, eventQueue, spriteWidth, spriteHeight);
-		scene.setOnKeyPressed(stdControll);
-		GameCore core = new GameCore(entities, eventQueue, pane.getCanvasContext());
-		pane.getLabel().textProperty().bindBidirectional(core.getFpsProperty(), new StringConverter<Number>() {
+		InventoryControllHandler iControll = new InventoryControllHandler(entities, eventQueue);
+		pil.setOnKeyPressed(stdControll);
+		pil.requestFocus();
+		igl.setOnKeyPressed(iControll);
+		GameCore core = new GameCore(entities, eventQueue, gameHmi.getCanvasContext());
+		((GeneralGameInformation) gameHmi.getGameInterfaceLayer("ggi")).getLabel().textProperty().bindBidirectional(core.getFpsProperty(), new StringConverter<Number>() {
 			@Override
 			public Number fromString(String arg0) {
 				return Integer.parseInt(arg0);
@@ -131,17 +73,21 @@ public class Main extends Application {
 			}
 		});
 				
-		SimpleEntityMoveSystem mov = new SimpleEntityMoveSystem(entities, eventQueue, pane.getCanvasContext());
+		SimpleEntityMoveSystem mov = new SimpleEntityMoveSystem(entities, eventQueue, gameHmi.getCanvasContext());
 		CollisionTestSystem cts = new CollisionTestSystem(entities, eventQueue);
 		BattleSystem bsys = new BattleSystem(entities, eventQueue);
 		EndConditionSystem ecs = new EndConditionSystem(entities, eventQueue);
+		HMIManagementSystem hms = new HMIManagementSystem(entities, eventQueue, gameHmi);
+		StartGameSystem rsys = new StartGameSystem(entities, eventQueue);
 		core.registerSystem(mov);
 		core.registerSystem(cts);
 		core.registerSystem(bsys);
 		core.registerSystem(ecs);
+		core.registerSystem(hms);
+		core.registerSystem(rsys);
 		core.start();
-		//primaryStage.setAlwaysOnTop(true);
 		primaryStage.setFullScreen(true);
+		eventQueue.add(new StartEvent());
 		primaryStage.show();
 	}
 

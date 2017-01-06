@@ -33,7 +33,7 @@ public class SpriteRendererSystem extends AbstractRendererSystem {
 			}
 		}
 		
-		System.out.println(this.getGc());
+		//System.out.println(this.getGc());
 		
 		this.getGc().clearRect(0, 0, this.getGc().getCanvas().getWidth(), this.getGc().getCanvas().getHeight());
 		this.getGc().fillRect(0, 0, this.getGc().getCanvas().getWidth(), this.getGc().getCanvas().getHeight());

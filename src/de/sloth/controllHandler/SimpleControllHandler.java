@@ -7,6 +7,8 @@ import de.sloth.component.FocusComp;
 import de.sloth.component.Position3DComp;
 import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
+import de.sloth.event.HMIEvent;
+import de.sloth.event.HMIKeyword;
 import de.sloth.event.MoveEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -40,6 +42,12 @@ public class SimpleControllHandler implements EventHandler<KeyEvent> {
 			((Position3DComp) entity.getComponent(Position3DComp.class)).setX(128);
 			((Position3DComp) entity.getComponent(Position3DComp.class)).setY(256);
 			entities.add(entity);
+		} else if(event.getCode().equals(KeyCode.Q)) {
+			GameEvent toggleEvent = new HMIEvent(HMIKeyword.togglePlayerInfo);
+			this.eventQueue.add(toggleEvent);
+		} else if(event.getCode().equals(KeyCode.I)) {
+			GameEvent toggleInventory = new HMIEvent(HMIKeyword.showInventory);
+			this.eventQueue.add(toggleInventory);
 		} else if(event.getCode().equals(KeyCode.ESCAPE)) {
 			System.exit(0);
 		}
