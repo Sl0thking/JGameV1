@@ -2,17 +2,12 @@ package de.sloth.main;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import de.sloth.component.FocusComp;
-import de.sloth.component.Position3DComp;
-import de.sloth.component.SpriteComp;
-import de.sloth.component.LivingComp;
-import de.sloth.component.LvlComp;
 import de.sloth.controllHandler.InventoryControllHandler;
 import de.sloth.controllHandler.SimpleControllHandler;
 import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
+import de.sloth.hmi.MainMenuLayer;
 import de.sloth.hmi.PlayerInformationLayer;
-import de.sloth.hmi.RestartEvent;
 import de.sloth.hmi.WinLooseGameLayer;
 import de.sloth.hmi.GameHMI;
 import de.sloth.hmi.GeneralGameInformation;
@@ -21,12 +16,12 @@ import de.sloth.system.BattleSystem;
 import de.sloth.system.CollisionTestSystem;
 import de.sloth.system.EndConditionSystem;
 import de.sloth.system.SimpleEntityMoveSystem;
-import de.sloth.system.StartEvent;
 import de.sloth.system.GameCore;
 import de.sloth.system.HMIManagementSystem;
 import de.sloth.system.StartGameSystem;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -51,15 +46,17 @@ public class Main extends Application {
 		WinLooseGameLayer wlgl = new WinLooseGameLayer("wl", eventQueue);
 		InventoryGameLayer igl = new InventoryGameLayer("igl", eventQueue);
 		GeneralGameInformation ggi = new GeneralGameInformation("ggi", eventQueue);
+		MainMenuLayer mml = new MainMenuLayer("main", eventQueue);
 		gameHmi.registerGameInterfaceLayer(ggi);
 		gameHmi.registerGameInterfaceLayer(pil);
 		gameHmi.registerGameInterfaceLayer(wlgl);
 		gameHmi.registerGameInterfaceLayer(igl);
+		gameHmi.registerGameInterfaceLayer(mml);
 		
 		SimpleControllHandler stdControll = new SimpleControllHandler(entities, eventQueue, spriteWidth, spriteHeight);
 		InventoryControllHandler iControll = new InventoryControllHandler(entities, eventQueue);
 		pil.setOnKeyPressed(stdControll);
-		pil.requestFocus();
+		mml.requestFocus();
 		igl.setOnKeyPressed(iControll);
 		GameCore core = new GameCore(entities, eventQueue, gameHmi.getCanvasContext());
 		((GeneralGameInformation) gameHmi.getGameInterfaceLayer("ggi")).getLabel().textProperty().bindBidirectional(core.getFpsProperty(), new StringConverter<Number>() {
@@ -87,7 +84,9 @@ public class Main extends Application {
 		core.registerSystem(rsys);
 		core.start();
 		primaryStage.setFullScreen(true);
-		eventQueue.add(new StartEvent());
+		primaryStage.setFullScreenExitHint("");
+		primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+		primaryStage.setAlwaysOnTop(true);
 		primaryStage.show();
 	}
 

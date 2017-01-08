@@ -60,5 +60,14 @@ public abstract class GameSystem {
 		return matchingEntities;
 	}
 	
+	public GameEvent checkEvents(Class<?> triggerEventClass) {
+		for(GameEvent event:this.getEventQueue()) {
+			if(event.getClass().equals(triggerEventClass)) {
+				return event;
+			}
+		}
+		return null;
+	}
+	
 	public abstract void executeSystem();
 }

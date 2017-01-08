@@ -10,11 +10,11 @@ import de.sloth.component.LvlComp;
 import de.sloth.component.Position3DComp;
 import de.sloth.component.SpriteComp;
 import de.sloth.entity.Entity;
-import de.sloth.event.BattleEvent;
 import de.sloth.event.GameEvent;
 import de.sloth.event.HMIEvent;
 import de.sloth.event.HMIKeyword;
-import de.sloth.hmi.RestartEvent;
+import de.sloth.event.RestartEvent;
+import de.sloth.event.StartEvent;
 import javafx.stage.Screen;
 
 public class StartGameSystem extends GameSystem {
@@ -115,10 +115,13 @@ public class StartGameSystem extends GameSystem {
 					}
 				}
 				delEvents.add(event);
+				HMIEvent hmiEvent;
 				if(event.getClass().equals(RestartEvent.class)) {
-					HMIEvent hmiEvent = new HMIEvent(HMIKeyword.toggleGameOver);
-					this.getEventQueue().add(hmiEvent);
+					hmiEvent = new HMIEvent(HMIKeyword.toggleGameOver);
+				} else {
+					hmiEvent = new HMIEvent(HMIKeyword.startGame);
 				}
+				this.getEventQueue().add(hmiEvent);
 			}
 		}
 		this.getEventQueue().removeAll(delEvents);

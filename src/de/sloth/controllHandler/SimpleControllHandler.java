@@ -49,7 +49,7 @@ public class SimpleControllHandler implements EventHandler<KeyEvent> {
 			GameEvent toggleInventory = new HMIEvent(HMIKeyword.showInventory);
 			this.eventQueue.add(toggleInventory);
 		} else if(event.getCode().equals(KeyCode.ESCAPE)) {
-			System.exit(0);
+			this.eventQueue.add(new HMIEvent(HMIKeyword.showMenu));
 		}
 	}
 	

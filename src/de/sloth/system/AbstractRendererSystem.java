@@ -3,7 +3,6 @@ package de.sloth.system;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.entity.Entity;
-import de.sloth.hmi.LayeredFieldCanvasPane;
 import javafx.scene.canvas.GraphicsContext;
 
 public abstract class AbstractRendererSystem extends GameSystem{

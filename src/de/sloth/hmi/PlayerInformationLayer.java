@@ -1,5 +1,7 @@
 package de.sloth.hmi;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.event.GameEvent;
@@ -20,6 +22,8 @@ public class PlayerInformationLayer extends GameInterfaceLayer {
 		vbox.getChildren().add(eBar);
 		pane.setBottom(vbox);
 		this.getChildren().add(pane);
+		this.setDisable(true);
+		this.setVisible(false);
 	}
 	
 	public GameBar gethBar() {
@@ -32,5 +36,11 @@ public class PlayerInformationLayer extends GameInterfaceLayer {
 
 	public void sethBar(GameBar hBar) {
 		this.hBar = hBar;
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }

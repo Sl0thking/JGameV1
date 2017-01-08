@@ -1,7 +1,5 @@
 package de.sloth.hmi;
 
-import java.util.List;
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;

@@ -1,5 +1,7 @@
 package de.sloth.hmi;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.event.GameEvent;
@@ -22,4 +24,7 @@ public class GeneralGameInformation extends GameInterfaceLayer {
 	public Label getLabel() {
 		return label;
 	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {}
 }

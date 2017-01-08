@@ -21,20 +21,20 @@ public abstract class AbstractEntityMoveSystem extends GameSystem {
 	@Override
 	public void executeSystem() {
 		List<GameEvent> delList = new LinkedList<GameEvent>();
-		for(GameEvent event: this.getEventQueue()) {
-			if(event.getClass().equals(MoveEvent.class)) {
-				MoveEvent movEvent = (MoveEvent) event;
-				Entity srcEntity = movEvent.getSrcEntity();
-				Position3DComp posComp = (Position3DComp) srcEntity.getComponent(Position3DComp.class);
-				boolean isCollided = checkCollision(srcEntity, movEvent);
-				if(movEvent.getTargetX() >= 0 && movEvent.getTargetX() < gc.getCanvas().getWidth() &&
-				   movEvent.getTargetY() >= 0 && movEvent.getTargetY() < gc.getCanvas().getHeight() &&
-				   !isCollided) {
-					posComp.setX(movEvent.getTargetX());
-					posComp.setY(movEvent.getTargetY());
-				}
-				delList.add(event);
+		
+		GameEvent event = this.checkEvents(MoveEvent.class);
+		if(event != null) {
+			MoveEvent movEvent = (MoveEvent) event;
+			Entity srcEntity = movEvent.getSrcEntity();
+			Position3DComp posComp = (Position3DComp) srcEntity.getComponent(Position3DComp.class);
+			boolean isCollided = checkCollision(srcEntity, movEvent);
+			if(movEvent.getTargetX() >= 0 && movEvent.getTargetX() < gc.getCanvas().getWidth() &&
+			   movEvent.getTargetY() >= 0 && movEvent.getTargetY() < gc.getCanvas().getHeight() &&
+			   !isCollided) {
+				posComp.setX(movEvent.getTargetX());
+				posComp.setY(movEvent.getTargetY());
 			}
+			delList.add(event);
 		}
 		this.getEventQueue().removeAll(delList);
 	}
