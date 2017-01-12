@@ -9,6 +9,8 @@ import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
 import de.sloth.event.HMIEvent;
 import de.sloth.event.HMIKeyword;
+import de.sloth.event.InventoryEvent;
+import de.sloth.event.InventoryKeyword;
 import de.sloth.event.MoveEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -26,16 +28,28 @@ public class InventoryControllHandler implements EventHandler<KeyEvent> {
 	
 	@Override
 	public void handle(KeyEvent event) {
-		if(event.getCode().equals(KeyCode.W) ||
-		   event.getCode().equals(KeyCode.S) ||
-		   event.getCode().equals(KeyCode.A) ||
-		   event.getCode().equals(KeyCode.D)) {
-				System.out.println("INVENTORY");
-		} else if(event.getCode().equals(KeyCode.I)) {
+		if(event.getCode().equals(KeyCode.W)) {
+			InventoryEvent iEvent = new InventoryEvent(InventoryKeyword.changeCursor);
+			iEvent.setxPos(-4);	
+			this.eventQueue.add(iEvent);
+		} else if(event.getCode().equals(KeyCode.S)) {
+			InventoryEvent iEvent = new InventoryEvent(InventoryKeyword.changeCursor);
+			iEvent.setxPos(4);	
+			this.eventQueue.add(iEvent);
+		} else if(event.getCode().equals(KeyCode.A)) {
+			InventoryEvent iEvent = new InventoryEvent(InventoryKeyword.changeCursor);
+			iEvent.setxPos(-1);	
+			this.eventQueue.add(iEvent);
+		} else if(event.getCode().equals(KeyCode.D)) {
+			InventoryEvent iEvent = new InventoryEvent(InventoryKeyword.changeCursor);
+			iEvent.setxPos(1);	
+			this.eventQueue.add(iEvent);
+		} else if(event.getCode().equals(KeyCode.I) || event.getCode().equals(KeyCode.ESCAPE)) {
 			GameEvent toggleInventory = new HMIEvent(HMIKeyword.closeInventory);
 			this.eventQueue.add(toggleInventory);
-		} else if(event.getCode().equals(KeyCode.ESCAPE)) {
-			System.exit(0);
+		} else if(event.getCode().equals(KeyCode.SPACE)) {
+			InventoryEvent iEvent = new InventoryEvent(InventoryKeyword.useItem);
+			this.eventQueue.add(iEvent);
 		}
 	}
 }

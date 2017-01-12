@@ -6,17 +6,14 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.event.GameEvent;
-import de.sloth.event.RestartEvent;
+import de.sloth.event.HMIEvent;
+import de.sloth.event.HMIKeyword;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
-public class WinLooseGameLayer extends GameInterfaceLayer {
-
-	@FXML
-	private Button restartBtn;
+public class WinGameLayer extends GameInterfaceLayer {
 	
-	public WinLooseGameLayer(String uid, ConcurrentLinkedQueue<GameEvent> eventQueue) {
+	public WinGameLayer(String uid, ConcurrentLinkedQueue<GameEvent> eventQueue) {
 		super(uid, eventQueue);
 		BorderPane pane = null;
 		try {
@@ -24,19 +21,18 @@ public class WinLooseGameLayer extends GameInterfaceLayer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		this.getChildren().add(pane);
 		this.setVisible(false);
 		this.setDisable(true);
-		this.getChildren().add(pane);
 	}
-	
-	@FXML
-	public void restartGame() {
-		GameEvent restartEvent = new RestartEvent();
-		getEventQueue().add(restartEvent);
-	}
-	
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {}
+	
+	@FXML
+	public void toMenu() {
+		HMIEvent event = new HMIEvent(HMIKeyword.showMenu);
+		this.getEventQueue().add(event);
+	}
+
 }

@@ -7,8 +7,9 @@ public class LivingComp extends Component {
 	private boolean isLiving;
 	private SimpleIntegerProperty hp;
 	private SimpleIntegerProperty hpMax;
-	private int attack;
-	private int defense;
+	private SimpleIntegerProperty attack_min;
+	private SimpleIntegerProperty attack_max;
+	private SimpleIntegerProperty defense;
 
 	public int getHp() {
 		return hp.getValue();
@@ -25,23 +26,7 @@ public class LivingComp extends Component {
 	public void setHpMax(int hpMax) {
 		this.hpMax.setValue(hpMax);
 	}
-
-	public int getAttack() {
-		return attack;
-	}
-
-	public void setAttack(int attack) {
-		this.attack = attack;
-	}
-
-	public int getDefense() {
-		return defense;
-	}
-
-	public void setDefense(int defense) {
-		this.defense = defense;
-	}
-
+	
 	public LivingComp(boolean isLiving) {
 		super();
 		this.isLiving = isLiving;
@@ -49,8 +34,9 @@ public class LivingComp extends Component {
 		this.hp.setValue(10);
 		this.hpMax = new SimpleIntegerProperty();
 		this.hpMax.setValue(10);
-		this.attack = 5;
-		this.defense = 2;
+		this.attack_min = new SimpleIntegerProperty(1);
+		this.attack_max = new SimpleIntegerProperty(3);
+		this.defense = new SimpleIntegerProperty(1);
 	}
 
 	public boolean isLiving() {
@@ -63,19 +49,42 @@ public class LivingComp extends Component {
 
 	@Override
 	public String toString() {
-		return "LivingComp [isLiving=" + isLiving + ", hp=" + hp + ", hpMax=" + hpMax + ", attack=" + attack
+		return "LivingComp [isLiving=" + isLiving + ", hp=" + hp + ", hpMax=" + hpMax 
 				+ ", defense=" + defense + "]";
 	}
 
-	public ObservableValue<? extends Number> getHpProperty() {
-		// TODO Auto-generated method stub
+	public SimpleIntegerProperty getHpProperty() {
 		return hp;
 	}
 
-	public ObservableValue<? extends Number> getHpMaxProperty() {
-		// TODO Auto-generated method stub
+	public SimpleIntegerProperty getHpMaxProperty() {
 		return hpMax;
 	}
+
+	public SimpleIntegerProperty getAttackMin() {
+		return attack_min;
+	}
+
+	public void setAttackMin(int attack_min) {
+		this.attack_min.setValue(attack_min);
+	}
+
+	public SimpleIntegerProperty getAttackMax() {
+		return attack_max;
+	}
+
+	public void setAttackMax(int attack_max) {
+		this.attack_max.setValue(attack_max);
+	}
+
+	public SimpleIntegerProperty getDefense() {
+		return defense;
+	}
+
+	public void setDefense(SimpleIntegerProperty defense) {
+		this.defense = defense;
+	}
+	
 	
 	
 }

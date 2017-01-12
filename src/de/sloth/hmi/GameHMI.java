@@ -18,8 +18,6 @@ public class GameHMI extends StackPane {
 		this.setHeight(height);
 		this.canvas = new Canvas(width, height);
 		this.getChildren().add(canvas);
-		
-		
 	}
 
 	public GraphicsContext getCanvasContext() {

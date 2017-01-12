@@ -1,10 +1,12 @@
-package de.sloth.system;
+package de.sloth.system.game;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import de.sloth.component.EnemyComp;
 import de.sloth.component.FocusComp;
+import de.sloth.component.InventoryComponent;
 import de.sloth.component.LivingComp;
 import de.sloth.component.LvlComp;
 import de.sloth.component.Position3DComp;
@@ -15,18 +17,18 @@ import de.sloth.event.HMIEvent;
 import de.sloth.event.HMIKeyword;
 import de.sloth.event.RestartEvent;
 import de.sloth.event.StartEvent;
+import de.sloth.system.GameSystem;
+import de.sloth.system.SystemActivationEvent;
 import javafx.stage.Screen;
 
 public class StartGameSystem extends GameSystem {
 	
 	public StartGameSystem() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public StartGameSystem(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue) {
 		super(entities, eventQueue);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -54,6 +56,7 @@ public class StartGameSystem extends GameSystem {
 				LvlComp lvlcomp = new LvlComp();
 				main.addComponent(lComp);
 				main.addComponent(lvlcomp);
+				main.addComponent(new InventoryComponent());
 				main.addComponent(new SpriteComp("file:./sprites/hero.png"));
 				//main.addComponent(new SimpleGraphicComp("playable"));
 				this.getEntities().add(main);
@@ -92,8 +95,7 @@ public class StartGameSystem extends GameSystem {
 							wall.addComponent(new SpriteComp("file:./sprites/wall.png"));
 							System.out.println(wall);
 							this.getEntities().add(wall);
-						} else if((y != 1 || x != 1) && Math.random() < 0.3) {
-							
+						} else if((y != 1 || x != 1) && Math.random() < 0.02) {
 							Entity enemy = new Entity();
 							id = 0;
 							for(Entity entity : this.getEntities()) {
@@ -109,12 +111,14 @@ public class StartGameSystem extends GameSystem {
 							enemy.addComponent(posComp);
 							enemy.addComponent(new SpriteComp("file:./sprites/enemy.png"));
 							enemy.addComponent(new LivingComp(true));
+							enemy.addComponent(new EnemyComp());
 							System.out.println(enemy);
 							this.getEntities().add(enemy);
 						}
 					}
 				}
 				delEvents.add(event);
+				this.getEventQueue().add(new SystemActivationEvent(EndConditionSystem.class));
 				HMIEvent hmiEvent;
 				if(event.getClass().equals(RestartEvent.class)) {
 					hmiEvent = new HMIEvent(HMIKeyword.toggleGameOver);

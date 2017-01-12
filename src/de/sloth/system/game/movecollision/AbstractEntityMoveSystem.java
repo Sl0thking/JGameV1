@@ -1,4 +1,4 @@
-package de.sloth.system;
+package de.sloth.system.game.movecollision;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -8,6 +8,7 @@ import de.sloth.component.Position3DComp;
 import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
 import de.sloth.event.MoveEvent;
+import de.sloth.system.GameSystem;
 import javafx.scene.canvas.GraphicsContext;
 
 public abstract class AbstractEntityMoveSystem extends GameSystem {

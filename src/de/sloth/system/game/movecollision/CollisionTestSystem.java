@@ -1,4 +1,4 @@
-package de.sloth.system;
+package de.sloth.system.game.movecollision;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,6 +9,7 @@ import de.sloth.entity.Entity;
 import de.sloth.event.BattleEvent;
 import de.sloth.event.CollisionEvent;
 import de.sloth.event.GameEvent;
+import de.sloth.system.GameSystem;
 
 public class CollisionTestSystem extends GameSystem {
 

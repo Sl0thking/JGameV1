@@ -4,6 +4,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import de.sloth.component.LivingComp;
+import de.sloth.component.LvlComp;
+import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -37,10 +40,20 @@ public class PlayerInformationLayer extends GameInterfaceLayer {
 	public void sethBar(GameBar hBar) {
 		this.hBar = hBar;
 	}
+	
+	public void setObservableEntity(Entity entity) throws NotSupportedEntityException {
+		LivingComp lComp = (LivingComp) entity.getComponent(LivingComp.class);
+		LvlComp lvlcomp = (LvlComp) entity.getComponent(LvlComp.class);
+		if(lComp != null && lvlcomp != null) {
+			this.getEBar().getCurrValue().bind(lvlcomp.getCurrExp());
+			this.getEBar().getMaxValue().bind(lvlcomp.getMaxExp());
+			this.gethBar().getCurrValue().bind(lComp.getHpProperty());
+			this.gethBar().getMaxValue().bind(lComp.getHpMaxProperty());
+		} else {
+			throw new NotSupportedEntityException();
+		}
+	}
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void initialize(URL arg0, ResourceBundle arg1){}
 }

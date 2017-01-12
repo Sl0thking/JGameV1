@@ -1,4 +1,4 @@
-package de.sloth.system;
+package de.sloth.system.game.movecollision;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.component.Position3DComp;

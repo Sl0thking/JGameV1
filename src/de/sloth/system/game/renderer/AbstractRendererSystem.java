@@ -1,8 +1,9 @@
-package de.sloth.system;
+package de.sloth.system.game.renderer;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.entity.Entity;
+import de.sloth.system.GameSystem;
 import javafx.scene.canvas.GraphicsContext;
 
 public abstract class AbstractRendererSystem extends GameSystem{

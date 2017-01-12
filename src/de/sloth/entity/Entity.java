@@ -60,6 +60,14 @@ public class Entity {
 		return this.components;
 	}
 	
+	public List<Class<?>> getComponentClasses() {
+		List<Class<?>> compClasses = new LinkedList<Class<?>>();
+		for(Component comp : this.components) {
+			compClasses.add(comp.getClass());
+		}
+		return compClasses;
+	}
+	
 	public Component getComponent(Class<?> compClass) {
 		for(Component comp : components) {
 			if(comp.getClass().equals(compClass)) {

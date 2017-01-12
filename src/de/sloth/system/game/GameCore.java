@@ -1,4 +1,4 @@
-package de.sloth.system;
+package de.sloth.system.game;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -9,6 +9,9 @@ import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
 import de.sloth.hmi.FPSCalculator;
 import de.sloth.hmi.LayeredFieldCanvasPane;
+import de.sloth.system.GameSystem;
+import de.sloth.system.game.renderer.AbstractRendererSystem;
+import de.sloth.system.game.renderer.SpriteRendererSystem;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.canvas.GraphicsContext;

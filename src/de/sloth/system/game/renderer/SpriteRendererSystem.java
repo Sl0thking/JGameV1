@@ -1,4 +1,4 @@
-package de.sloth.system;
+package de.sloth.system.game.renderer;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
