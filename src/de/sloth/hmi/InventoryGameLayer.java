@@ -144,10 +144,12 @@ public class InventoryGameLayer extends GameInterfaceLayer {
 	public void setActiveSlot(int posX, int posY) {
 		for(Node node : invGridPane.getChildren()) {
 			if(node instanceof Pane) {
-				node.setStyle("-fx-border-color: orange");
+				node.getStyleClass().remove("inv-slot-selected");
+				node.getStyleClass().add("inv-slot");
 			}
 		}
-		invGridPane.getChildren().get(posX).setStyle("-fx-border-color: red;");
+		invGridPane.getChildren().get(posX).getStyleClass().remove("inv-slot");
+		invGridPane.getChildren().get(posX).getStyleClass().add("inv-slot-selected");
 	}
 
 }

@@ -32,10 +32,10 @@ public class InventorySystem extends GameSystem {
 		if(iEvent != null) {
 			if(iEvent.getKeyword().equals(InventoryKeyword.changeCursor)) {
 				this.posX += iEvent.getxPos();
-				if(this.posX > 11) {
+				if(this.posX > 14) {
 					this.posX = 0;
 				} else if(this.posX < 0) {
-					this.posX = 11;
+					this.posX = 14;
 				}
 				this.getEventQueue().add(new HMIInventoryEvent(this.posX, this.posY));
 				

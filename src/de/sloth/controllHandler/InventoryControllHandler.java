@@ -1,17 +1,12 @@
 package de.sloth.controllHandler;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import de.sloth.component.FocusComp;
-import de.sloth.component.Position3DComp;
 import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
 import de.sloth.event.HMIEvent;
 import de.sloth.event.HMIKeyword;
 import de.sloth.event.InventoryEvent;
 import de.sloth.event.InventoryKeyword;
-import de.sloth.event.MoveEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -30,11 +25,11 @@ public class InventoryControllHandler implements EventHandler<KeyEvent> {
 	public void handle(KeyEvent event) {
 		if(event.getCode().equals(KeyCode.W)) {
 			InventoryEvent iEvent = new InventoryEvent(InventoryKeyword.changeCursor);
-			iEvent.setxPos(-4);	
+			iEvent.setxPos(-5);	
 			this.eventQueue.add(iEvent);
 		} else if(event.getCode().equals(KeyCode.S)) {
 			InventoryEvent iEvent = new InventoryEvent(InventoryKeyword.changeCursor);
-			iEvent.setxPos(4);	
+			iEvent.setxPos(5);	
 			this.eventQueue.add(iEvent);
 		} else if(event.getCode().equals(KeyCode.A)) {
 			InventoryEvent iEvent = new InventoryEvent(InventoryKeyword.changeCursor);

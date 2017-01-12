@@ -15,7 +15,7 @@ public class LootComp extends Component {
 
 	public LootComp() {
 		super();
-		this.image = new Image("file:./sprites/potion.png");
+		this.image = new Image("file:./sprites/health_potion.png");
 		this.name = "Potion";
 	}
 	
