@@ -218,17 +218,17 @@
                   <Image url="@../../../../../sprites/sword.png" />
                </image>
             </ImageView>
-            <Label fx:id="currDmgLbl" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="65.0" prefWidth="105.0" text="1 - 3" textFill="WHITE">
+            <Label fx:id="currDmgLbl" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="65.0" prefWidth="166.0" text="1 - 3" textFill="WHITE">
                <font>
                   <Font name="Lucida Console" size="28.0" />
                </font>
             </Label>
-            <Label fx:id="defDmg" prefHeight="65.0" prefWidth="85.0" text="DEF" textFill="WHITE">
-               <font>
-                  <Font name="Lucida Console" size="28.0" />
-               </font>
-            </Label>
-            <Label fx:id="currDefLbl" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="65.0" prefWidth="105.0" text="2" textFill="WHITE">
+            <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../sprites/crusader_shield.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="currDefLbl" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="65.0" prefWidth="166.0" text="2" textFill="WHITE">
                <font>
                   <Font name="Lucida Console" size="28.0" />
                </font>
