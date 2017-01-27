@@ -13,6 +13,7 @@ import de.sloth.hmi.LooseGameLayer;
 import de.sloth.hmi.GameHMI;
 import de.sloth.hmi.GeneralGameInformation;
 import de.sloth.hmi.InventoryGameLayer;
+import de.sloth.system.game.BGMusicSystem;
 import de.sloth.system.game.BattleSystem;
 import de.sloth.system.game.EndConditionSystem;
 import de.sloth.system.game.GameCore;
@@ -35,8 +36,8 @@ public class Main extends Application {
 		int screenWidth = (int) Screen.getPrimary().getBounds().getWidth();
 		int screenHeight = (int) Screen.getPrimary().getBounds().getHeight(); 
 
-		int spriteHeight = 35;
-		int spriteWidth = 40;
+		int spriteHeight = 32;
+		int spriteWidth = 32;
 
 		GameHMI gameHmi = new GameHMI(screenWidth, screenHeight);
 		
@@ -63,7 +64,7 @@ public class Main extends Application {
 		pil.setOnKeyPressed(stdControll);
 		mml.requestFocus();
 		igl.setOnKeyPressed(iControll);
-		GameCore core = new GameCore(entities, eventQueue, gameHmi.getCanvasContext());
+		GameCore core = new GameCore(entities, eventQueue, gameHmi.getCanvas(), screenWidth, screenHeight);
 		((GeneralGameInformation) gameHmi.getGameInterfaceLayer("ggi")).getLabel().textProperty().bindBidirectional(core.getFpsProperty(), new StringConverter<Number>() {
 			@Override
 			public Number fromString(String arg0) {
@@ -75,13 +76,14 @@ public class Main extends Application {
 			}
 		});
 				
-		SimpleEntityMoveSystem mov = new SimpleEntityMoveSystem(entities, eventQueue, gameHmi.getCanvasContext());
+		SimpleEntityMoveSystem mov = new SimpleEntityMoveSystem(entities, eventQueue, gameHmi.getCanvas().getGraphicContext(0));
 		CollisionTestSystem cts = new CollisionTestSystem(entities, eventQueue);
 		BattleSystem bsys = new BattleSystem(entities, eventQueue);
 		EndConditionSystem ecs = new EndConditionSystem(entities, eventQueue);
 		HMIManagementSystem hms = new HMIManagementSystem(entities, eventQueue, gameHmi);
 		StartGameSystem rsys = new StartGameSystem(entities, eventQueue);
 		InventorySystem isys = new InventorySystem(entities, eventQueue);
+		BGMusicSystem bgsys = new BGMusicSystem(entities, eventQueue);
 		core.registerSystem(mov);
 		core.registerSystem(cts);
 		core.registerSystem(bsys);
@@ -89,6 +91,7 @@ public class Main extends Application {
 		core.registerSystem(hms);
 		core.registerSystem(rsys);
 		core.registerSystem(isys);
+		core.registerSystem(bgsys);
 		core.start();
 		primaryStage.setFullScreen(true);
 		primaryStage.setFullScreenExitHint("");

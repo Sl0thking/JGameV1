@@ -1,7 +1,6 @@
 package de.sloth.component;
 
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ObservableValue;
 
 public class LivingComp extends Component {
 	private boolean isLiving;
@@ -77,12 +76,20 @@ public class LivingComp extends Component {
 		this.attack_max.setValue(attack_max);
 	}
 
-	public SimpleIntegerProperty getDefense() {
+	public SimpleIntegerProperty getDefenseProperty() {
 		return defense;
 	}
+	
+	public int getDefense() {
+		return defense.getValue();
+	}
 
-	public void setDefense(SimpleIntegerProperty defense) {
+	public void setDefenseProperty(SimpleIntegerProperty defense) {
 		this.defense = defense;
+	}
+
+	public void setDefense(int defense) {
+		this.defense.setValue(defense);
 	}
 	
 	

@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.component.InventoryComponent;
 import de.sloth.component.LivingComp;
-import de.sloth.component.LootComp;
+import de.sloth.component.LootableComp;
 import de.sloth.component.LvlComp;
 import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
@@ -39,6 +39,9 @@ public class InventoryGameLayer extends GameInterfaceLayer {
 	
 	@FXML
 	Label currDefLbl;
+	
+	@FXML
+	Label itemLbl;
 	
 	int xPos = 0;
 	
@@ -77,20 +80,20 @@ public class InventoryGameLayer extends GameInterfaceLayer {
 					c.next();
 					if(c.wasAdded()) {
 						int beginIndex = c.getFrom();
-						Label label = (Label)((Pane) invGridPane.getChildren().get(beginIndex)).getChildren().get(0);
+						//Label label = (Label)((Pane) invGridPane.getChildren().get(beginIndex)).getChildren().get(0);
 						ImageView view = (ImageView)((Pane) invGridPane.getChildren().get(beginIndex)).getChildren().get(1);
-						LootComp lcomp = (LootComp) ic.getInventoryList().get(beginIndex).getComponent(LootComp.class);
-						label.setText(lcomp.getName());
+						LootableComp lcomp = (LootableComp) ic.getInventoryList().get(beginIndex).getComponent(LootableComp.class);
+						itemLbl.setText(lcomp.getName());
 						view.setImage(lcomp.getImage());
 					} else if(c.wasRemoved()){
 						int beginIndex = c.getFrom();
 						for (int i = beginIndex; i<invGridPane.getChildren().size()-1; i++) {
-							Label labelNow = (Label)((Pane) invGridPane.getChildren().get(i)).getChildren().get(0);
+							//Label labelNow = (Label)((Pane) invGridPane.getChildren().get(i)).getChildren().get(0);
 							ImageView viewNow = (ImageView)((Pane) invGridPane.getChildren().get(i)).getChildren().get(1);
-							Label labelAfter = (Label)((Pane) invGridPane.getChildren().get(i+1)).getChildren().get(0);
+							//Label labelAfter = (Label)((Pane) invGridPane.getChildren().get(i+1)).getChildren().get(0);
 							ImageView viewAfter = (ImageView)((Pane) invGridPane.getChildren().get(i+1)).getChildren().get(1);
 							viewNow.setImage(viewAfter.getImage());
-							labelNow.setText(labelAfter.getText());
+							itemLbl.setText(itemLbl.getText());
 						}
 					}
 				}

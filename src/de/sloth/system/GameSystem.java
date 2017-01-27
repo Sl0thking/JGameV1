@@ -54,7 +54,7 @@ public abstract class GameSystem {
 	public List<Entity> filterEntitiesByComponent(Class<?> compClass) {
 		List<Entity> matchingEntities = new LinkedList<Entity>();
 		for(Entity entity : this.entities) {
-			if(entity.getComponents().contains(compClass)) {
+			if(entity.getComponentClasses().contains(compClass)) {
 				matchingEntities.add(entity);
 			}
 		}

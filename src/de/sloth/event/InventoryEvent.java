@@ -3,11 +3,10 @@ package de.sloth.event;
 import de.sloth.entity.Entity;
 
 public class InventoryEvent extends GameEvent {
-	
 	InventoryKeyword keyword;
 	int xPos;
 	int yPos;
-	Entity usedItem;
+	Entity collectedEntity;
 	
 	public InventoryEvent(InventoryKeyword keyword) {
 		this.keyword = keyword;
@@ -36,6 +35,12 @@ public class InventoryEvent extends GameEvent {
 	public void setyPos(int yPos) {
 		this.yPos = yPos;
 	}
+
+	public Entity getCollectingEntity() {
+		return collectedEntity;
+	}
 	
-	
+	public void setCollectingEntity(Entity entity) {
+		this.collectedEntity = entity;
+	}
 }

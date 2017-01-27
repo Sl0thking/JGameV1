@@ -8,13 +8,13 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import de.sloth.entity.Entity;
 import de.sloth.event.GameEvent;
 import de.sloth.hmi.FPSCalculator;
-import de.sloth.hmi.LayeredFieldCanvasPane;
+import de.sloth.hmi.LayeredCanvas;
 import de.sloth.system.GameSystem;
 import de.sloth.system.game.renderer.AbstractRendererSystem;
 import de.sloth.system.game.renderer.SpriteRendererSystem;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.canvas.GraphicsContext;
+
 /**
  * Main Game Loop, basing on a animation timer
  * @author Kevin Jolitz
@@ -22,17 +22,17 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class GameCore extends AnimationTimer {
 
-	LayeredFieldCanvasPane lfcp;
 	AbstractRendererSystem cRenderer;
 	List<GameSystem> gameSystems;
 	final int MS_PER_FRAME = 1000/60;
 	FPSCalculator fpsCalc;
 
-	public GameCore(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue, GraphicsContext gContext) {
-		this.cRenderer = new SpriteRendererSystem(entities, gContext);
+	public GameCore(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue, LayeredCanvas lc, int screenWidth, int screenHeight) {
+		this.cRenderer = new SpriteRendererSystem(entities, eventQueue, lc, screenWidth, screenHeight);
 		this.gameSystems = new LinkedList<GameSystem>();
 		this.fpsCalc = new FPSCalculator();
 	}
+
 	
 	public SimpleIntegerProperty getFpsProperty() {
 		return this.fpsCalc.getFpsProperty();

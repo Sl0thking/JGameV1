@@ -9,187 +9,14 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <GridPane fx:id="invGridPane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="150.0" left="150.0" right="150.0" top="150.0" />
-         </padding>
-         <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="1">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="2">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="3">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="4">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.rowIndex="1">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="3" GridPane.rowIndex="1">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="4" GridPane.rowIndex="1">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.rowIndex="2">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="3" GridPane.rowIndex="2">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="4" GridPane.rowIndex="2">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Console" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-         </children>
-      </GridPane>
-   </center>
    <left>
-      <FlowPane prefHeight="492.0" prefWidth="230.0" BorderPane.alignment="CENTER">
+      <FlowPane prefHeight="492.0" prefWidth="252.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="lvlLbl" prefHeight="65.0" prefWidth="110.0" text="Level" textFill="WHITE">
                <font>
@@ -238,4 +65,188 @@
             <Insets left="15.0" />
          </padding></FlowPane>
    </left>
+   <center>
+      <VBox prefHeight="492.0" prefWidth="317.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="101.0" prefWidth="467.0">
+               <children>
+                  <Label fx:id="itemLbl" alignment="CENTER" layoutX="9.0" prefHeight="102.0" prefWidth="320.0" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Console" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <GridPane fx:id="invGridPane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="194.0" prefWidth="334.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <padding>
+                  <Insets bottom="150.0" left="150.0" right="150.0" top="150.0" />
+               </padding>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="1">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="2">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="3">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="4">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.rowIndex="1">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.rowIndex="2">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="inv-slot" stylesheets="@fxml_css/inventory_slot_style.css" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="16.0" maxWidth="64.0" minHeight="16.0" minWidth="64.0" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>

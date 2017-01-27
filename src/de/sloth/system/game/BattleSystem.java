@@ -6,22 +6,28 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.component.LivingComp;
-import de.sloth.component.LootComp;
+import de.sloth.component.LootableComp;
 import de.sloth.component.HealComp;
-import de.sloth.component.InventoryComponent;
 import de.sloth.component.LvlComp;
 import de.sloth.entity.Entity;
 import de.sloth.event.BattleEvent;
 import de.sloth.event.GameEvent;
+import de.sloth.event.InventoryEvent;
+import de.sloth.event.InventoryKeyword;
+import de.sloth.generators.LootGenerator;
 import de.sloth.system.GameSystem;
 
 public class BattleSystem extends GameSystem {
+	LootGenerator lGen;
 	
 	public BattleSystem(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue) {
 		super(entities, eventQueue);
+		lGen = LootGenerator.getInstance();
 	}
 
-	public BattleSystem() {}
+	public BattleSystem() {
+		lGen = LootGenerator.getInstance();
+	}
 
 	@Override
 	public void executeSystem() {
@@ -37,8 +43,8 @@ public class BattleSystem extends GameSystem {
 			int attackerValue = rollAttack(attackerStatus.getAttackMin().getValue(), attackerStatus.getAttackMax().getValue());
 			int defenderValue = rollAttack(defenderStatus.getAttackMin().getValue(), defenderStatus.getAttackMax().getValue());
 			
-			defenderStatus.setHp(defenderStatus.getHp() - (attackerValue - defenderStatus.getDefense().getValue()));
-			attackerStatus.setHp(attackerStatus.getHp() - (defenderValue - attackerStatus.getDefense().getValue()));
+			defenderStatus.setHp(defenderStatus.getHp() - (attackerValue - defenderStatus.getDefense()));
+			attackerStatus.setHp(attackerStatus.getHp() - (defenderValue - attackerStatus.getDefense()));
 			if(defenderStatus.getHp() <= 0) {
 				this.getEntities().remove(defender);
 				LvlComp lcomp = (LvlComp) attacker.getComponent(LvlComp.class);
@@ -51,10 +57,19 @@ public class BattleSystem extends GameSystem {
 					attackerStatus.setHpMax(attackerStatus.getHpMax()+25);
 					attackerStatus.setHp(attackerStatus.getHpMax());
 				}
-				Entity potion = new Entity();
-				potion.addComponent(new LootComp());
-				potion.addComponent(new HealComp(10));
-				((InventoryComponent) attacker.getComponent(InventoryComponent.class)).getInventoryList().add(potion);
+				Random rand = new Random();
+				int genEquip = rand.nextInt(2);
+				InventoryEvent iEvent = new InventoryEvent(InventoryKeyword.collectItem);
+				Entity drop;
+				if(genEquip == 0) {
+					drop = lGen.generateEquipment(1);
+				} else {
+					drop = new Entity();
+					drop.addComponent(new LootableComp());
+					drop.addComponent(new HealComp(10));
+				}
+				iEvent.setCollectingEntity(drop);
+				this.getEventQueue().add(iEvent);
 			}
 			delEvents.add(event);
 		}

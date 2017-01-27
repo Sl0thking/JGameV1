@@ -3,27 +3,24 @@ package de.sloth.system.game.renderer;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.entity.Entity;
+import de.sloth.event.GameEvent;
+import de.sloth.hmi.LayeredCanvas;
+import de.sloth.hmi.TripleBufferCanvas;
 import de.sloth.system.GameSystem;
-import javafx.scene.canvas.GraphicsContext;
 
 public abstract class AbstractRendererSystem extends GameSystem{
-	private ConcurrentLinkedQueue<Entity> entities;
-	private GraphicsContext gc;
+	private LayeredCanvas lc;
 	
-	public AbstractRendererSystem(ConcurrentLinkedQueue<Entity> entities, GraphicsContext gc) {
-		this.entities = entities;
-		this.gc = gc;
+	public AbstractRendererSystem(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue, LayeredCanvas lc) {
+		super(entities, eventQueue);
+		this.lc = lc;
 	}
 	
-	public ConcurrentLinkedQueue<Entity> getEntities() {
-		return entities;
+	public LayeredCanvas getLc() {
+		return this.lc;
 	}
 
-	public void setEntities(ConcurrentLinkedQueue<Entity> entities) {
-		this.entities = entities;
-	}
-
-	public GraphicsContext getGc() {
-		return gc;
+	public TripleBufferCanvas getGcOfLayer(int z) {
+		return this.lc.getLayer(z);
 	}
 }
