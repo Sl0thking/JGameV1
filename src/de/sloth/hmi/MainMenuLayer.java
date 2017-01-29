@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import de.sloth.event.GameEvent;
-import de.sloth.event.StartEvent;
+import de.sloth.systemv2.core.GameEvent;
+import de.sloth.systemv2.startGame.StartGameEvent;
 
 public class MainMenuLayer extends GameInterfaceLayer implements Initializable {
 	
@@ -37,7 +38,7 @@ public class MainMenuLayer extends GameInterfaceLayer implements Initializable {
 	
 	@FXML
 	public void startGame() {
-		getEventQueue().add(new StartEvent());
+		getEventQueue().add(new StartGameEvent());
 	}
 	
 	@FXML

@@ -5,9 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import de.sloth.event.GameEvent;
-import de.sloth.event.HMIEvent;
-import de.sloth.event.HMIKeyword;
+import de.sloth.systemv2.core.GameEvent;
+import de.sloth.systemv2.hmi.hmiMenu.HMIMenuEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 
@@ -31,7 +30,7 @@ public class WinGameLayer extends GameInterfaceLayer {
 	
 	@FXML
 	public void toMenu() {
-		HMIEvent event = new HMIEvent(HMIKeyword.showMenu);
+		HMIMenuEvent event = new HMIMenuEvent("showMenu");
 		this.getEventQueue().add(event);
 	}
 

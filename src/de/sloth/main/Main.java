@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import de.sloth.controllHandler.InventoryControllHandler;
 import de.sloth.controllHandler.SimpleControllHandler;
 import de.sloth.entity.Entity;
-import de.sloth.event.GameEvent;
+import de.sloth.generators.GameSystemGenerator;
 import de.sloth.hmi.MainMenuLayer;
 import de.sloth.hmi.PlayerInformationLayer;
 import de.sloth.hmi.WinGameLayer;
@@ -13,15 +13,8 @@ import de.sloth.hmi.LooseGameLayer;
 import de.sloth.hmi.GameHMI;
 import de.sloth.hmi.GeneralGameInformation;
 import de.sloth.hmi.InventoryGameLayer;
-import de.sloth.system.game.BGMusicSystem;
-import de.sloth.system.game.BattleSystem;
-import de.sloth.system.game.EndConditionSystem;
-import de.sloth.system.game.GameCore;
-import de.sloth.system.game.InventorySystem;
-import de.sloth.system.game.StartGameSystem;
-import de.sloth.system.game.movecollision.CollisionTestSystem;
-import de.sloth.system.game.movecollision.SimpleEntityMoveSystem;
-import de.sloth.system.hmi.HMIManagementSystem;
+import de.sloth.systemv2.core.GameCore;
+import de.sloth.systemv2.core.GameEvent;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
@@ -75,7 +68,7 @@ public class Main extends Application {
 				return arg0.toString();
 			}
 		});
-				
+/*				
 		SimpleEntityMoveSystem mov = new SimpleEntityMoveSystem(entities, eventQueue, gameHmi.getCanvas().getGraphicContext(0));
 		CollisionTestSystem cts = new CollisionTestSystem(entities, eventQueue);
 		BattleSystem bsys = new BattleSystem(entities, eventQueue);
@@ -83,15 +76,16 @@ public class Main extends Application {
 		HMIManagementSystem hms = new HMIManagementSystem(entities, eventQueue, gameHmi);
 		StartGameSystem rsys = new StartGameSystem(entities, eventQueue);
 		InventorySystem isys = new InventorySystem(entities, eventQueue);
-		BGMusicSystem bgsys = new BGMusicSystem(entities, eventQueue);
-		core.registerSystem(mov);
-		core.registerSystem(cts);
-		core.registerSystem(bsys);
-		core.registerSystem(ecs);
-		core.registerSystem(hms);
-		core.registerSystem(rsys);
-		core.registerSystem(isys);
-		core.registerSystem(bgsys);
+		BGMusicSystem bgsys = new BGMusicSystem(entities, eventQueue); */
+		core.registerSystem(GameSystemGenerator.getInsance().generateMoveSystem(entities, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInsance().generateCollisionSystem(entities, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInsance().generateBattleSystem(entities, eventQueue));
+		//core.registerSystem(GameSystemGenerator.getInsance().generateEndConditionSystem(entities, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInsance().generateHMIMenuSystem(gameHmi, entities, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInsance().generateInventorySystem(entities, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInsance().generateStartGameSystem(entities, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInsance().generateRenderSystem(gameHmi, entities, eventQueue));
+		//core.registerSystem(bgsys);
 		core.start();
 		primaryStage.setFullScreen(true);
 		primaryStage.setFullScreenExitHint("");

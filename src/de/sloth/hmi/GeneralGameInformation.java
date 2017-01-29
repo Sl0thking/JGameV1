@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import de.sloth.event.GameEvent;
+import de.sloth.systemv2.core.GameEvent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;

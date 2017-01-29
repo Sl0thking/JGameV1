@@ -10,7 +10,7 @@ import de.sloth.component.LivingComp;
 import de.sloth.component.LootableComp;
 import de.sloth.component.LvlComp;
 import de.sloth.entity.Entity;
-import de.sloth.event.GameEvent;
+import de.sloth.systemv2.core.GameEvent;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
