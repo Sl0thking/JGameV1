@@ -5,8 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import de.sloth.systemv2.core.GameEvent;
-import de.sloth.systemv2.hmi.hmiMenu.HMIMenuEvent;
+import de.sloth.system.game.core.GameEvent;
+import de.sloth.system.hmi.hmiMenu.HMIMenuEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 

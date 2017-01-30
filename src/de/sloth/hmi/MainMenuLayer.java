@@ -10,8 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import de.sloth.systemv2.core.GameEvent;
-import de.sloth.systemv2.startGame.StartGameEvent;
+import de.sloth.system.game.core.GameEvent;
+import de.sloth.system.game.startGame.StartGameEvent;
 
 public class MainMenuLayer extends GameInterfaceLayer implements Initializable {
 	

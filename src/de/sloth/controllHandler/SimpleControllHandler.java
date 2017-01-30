@@ -6,9 +6,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import de.sloth.component.FocusComp;
 import de.sloth.component.Position3DComp;
 import de.sloth.entity.Entity;
-import de.sloth.systemv2.core.GameEvent;
-import de.sloth.systemv2.hmi.hmiMenu.HMIMenuEvent;
-import de.sloth.systemv2.move.MoveEvent;
+import de.sloth.system.game.core.GameEvent;
+import de.sloth.system.game.move.MoveEvent;
+import de.sloth.system.hmi.hmiInventory.HMIInventoryEvent;
+import de.sloth.system.hmi.hmiMenu.HMIMenuEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -45,8 +46,8 @@ public class SimpleControllHandler implements EventHandler<KeyEvent> {
 			//GameEvent toggleEvent = new HMIEvent(HMIKeyword.togglePlayerInfo);
 			//this.eventQueue.add(toggleEvent);
 		} else if(event.getCode().equals(KeyCode.I)) {
-			//GameEvent toggleInventory = new HMIEvent(HMIKeyword.showInventory);
-			//this.eventQueue.add(toggleInventory);
+			GameEvent showInventory = new HMIInventoryEvent("showInventory");
+			this.eventQueue.add(showInventory);
 		} else if(event.getCode().equals(KeyCode.ESCAPE)) {
 			this.eventQueue.add(new HMIMenuEvent("showMenu"));
 			this.entities.clear();

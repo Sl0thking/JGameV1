@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import de.sloth.component.LivingComp;
 import de.sloth.component.LvlComp;
 import de.sloth.entity.Entity;
-import de.sloth.systemv2.core.GameEvent;
+import de.sloth.system.game.core.GameEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 

@@ -2,8 +2,9 @@ package de.sloth.controllHandler;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.entity.Entity;
-import de.sloth.systemv2.core.GameEvent;
-import de.sloth.systemv2.inventory.InventoryEvent;
+import de.sloth.system.game.core.GameEvent;
+import de.sloth.system.game.inventory.InventoryEvent;
+import de.sloth.system.hmi.hmiInventory.HMIInventoryEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -37,8 +38,8 @@ public class InventoryControllHandler implements EventHandler<KeyEvent> {
 			iEvent.setxPos(1);	
 			this.eventQueue.add(iEvent);
 		} else if(event.getCode().equals(KeyCode.I) || event.getCode().equals(KeyCode.ESCAPE)) {
-			//GameEvent toggleInventory = new HMIMenuEvent("close");
-			//this.eventQueue.add(toggleInventory);
+			GameEvent closeInventory = new HMIInventoryEvent("closeInventory");
+			this.eventQueue.add(closeInventory);
 		} else if(event.getCode().equals(KeyCode.SPACE)) {
 			//InventoryEvent iEvent = new InventoryEvent(InventoryKeyword.useItem);
 			//this.eventQueue.add(iEvent);
