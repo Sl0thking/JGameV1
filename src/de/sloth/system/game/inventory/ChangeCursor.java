@@ -22,7 +22,7 @@ public class ChangeCursor implements IBehavior {
 		List<Class<?>> filterComps = new LinkedList<Class<?>>();
 		filterComps.add(InventoryComponent.class);
 		filterComps.add(FocusComp.class);
-		Entity mainEntity = system.filterEntitiesByComponents(filterComps).get(0);
+		Entity mainEntity = system.getEntityManager().getActivePlayabaleEntity();
 		InventoryComponent icomp = (InventoryComponent) mainEntity.getComponent(InventoryComponent.class);
 		icomp.setCurrentSlotX(icomp.getCurrentSlotX() + iEvent.getxPos());
 		

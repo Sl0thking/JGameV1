@@ -7,6 +7,7 @@ import de.sloth.component.EnemyComp;
 import de.sloth.component.FocusComp;
 import de.sloth.component.LivingComp;
 import de.sloth.entity.Entity;
+import de.sloth.main.IEntityManagement;
 import de.sloth.system.game.core.GameEvent;
 import de.sloth.system.game.core.GameSystem;
 import de.sloth.system.game.core.IBehavior;
@@ -23,7 +24,7 @@ public class EndCondition implements IBehavior {
 	private void checkWin(GameSystem system) {
 		List<Class<?>> enemyComps = new LinkedList<Class<?>>();
 		enemyComps.add(EnemyComp.class);
-		List<Entity> enemies = system.filterEntitiesByComponents(enemyComps);
+		List<Entity> enemies = IEntityManagement.filterEntitiesByComponents(system.getEntityManager().getAllEntities(), enemyComps);
 		if(enemies.size() == 0) {
 			GameEvent event = new HMIMenuEvent("showWin");
 			system.getEventQueue().add(event);
@@ -35,12 +36,12 @@ public class EndCondition implements IBehavior {
 		List<Class<?>> playerComps = new LinkedList<Class<?>>();
 		playerComps.add(FocusComp.class);
 		playerComps.add(LivingComp.class);
-		List<Entity> players = system.filterEntitiesByComponents(playerComps);
+		List<Entity> players = system.getEntityManager().getPlayableEntities();
 		if(players.size() > 0) {
 			Entity player = players.get(0);
 			LivingComp lComp = (LivingComp) player.getComponent(LivingComp.class);
 			if(lComp.getHp() <= 0) {
-				system.getEntities().remove(player);
+				system.getEntityManager().removeEntity(player);
 				GameEvent event = new HMIMenuEvent("toggleGameOver");
 				system.getEventQueue().add(event);
 				system.setActive(false);

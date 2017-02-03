@@ -1,6 +1,5 @@
 package de.sloth.system.hmi.hmiMenu;
 
-import de.sloth.component.FocusComp;
 import de.sloth.entity.Entity;
 import de.sloth.hmi.InventoryGameLayer;
 import de.sloth.hmi.MainMenuLayer;
@@ -31,16 +30,12 @@ public class ShowGame implements IBehavior {
 		mml.setDisable(!mml.isDisabled());
 
 		if(isRestarted) {
-			for(Entity entity: system.getEntities()) {
-				FocusComp fComp = (FocusComp) entity.getComponent(FocusComp.class);
-				if(fComp != null) {
-					try {
-						pil.setObservableEntity(entity);
-						igl.setObservableEntity(entity);
-					} catch (NotSupportedEntityException e) {
-						e.printStackTrace();
-					}
-				}
+			Entity entity = system.getEntityManager().getActivePlayabaleEntity();
+			try {
+				pil.setObservableEntity(entity);
+				igl.setObservableEntity(entity);
+			} catch (NotSupportedEntityException e) {
+				e.printStackTrace();
 			}
 		}	
 	}

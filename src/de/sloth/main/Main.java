@@ -4,7 +4,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.controllHandler.InventoryControllHandler;
 import de.sloth.controllHandler.SimpleControllHandler;
-import de.sloth.entity.Entity;
 import de.sloth.generators.GameSystemGenerator;
 import de.sloth.hmi.MainMenuLayer;
 import de.sloth.hmi.PlayerInformationLayer;
@@ -31,12 +30,11 @@ public class Main extends Application {
 
 		int spriteHeight = 32;
 		int spriteWidth = 32;
-
+		IEntityManagement entityManager = new EntityManager();
 		GameHMI gameHmi = new GameHMI(screenWidth, screenHeight);
 		
 		Scene scene = new Scene(gameHmi);
 		primaryStage.setScene(scene);
-		ConcurrentLinkedQueue<Entity> entities = new ConcurrentLinkedQueue<Entity>();
 		ConcurrentLinkedQueue<GameEvent> eventQueue = new ConcurrentLinkedQueue<GameEvent>();
 		PlayerInformationLayer pil = new PlayerInformationLayer("playerInfo", eventQueue);
 		LooseGameLayer wlgl = new LooseGameLayer("wl", eventQueue);
@@ -52,12 +50,12 @@ public class Main extends Application {
 		gameHmi.registerGameInterfaceLayer(igl);
 		gameHmi.registerGameInterfaceLayer(mml);
 		
-		SimpleControllHandler stdControll = new SimpleControllHandler(entities, eventQueue, spriteWidth, spriteHeight);
-		InventoryControllHandler iControll = new InventoryControllHandler(entities, eventQueue);
+		SimpleControllHandler stdControll = new SimpleControllHandler(entityManager, eventQueue, spriteWidth, spriteHeight);
+		InventoryControllHandler iControll = new InventoryControllHandler(entityManager, eventQueue);
 		pil.setOnKeyPressed(stdControll);
 		mml.requestFocus();
 		igl.setOnKeyPressed(iControll);
-		GameCore core = new GameCore(entities, eventQueue, gameHmi.getCanvas(), screenWidth, screenHeight);
+		GameCore core = new GameCore();
 		((GeneralGameInformation) gameHmi.getGameInterfaceLayer("ggi")).getLabel().textProperty().bindBidirectional(core.getFpsProperty(), new StringConverter<Number>() {
 			@Override
 			public Number fromString(String arg0) {
@@ -68,18 +66,19 @@ public class Main extends Application {
 				return arg0.toString();
 			}
 		});
-		core.registerSystem(GameSystemGenerator.getInstance().generateSystemActivationSystem(core, entities, eventQueue));
-		core.registerSystem(GameSystemGenerator.getInstance().generateEndConditionSystem(entities, eventQueue));
-		core.registerSystem(GameSystemGenerator.getInstance().generateMoveSystem(entities, eventQueue));
-		core.registerSystem(GameSystemGenerator.getInstance().generateCollisionSystem(entities, eventQueue));
-		core.registerSystem(GameSystemGenerator.getInstance().generateBattleSystem(entities, eventQueue));
-		core.registerSystem(GameSystemGenerator.getInstance().generateLootSystem(entities, eventQueue));
-		core.registerSystem(GameSystemGenerator.getInstance().generateHMIMenuSystem(gameHmi, entities, eventQueue));
-		core.registerSystem(GameSystemGenerator.getInstance().generateInventorySystem(entities, eventQueue));
-		core.registerSystem(GameSystemGenerator.getInstance().generateBGMSystem(entities, eventQueue));
-		core.registerSystem(GameSystemGenerator.getInstance().generateStartGameSystem(entities, eventQueue));
-		core.registerSystem(GameSystemGenerator.getInstance().generateRenderSystem(gameHmi, entities, eventQueue));
-		core.registerSystem(GameSystemGenerator.getInstance().generateHMIInventorySystem(gameHmi, entities, eventQueue));
+		
+		core.registerSystem(GameSystemGenerator.getInstance().generateSystemActivationSystem(entityManager, core, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInstance().generateEndConditionSystem(entityManager, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInstance().generateMoveSystem(entityManager, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInstance().generateCollisionSystem(entityManager, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInstance().generateBattleSystem(entityManager, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInstance().generateLootSystem(entityManager, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInstance().generateHMIMenuSystem(entityManager, gameHmi, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInstance().generateInventorySystem(entityManager, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInstance().generateBGMSystem(entityManager, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInstance().generateStartGameSystem(entityManager, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInstance().generateRenderSystem(entityManager, gameHmi, eventQueue));
+		core.registerSystem(GameSystemGenerator.getInstance().generateHMIInventorySystem(entityManager, gameHmi, eventQueue));
 		core.start();
 		primaryStage.setFullScreen(true);
 		primaryStage.setFullScreenExitHint("");

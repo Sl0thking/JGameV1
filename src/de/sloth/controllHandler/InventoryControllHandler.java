@@ -2,6 +2,7 @@ package de.sloth.controllHandler;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.entity.Entity;
+import de.sloth.main.IEntityManagement;
 import de.sloth.system.game.core.GameEvent;
 import de.sloth.system.game.inventory.InventoryEvent;
 import de.sloth.system.hmi.hmiInventory.HMIInventoryEvent;
@@ -11,11 +12,11 @@ import javafx.scene.input.KeyEvent;
 
 public class InventoryControllHandler implements EventHandler<KeyEvent> {
 
-	private ConcurrentLinkedQueue<Entity> entities;
+	private IEntityManagement entityManager;
 	private ConcurrentLinkedQueue<GameEvent> eventQueue;
 	
-	public InventoryControllHandler(ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue) {
-		this.entities = entities;
+	public InventoryControllHandler(IEntityManagement entityManager, ConcurrentLinkedQueue<GameEvent> eventQueue) {
+		this.entityManager = entityManager;
 		this.eventQueue = eventQueue;
 	}
 	

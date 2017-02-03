@@ -2,7 +2,7 @@ package de.sloth.system.game.systemActivation;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import de.sloth.entity.Entity;
+import de.sloth.main.IEntityManagement;
 import de.sloth.system.game.core.GameCore;
 import de.sloth.system.game.core.GameEvent;
 import de.sloth.system.game.core.GameSystem;
@@ -12,9 +12,9 @@ public class GameCoreSystem extends GameSystem {
 	private GameCore core;
 	
 	public GameCoreSystem(String systemID, Class<? extends GameEvent> listeningEvent,
-			ConcurrentLinkedQueue<Entity> entities, ConcurrentLinkedQueue<GameEvent> eventQueue,
+			IEntityManagement entityManager, ConcurrentLinkedQueue<GameEvent> eventQueue,
 			GameCore core) {
-		super(systemID, listeningEvent, entities, eventQueue);
+		super(systemID, listeningEvent, entityManager, eventQueue);
 		this.core = core;
 	}
 

@@ -40,11 +40,13 @@ public class Move implements IBehavior {
 			}
 			posComp.setX(movEvent.getTargetX());
 			posComp.setY(movEvent.getTargetY());
+			system.getEntityManager().removeEntity(srcEntity);
+			system.getEntityManager().addEntity(srcEntity);
 		}
 	}
 	
 	private boolean checkCollision(GameSystem system, Entity srcEntity, MoveEvent movEvent) {
-		for(Entity entity : system.getEntities()) {
+		for(Entity entity : system.getEntityManager().getChunkEntities()) {
 			if(entity.getId() != srcEntity.getId()) {
 				Position3DComp posComp = (Position3DComp) entity.getComponent(Position3DComp.class);
 				if(posComp != null && posComp.getX() == movEvent.getTargetX() && 

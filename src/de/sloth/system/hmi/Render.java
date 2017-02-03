@@ -6,6 +6,7 @@ import de.sloth.component.FocusComp;
 import de.sloth.component.Position3DComp;
 import de.sloth.component.SpriteComp;
 import de.sloth.entity.Entity;
+import de.sloth.main.IEntityManagement;
 import de.sloth.system.game.core.GameEvent;
 import de.sloth.system.game.core.GameSystem;
 import de.sloth.system.game.core.IBehavior;
@@ -36,7 +37,7 @@ public class Render implements IBehavior {
 		
 		hmiSys.getGameHMI().getCanvas().clear();
 		
-		List<Entity> entities = system.filterEntitiesByComponent(FocusComp.class);
+		List<Entity> entities = IEntityManagement.filterEntitiesByComponent(system.getEntityManager().getChunkEntities(), FocusComp.class);
 		Entity entity;
 		if(entities.size() == 0) {
 			entity = null;
@@ -52,7 +53,7 @@ public class Render implements IBehavior {
 			minY = canvasMidComp.getY()-4;
 			maxY = canvasMidComp.getY()+4; */
 			
-			for(Entity renderingEntity : hmiSys.getEntities()) {
+			for(Entity renderingEntity : hmiSys.getEntityManager().getChunkEntities()) {
 				Position3DComp comp = (Position3DComp) renderingEntity.getComponent(Position3DComp.class);
 				SpriteComp sprite = (SpriteComp) renderingEntity.getComponent(SpriteComp.class);
 				int transformedPosX = (comp.getX() + transX)*64;

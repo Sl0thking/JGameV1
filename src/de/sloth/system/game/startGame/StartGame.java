@@ -25,9 +25,9 @@ public class StartGame implements IBehavior {
 		//int screenHeight = (int) Screen.getPrimary().getBounds().getHeight(); 
 		int spriteHeight = 32;
 		int spriteWidth = 32;
-		int xFields = 32;
-		int yFields = 32;
-		system.getEntities().clear();
+		int xFields = 512;
+		int yFields = 512;
+		system.getEntityManager().clear();
 		int id = 1;
 			
 		Entity viking = VikingGenerator.getInstance().generateViking(spriteWidth, spriteHeight);
@@ -35,7 +35,7 @@ public class StartGame implements IBehavior {
 		viking.addComponent(new FocusComp(true));
 		((Position3DComp) viking.getComponent(Position3DComp.class)).setX(1);
 		((Position3DComp) viking.getComponent(Position3DComp.class)).setY(1);
-		system.getEntities().add(viking);
+		system.getEntityManager().addEntity(viking);
 		for(int y = 0; y < yFields; y++) {
 			for(int x = 0; x < xFields; x++) {
 						
@@ -50,7 +50,7 @@ public class StartGame implements IBehavior {
 					posComp.setZ(0);
 					floor.addComponent(posComp);
 					floor.addComponent(new SpriteComp("field.png"));
-					system.getEntities().add(floor);
+					system.getEntityManager().addEntity(floor);
 				}
 				if(y == 0 || y == yFields-1 || x == 0 || x == xFields-1) {
 					Entity wall = new Entity();
@@ -67,7 +67,7 @@ public class StartGame implements IBehavior {
 					} else {
 						wall.addComponent(new SpriteComp("wall.png"));
 					}
-					system.getEntities().add(wall);
+					system.getEntityManager().addEntity(wall);
 				} else if((y != 1 || x != 1) && Math.random() < 0.02) {
 					Entity enemy = new Entity();
 					enemy.setId(id		);
@@ -79,11 +79,12 @@ public class StartGame implements IBehavior {
 					enemy.addComponent(new SpriteComp("orc.png"));
 					enemy.addComponent(new LivingComp(true));
 					enemy.addComponent(new EnemyComp());
-					system.getEntities().add(enemy);
+					system.getEntityManager().addEntity(enemy);
 				}
 			}
 		}
-		system.getEventQueue().add(new SystemActivationEvent("single", "ecSys"));
+		//system.getEventQueue().add(new SystemActivationEvent("single", "ecSys"));
+		system.getEventQueue().add(new SystemActivationEvent("single", "renderSys"));
 		HMIMenuEvent hmiEvent;
 		hmiEvent = new HMIMenuEvent("showGame");
 		

@@ -23,7 +23,7 @@ public class UseItem implements IBehavior {
 		List<Class<?>> filterComps = new LinkedList<Class<?>>();
 		filterComps.add(InventoryComponent.class);
 		filterComps.add(FocusComp.class);
-		Entity mainEntity = system.filterEntitiesByComponents(filterComps).get(0);
+		Entity mainEntity = system.getEntityManager().getActivePlayabaleEntity();
 		InventoryComponent icomp = (InventoryComponent) mainEntity.getComponent(InventoryComponent.class);
 		//to be excluded
 		if(icomp.getCurrentSlotX() < icomp.getInventoryList().size()) {

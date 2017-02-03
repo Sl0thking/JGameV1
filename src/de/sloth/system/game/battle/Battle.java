@@ -34,7 +34,7 @@ public class Battle implements IBehavior {
 		defenderStatus.setHp(defenderStatus.getHp() - (attackerValue - defenderStatus.getDefense()));
 		attackerStatus.setHp(attackerStatus.getHp() - (defenderValue - attackerStatus.getDefense()));
 		if(defenderStatus.getHp() <= 0) {
-			system.getEntities().remove(defender);
+			system.getEntityManager().removeEntity(defender);
 			LvlComp lcomp = (LvlComp) attacker.getComponent(LvlComp.class);
 			int bLvl = lcomp.getLvl().getValue();
 				

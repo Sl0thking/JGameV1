@@ -1,5 +1,9 @@
 package de.sloth.component;
 
-public class EnemyComp extends Component {
-
-}
+/**
+ * Enemy component for later collision check
+ * [SlothCore]
+ * @author Slothking
+ *
+ */
+public class EnemyComp extends Component {}

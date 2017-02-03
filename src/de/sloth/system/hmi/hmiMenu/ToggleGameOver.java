@@ -27,7 +27,7 @@ public class ToggleGameOver implements IBehavior {
 		wlgl.setVisible(!wlgl.isVisible());
 		wlgl.setDisable(!wlgl.isDisabled());
 		if(isRestarted) {
-			for(Entity entity: system.getEntities()) {
+			for(Entity entity: system.getEntityManager().getAllEntities()) {
 				FocusComp fComp = (FocusComp) entity.getComponent(FocusComp.class);
 				if(fComp != null) {
 					try {
