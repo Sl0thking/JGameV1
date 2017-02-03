@@ -5,6 +5,12 @@ import java.util.List;
 
 import de.sloth.component.Component;
 
+/**
+ * Entity of this system
+ * [SlothCore]
+ * @author Slothking
+ *
+ */
 public class Entity {
 	@Override
 	public String toString() {

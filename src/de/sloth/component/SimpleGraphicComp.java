@@ -1,5 +1,11 @@
 package de.sloth.component;
 
+/**
+ * Data for a 3 dimensional position
+ * [SlothCore]
+ * @author Slothking
+ *
+ */
 public class SimpleGraphicComp extends Component {
 	
 	private String simpleIdent;
@@ -15,8 +21,4 @@ public class SimpleGraphicComp extends Component {
 	public void setSimpleIdent(String simpleIdent) {
 		this.simpleIdent = simpleIdent;
 	}
-	
-	
-	
-	
 }

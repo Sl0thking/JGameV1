@@ -11,8 +11,8 @@ public class HMIGameSystem extends GameSystem {
 
 	private GameHMI gameHMI;
 	
-	public HMIGameSystem(GameHMI gameHMI, String systemID) {
-		super(systemID);
+	public HMIGameSystem(GameHMI gameHMI, String systemID, IEntityManagement entityManager) {
+		super(systemID, entityManager);
 		this.setGameHMI(gameHMI);
 	}
 

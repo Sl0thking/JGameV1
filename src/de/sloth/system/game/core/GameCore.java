@@ -3,12 +3,7 @@ package de.sloth.system.game.core;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
-import de.sloth.entity.Entity;
 import de.sloth.hmi.FPSCalculator;
-import de.sloth.hmi.LayeredCanvas;
-import de.sloth.system.game.core.GameEvent;
 import de.sloth.system.game.core.GameSystem;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.SimpleIntegerProperty;

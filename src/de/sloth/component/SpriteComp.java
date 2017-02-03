@@ -1,5 +1,11 @@
 package de.sloth.component;
 
+/**
+ * Data for a 3 dimensional position
+ * [SlothCore]
+ * @author Slothking
+ *
+ */
 public class SpriteComp extends Component {
 	
 	private String spritePath;
