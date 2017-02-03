@@ -2,10 +2,10 @@ package de.sloth.system.game.systemActivation;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import de.sloth.main.IEntityManagement;
 import de.sloth.system.game.core.GameCore;
 import de.sloth.system.game.core.GameEvent;
 import de.sloth.system.game.core.GameSystem;
+import de.sloth.system.game.core.IEntityManagement;
 
 public class GameCoreSystem extends GameSystem {
 

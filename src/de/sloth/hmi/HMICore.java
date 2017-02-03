@@ -5,12 +5,12 @@ import java.util.List;
 
 import javafx.scene.layout.StackPane;
 
-public class GameHMI extends StackPane {
+public class HMICore extends StackPane {
 
 	private LayeredCanvas canvas;
 	private List<GameInterfaceLayer> gameInterfaceLayers;
 	
-	public GameHMI(int width, int height) {
+	public HMICore(int width, int height) {
 		gameInterfaceLayers = new LinkedList<GameInterfaceLayer>();
 		this.setWidth(width);
 		this.setHeight(height);

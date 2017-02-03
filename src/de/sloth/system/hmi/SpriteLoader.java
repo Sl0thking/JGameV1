@@ -1,4 +1,4 @@
-package de.sloth.persistence.gameConstants;
+package de.sloth.system.hmi;
 
 import java.io.File;
 import java.util.HashMap;

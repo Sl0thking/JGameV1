@@ -1,4 +1,4 @@
-package de.sloth.main;
+package de.sloth.system.game.core;
 
 import java.util.LinkedList;
 import java.util.List;

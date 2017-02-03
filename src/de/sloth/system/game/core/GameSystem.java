@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import de.sloth.main.IEntityManagement;
-
 public class GameSystem {
 
 	private ConcurrentLinkedQueue<GameEvent> eventQueue;
@@ -85,9 +83,9 @@ public class GameSystem {
 	}
 	
 	public void executeSystem() {
-		System.out.println("CALLED: " + this.systemID);
+		//System.out.println("CALLED: " + this.systemID);
 		if(this.isActive) {
-			System.out.println("EXECUTING: " + this.systemID);
+			//System.out.println("EXECUTING: " + this.systemID);
 			if(listeningEvent != null) {
 				for(GameEvent event:this.getEventQueue()) {
 					if(event.getClass().equals(this.listeningEvent)) {
@@ -128,5 +126,13 @@ public class GameSystem {
 
 	public void setEntityManager(IEntityManagement entityManager) {
 		this.entityManager = entityManager;
+	}
+
+	public Map<String, IBehavior> getKeywordMapping() {
+		return keywordMapping;
+	}
+
+	public void setKeywordMapping(Map<String, IBehavior> keywordMapping) {
+		this.keywordMapping = keywordMapping;
 	}
 }

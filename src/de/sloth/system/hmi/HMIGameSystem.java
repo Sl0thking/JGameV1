@@ -2,21 +2,21 @@ package de.sloth.system.hmi;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import de.sloth.hmi.GameHMI;
-import de.sloth.main.IEntityManagement;
+import de.sloth.hmi.HMICore;
 import de.sloth.system.game.core.GameEvent;
 import de.sloth.system.game.core.GameSystem;
+import de.sloth.system.game.core.IEntityManagement;
 
 public class HMIGameSystem extends GameSystem {
 
-	private GameHMI gameHMI;
+	private HMICore gameHMI;
 	
-	public HMIGameSystem(GameHMI gameHMI, String systemID, IEntityManagement entityManager) {
+	public HMIGameSystem(HMICore gameHMI, String systemID, IEntityManagement entityManager) {
 		super(systemID, entityManager);
 		this.setGameHMI(gameHMI);
 	}
 
-	public HMIGameSystem(GameHMI gameHMI, String systemID,
+	public HMIGameSystem(HMICore gameHMI, String systemID,
 			Class<? extends GameEvent> listeningEvent,
 			IEntityManagement entityManager,
 			ConcurrentLinkedQueue<GameEvent> eventQueue) {
@@ -24,11 +24,11 @@ public class HMIGameSystem extends GameSystem {
 		this.setGameHMI(gameHMI);
 	}
 
-	public GameHMI getGameHMI() {
+	public HMICore getGameHMI() {
 		return gameHMI;
 	}
 
-	public void setGameHMI(GameHMI gameHMI) {
+	public void setGameHMI(HMICore gameHMI) {
 		this.gameHMI = gameHMI;
 	}
 }
