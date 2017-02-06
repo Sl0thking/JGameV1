@@ -5,11 +5,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Screen;
-import de.sloth.entity.Entity;
 import de.sloth.hmi.HMICore;
 import de.sloth.system.game.bgmSystem.PlaySong;
-import de.sloth.system.game.collision.CollisionEvent;
 import de.sloth.system.game.controlls.ControllSystem;
 import de.sloth.system.game.core.GameCore;
 import de.sloth.system.game.core.GameEvent;
@@ -36,13 +33,13 @@ public class GameSystemGenerator {
 	}
 	
 	private GameSystemGenerator() {
-		GameSystemGenerator.maxX = (int) Screen.getPrimary().getBounds().getWidth();
-		GameSystemGenerator.maxY = (int) Screen.getPrimary().getBounds().getHeight(); 
+		//GameSystemGenerator.maxX = (int) Screen.getPrimary().getBounds().getWidth();
+		//GameSystemGenerator.maxY = (int) Screen.getPrimary().getBounds().getHeight(); 
+		GameSystemGenerator.maxX = 480;
+		GameSystemGenerator.maxY = 640;
 		
 	}
-	
 
-	
 	public GameSystem generateStartGameSystem(IEntityManagement entityManager, ConcurrentLinkedQueue<GameEvent> eventQueue) {
 		GameSystem startGameSystem = new GameSystem("startSys", StartGameEvent.class, entityManager, eventQueue);
 		startGameSystem.registerBehavior("Any", new StartGame());
@@ -51,12 +48,10 @@ public class GameSystemGenerator {
 	
 	public GameSystem generateMoveSystem(IEntityManagement entityManager, ConcurrentLinkedQueue<GameEvent> eventQueue) {
 		GameSystem moveSystem = new GameSystem("moveSys", MoveEvent.class, entityManager, eventQueue);
-		moveSystem.registerBehavior("Any", new Move(15, maxX, maxY));
+		moveSystem.registerBehavior("Any", new Move(8, maxX, maxY));
 		return moveSystem;
 	}
 	
-
-
 	public GameSystem generateRenderSystem(IEntityManagement entityManager, HMICore gameHMI, ConcurrentLinkedQueue<GameEvent> eventQueue) {
 		HMIGameSystem renderSystem = new HMIGameSystem(gameHMI, "renderSys", null, entityManager, eventQueue);
 		renderSystem.setActive(true);
@@ -64,8 +59,6 @@ public class GameSystemGenerator {
 		return renderSystem;
 	}
 
-
-	
 	public GameSystem generateSystemActivationSystem(IEntityManagement entityManager, GameCore core, ConcurrentLinkedQueue<GameEvent> eventQueue) {
 		GameCoreSystem systemActivationSystem = new GameCoreSystem("sysActiveSys", SystemActivationEvent.class, entityManager, eventQueue, core);
 		systemActivationSystem.registerBehavior("single", new ActivateSystem());

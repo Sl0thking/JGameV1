@@ -18,6 +18,7 @@ public class StartGame implements IBehavior {
 		Entity sloth = new Entity();
 		sloth.setName("Viking");
 		Position3DComp posComp = new Position3DComp();
+		posComp.setY(500);
 		FocusComp fComp = new FocusComp();
 		SpriteComp sComp = new SpriteComp("Viking_right.png");
 		sloth.addComponent(posComp);

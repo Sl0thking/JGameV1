@@ -3,6 +3,7 @@ package de.sloth.hmi;
 import java.util.LinkedList;
 import java.util.List;
 
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.StackPane;
 
 public class HMICore extends StackPane {

@@ -24,10 +24,14 @@ public class Move implements IBehavior{
 	@Override
 	public void execute(GameSystem system, GameEvent expectedEvent) {
 		MoveEvent mEvent = (MoveEvent) expectedEvent;
-		System.out.println("FOUND EVENT");
-		Entity player = system.getEntityManager().getActivePlayabaleEntity();
-		System.out.println(player);
-		Position3DComp posComp = (Position3DComp) player.getComponent(Position3DComp.class);
+		Entity movEntity;
+		if(mEvent.getEntity() == null) {
+			movEntity = system.getEntityManager().getActivePlayabaleEntity();
+		} else {
+			movEntity = mEvent.getEntity();
+		}
+			
+		Position3DComp posComp = (Position3DComp) movEntity.getComponent(Position3DComp.class);
 		if(mEvent.getDirection().equals(Direction.TOP)) {
 			if(maxY == -1 || posComp.getY() <= maxY) {
 				posComp.setY(posComp.getY()+speed);
@@ -39,18 +43,15 @@ public class Move implements IBehavior{
 				posComp.setY(posComp.getY()-speed);
 			}
 		}
-		
+			
 		if(mEvent.getDirection().equals(Direction.RIGHT)) {
 			if(maxX == -1 || posComp.getX()+speed <= maxX) {
-				System.out.println("MOVE RIGHT");
 				posComp.setX(posComp.getX()+speed);
 			}
 		}
-		
+			
 		if(mEvent.getDirection().equals(Direction.LEFT)) {
-			System.out.println("DIRECTION WAS LEFT");
 			if(posComp.getX()-speed > 0) {
-				System.out.println("MOVE LEFT");
 				posComp.setX(posComp.getX()-speed);
 			}
 		}

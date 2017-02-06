@@ -15,10 +15,10 @@ public class EntityManager implements IEntityManagement {
 	private Entity activeEntity;
 	private Map<Integer, List<Entity>> chunkLists;
 	private List<Entity> other;
-	private static final int CHUNKS_PER_ROW = 8;
-	private static final int CHUNKS_ROWS = 8;
-	private static final int CHUNK_ROWS = 32;
-	private static final int CHUNK_COLUMNS = 32;
+	private static final int CHUNKS_PER_ROW = 1;
+	private static final int CHUNKS_ROWS = 1;
+	private static final int CHUNK_ROWS = 800;
+	private static final int CHUNK_COLUMNS = 600;
 	
 	public EntityManager() {
 		this.playableEntities = new LinkedList<Entity>();
