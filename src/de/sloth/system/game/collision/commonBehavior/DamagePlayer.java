@@ -1,10 +1,10 @@
 package de.sloth.system.game.collision.commonBehavior;
 
+import de.sloth.component.SlothComp;
 import de.sloth.system.game.collision.CollisionEvent;
 import de.sloth.system.game.core.GameEvent;
 import de.sloth.system.game.core.GameSystem;
 import de.sloth.system.game.core.IBehavior;
-import de.sloth.testgame.main.SlothComp;
 
 public class DamagePlayer implements IBehavior {
 

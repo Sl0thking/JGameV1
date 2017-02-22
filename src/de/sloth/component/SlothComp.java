@@ -1,4 +1,4 @@
-package de.sloth.testgame.main;
+package de.sloth.component;
 
 import de.sloth.component.Component;
 import javafx.beans.property.SimpleIntegerProperty;

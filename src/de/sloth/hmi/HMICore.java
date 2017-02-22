@@ -19,7 +19,7 @@ public class HMICore extends StackPane {
 		this.setWidth(width);
 		this.setHeight(height);
 		this.canvas = new LayeredCanvas(layers, canvasWidth, canvasHeight);
-		this.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+		this.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 		BorderPane bp = new BorderPane();
 		bp.setMinWidth(width);
 		bp.setMinHeight(height);
