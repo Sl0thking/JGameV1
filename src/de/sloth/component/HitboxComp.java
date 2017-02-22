@@ -4,7 +4,6 @@ package de.sloth.component;
  * Hitbox dimension for internal collision checking
  * [SlothCore]
  * @author Slothking
- *
  */
 public class HitboxComp extends Component {
 	private int width;

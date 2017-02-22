@@ -17,7 +17,6 @@ public class ActivateSystem implements IBehavior {
 		for(GameSystem sys : gcSys.getCore().getRegistredSystems()) {
 			if(sys.getSystemID().equals(sae.getTargetSystemID())) {
 				sys.setActive(sae.isActive());
-				System.out.println("Activate: " + sae.getTargetSystemID());
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 package de.sloth.system.game.bgmSystem;
 
 import java.io.File;
+import java.io.FilenameFilter;
 
 import de.sloth.system.game.core.GameEvent;
 import de.sloth.system.game.core.GameSystem;
@@ -11,19 +12,45 @@ import javafx.scene.media.MediaPlayer.Status;
 
 public class PlaySong implements IBehavior {
 
-	Media bgm;
-	MediaPlayer player;
+	private MediaPlayer player;
+	private int counter;
+	private int currentSongCount;
 	
 	public PlaySong() {
-		bgm = new Media(new File("bg/game_bgm.mp3").toURI().toString());
-		player = new MediaPlayer(bgm);
+		counter = 0;
+		File bgmFolder = new File("./bg");
+		currentSongCount = bgmFolder.list(new FilenameFilter() {
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.contains("song_") && name.contains(".mp3");
+			}
+		}).length;
 	}
 	
 	@Override
 	public void execute(GameSystem system) {
-		if(player.getStatus().equals(Status.HALTED) || player.getStatus().equals(Status.STOPPED) || player.getStatus().equals(Status.READY)) {
+		if( player == null || player.getStatus().equals(Status.STOPPED))  {
+			this.changeSong();
 			player.play();
+		} else if(player.getStatus().equals(Status.HALTED) || player.getStatus().equals(Status.READY)) {
+			player.play();
+			
 		}
+	}
+	
+	private void changeSong() {
+		this.counter++;
+		if(this.counter > this.currentSongCount) {
+			this.counter = 1;
+		}
+		Media nextSong = new Media(new File("bg/song_" + this.counter + ".mp3").toURI().toString());
+		player = new MediaPlayer(nextSong);
+		player.setOnEndOfMedia(new Runnable() {	
+			@Override
+			public void run() {
+				player.stop();	
+			}
+		});
 	}
 
 	@Override

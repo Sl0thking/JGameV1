@@ -82,20 +82,21 @@ public class GameSystem {
 		return null;
 	}
 	
+	public IBehavior getBehavior(GameEvent event) {
+		return this.keywordMapping.get(event.getKeyword());
+	}
+	
 	public void executeSystem() {
-		//System.out.println("CALLED: " + this.systemID);
 		if(this.isActive) {
-			//System.out.println("EXECUTING: " + this.systemID);
 			if(listeningEvent != null) {
-				for(GameEvent event:this.getEventQueue()) {
+				ConcurrentLinkedQueue<GameEvent> currEvents = this.getEventQueue();
+				for(GameEvent event:currEvents) {
 					if(event.getClass().equals(this.listeningEvent)) {
-						
-						IBehavior behavior = this.keywordMapping.get(event.getKeyword());
-						System.out.println("CHANGE TO " + behavior.getClass());
+						IBehavior behavior = this.getBehavior(event);
 						if(behavior != null) {
 							behavior.execute(this, event);
-							this.getEventQueue().remove(event);
 						}
+						this.getEventQueue().remove(event);
 					}
 				}
 			} else {

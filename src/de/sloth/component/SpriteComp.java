@@ -7,7 +7,6 @@ package de.sloth.component;
  *
  */
 public class SpriteComp extends Component {
-	
 	private String spritePath;
 	private String direction;
 	

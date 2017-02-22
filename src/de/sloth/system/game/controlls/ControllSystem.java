@@ -25,7 +25,6 @@ public class ControllSystem extends GameSystem implements EventHandler<KeyEvent>
 	public void executeSystem(KeyCode kCode) {
 		IBehavior action = this.getKeywordMapping().get(kCode.toString());
 		if(action != null) {
-			System.out.println("XCUTED");
 			action.execute(this);
 		}
 	}

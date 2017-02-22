@@ -8,16 +8,16 @@ public class TripleBufferCanvas extends Canvas {
 	double scaling;
 	SpriteLoader loader;
 	
-	public TripleBufferCanvas(double scaling) {
+	public TripleBufferCanvas(double scaling, int spriteWidth, int spriteHeight) {
 		super();
 		this.scaling = scaling;
-		loader = SpriteLoader.getInstance(scaling, 32, 32);
+		loader = SpriteLoader.getInstance(scaling, spriteWidth, spriteHeight);
 	}
 
-	public TripleBufferCanvas(double scaling, double width, double height) {
+	public TripleBufferCanvas(double scaling, double width, double height, int spriteWidth, int spriteHeight) {
 		super(width, height);
 		this.scaling = scaling;
-		loader = SpriteLoader.getInstance(scaling, 32, 32);
+		loader = SpriteLoader.getInstance(scaling, spriteWidth, spriteHeight);
 	}
 	
 	public void drawSprite(String spriteName, int xPos, int yPos) {

@@ -6,22 +6,24 @@ import javafx.scene.layout.StackPane;
 
 public class LayeredCanvas extends StackPane {
 	int layers;
-	int screenWidth;
-	int screenHeight;
+	int canvasWidth;
+	int canvasHeight;
 	
-	public LayeredCanvas(int layers, int screenWidth, int screenHeight) {
+	public LayeredCanvas(int layers, int canvasWidth, int canvasHeight) {
 		this.layers = layers;
-		this.screenWidth = screenWidth;
-		this.screenHeight = screenHeight;
+		this.canvasWidth = canvasWidth;
+		this.canvasHeight = canvasHeight;
+		int spriteWidth = 32;
+		int spriteHeight = 32;
 		for(int i = 0; i < layers; i++) {
-			this.getChildren().add(new TripleBufferCanvas(2.5, screenWidth, screenHeight));
+			this.getChildren().add(new TripleBufferCanvas(2., canvasWidth, canvasHeight, spriteWidth, spriteHeight));
 		}
 	}
 	
 	public void clear() {
-		((Canvas) this.getChildren().get(0)).getGraphicsContext2D().fillRect(0, 0, screenWidth, screenHeight);
+		((Canvas) this.getChildren().get(0)).getGraphicsContext2D().fillRect(0, 0, canvasWidth, canvasHeight);
 		for(int i = 1; i < layers; i++) {
-			((Canvas) this.getChildren().get(i)).getGraphicsContext2D().clearRect(0, 0, screenWidth, screenHeight);
+			((Canvas) this.getChildren().get(i)).getGraphicsContext2D().clearRect(0, 0, canvasWidth, canvasHeight);
 		}
 	}
 	

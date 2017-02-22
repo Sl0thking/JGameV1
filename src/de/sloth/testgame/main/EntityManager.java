@@ -15,10 +15,11 @@ public class EntityManager implements IEntityManagement {
 	private Entity activeEntity;
 	private Map<Integer, List<Entity>> chunkLists;
 	private List<Entity> other;
+	private int internalIdCounter;
 	private static final int CHUNKS_PER_ROW = 1;
 	private static final int CHUNKS_ROWS = 1;
-	private static final int CHUNK_ROWS = 800;
-	private static final int CHUNK_COLUMNS = 600;
+	private static final int CHUNK_WIDTH = 640;
+	private static final int CHUNK_HEIGTH = 480;
 	
 	public EntityManager() {
 		this.playableEntities = new LinkedList<Entity>();
@@ -28,6 +29,7 @@ public class EntityManager implements IEntityManagement {
 		for(int x = 0; x < CHUNKS_PER_ROW * CHUNKS_ROWS; x++) {
 			this.chunkLists.put(x, new LinkedList<Entity>());
 		}
+		internalIdCounter = 0;
 	}
 	
 	@Override
@@ -92,8 +94,14 @@ public class EntityManager implements IEntityManagement {
 	private int getChunkIndex(Position3DComp pos) {
 		int xPos = pos.getX();
 		int yPos = pos.getY();
-		int chunkX = (int) xPos / CHUNK_COLUMNS;
-		int chunkY = (int) yPos / CHUNK_ROWS;
+		/*System.out.println("XPOS: " + xPos);
+		System.out.println("YPOS: " + yPos);*/
+		
+		int chunkX = (int) xPos / CHUNK_WIDTH;
+		int chunkY = (int) yPos / CHUNK_HEIGTH;
+		/*System.out.println("CHUNK_X: " + chunkX);
+		System.out.println("CHUNK_Y: " + chunkY);
+		System.out.println("TARGET CHUNK: " + chunkX + (CHUNKS_PER_ROW*chunkY));*/
 		return chunkX + (CHUNKS_PER_ROW*chunkY);
 	}
 
@@ -101,6 +109,8 @@ public class EntityManager implements IEntityManagement {
 	public void addEntity(Entity entity) {
 		FocusComp fComp = (FocusComp) entity.getComponent(FocusComp.class);
 		Position3DComp pos = (Position3DComp) entity.getComponent(Position3DComp.class);
+		entity.setId(internalIdCounter);
+		internalIdCounter++;
 		
 		if(fComp != null) {
 			this.activeEntity = entity;
