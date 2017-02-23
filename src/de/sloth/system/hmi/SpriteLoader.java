@@ -4,19 +4,23 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.sloth.hmi.Spritesheet;
 import javafx.scene.image.Image;
 
 public class SpriteLoader {
 	
 	private Map<String, Image> sprites;
+	private static SpriteLoader instance;
 	private int spriteWidth;
 	private int spriteHeight;
-	private static SpriteLoader instance;
+	private final int SHEET_HEIGHT = 32;
+	private final int SHEET_WIDTH = 128;
+	private int animationPhases;
+	private String[] animationNames;
 	
-	
-	public static SpriteLoader getInstance(double scaling, int spriteWidth, int spriteHeight) {
+	public static SpriteLoader getInstance(double scaling, int spriteWidth, int spriteHeight, int animationPhases, String[] animationNames) {
 		if(instance == null) {
-			instance = new SpriteLoader(scaling, spriteWidth, spriteHeight);
+			instance = new SpriteLoader(scaling, spriteWidth, spriteHeight, animationPhases, animationNames);
 		}
 		return instance;
 	}
@@ -24,24 +28,55 @@ public class SpriteLoader {
 	
 	private SpriteLoader() {
 		sprites = new HashMap<String, Image>();
-		spriteWidth = 32;
-		spriteHeight = 32;
 		refresh(1.0);
 	}
 	
-	private SpriteLoader(double scaling, int spriteWidth, int spriteHeight) {
+	private SpriteLoader(double scaling,  int spriteWidth, int spriteHeight, int animationPhases, String[] animationNames) {
 		sprites = new HashMap<String, Image>();
 		this.spriteWidth = spriteWidth;
 		this.spriteHeight = spriteHeight;
+		this.animationPhases = animationPhases;
+		this.animationNames = animationNames;
 		refresh(scaling);
 	}
 	
 	public void refresh(double scaling) {
 		sprites.clear();
-		File spriteDir = new File("./sprites");
-		File[] spritesInDir = spriteDir.listFiles();
+		loadSprites(scaling);
+		loadSpritesheets(scaling);
+		System.out.println(sprites);
+	}
+	
+	private void loadSprites(double scaling) {
+		File spritesDir = new File("./sprites");
+		File[] spritesInDir = spritesDir.listFiles();
 		for (File sprite : spritesInDir) {
-			sprites.put(sprite.getName(), new Image(("file:" + sprite.getAbsolutePath()), spriteWidth*scaling, spriteHeight*scaling, true, false));
+			if(!sprite.isDirectory()) {
+				Image spriteAsImage = new Image(("file:" + sprite.getAbsolutePath()), spriteWidth*scaling, spriteHeight*scaling, true, false);
+				sprites.put(sprite.getName(), spriteAsImage);
+			}
+		}
+	}
+	
+	private void loadSpritesheets(double scaling) {
+		File spritesheetDir = new File("./spritesheets");
+		File[] spritesheetsInDir = spritesheetDir.listFiles();
+		for (File sprite : spritesheetsInDir) {
+			if(!sprite.isDirectory()) {
+				System.out.println(sprite);
+				Spritesheet sheet = new Spritesheet(("file:" + sprite.getAbsolutePath()), SHEET_WIDTH*scaling, SHEET_HEIGHT*scaling, true, false);
+				int animationPhaseIndex = 0;
+				for(String animation_phase : animationNames) {
+					for(int phase_nr = 0; phase_nr < animationPhases; phase_nr++) {
+						int scaledSpriteWidth = (int) (spriteWidth*scaling);
+						int scaledSpriteHeight = (int) (spriteHeight*scaling);
+						int startY = (animationPhaseIndex*scaledSpriteHeight);
+						int startX = (phase_nr*scaledSpriteWidth);
+						sprites.put((sprite.getName() + "_" + animation_phase + "_" + phase_nr), sheet.splice(startX, startY, scaledSpriteWidth, scaledSpriteHeight));
+					}
+					animationPhaseIndex++;
+				}
+			}
 		}
 	}
 	

@@ -4,24 +4,19 @@ import de.sloth.system.hmi.SpriteLoader;
 import javafx.scene.canvas.Canvas;
 
 public class TripleBufferCanvas extends Canvas {
-
-	double scaling;
 	SpriteLoader loader;
 	
-	public TripleBufferCanvas(double scaling, int spriteWidth, int spriteHeight) {
+	public TripleBufferCanvas(SpriteLoader loader) {
 		super();
-		this.scaling = scaling;
-		loader = SpriteLoader.getInstance(scaling, spriteWidth, spriteHeight);
+		this.loader = loader;
 	}
 
-	public TripleBufferCanvas(double scaling, double width, double height, int spriteWidth, int spriteHeight) {
+	public TripleBufferCanvas(double width, double height, SpriteLoader loader) {
 		super(width, height);
-		this.scaling = scaling;
-		loader = SpriteLoader.getInstance(scaling, spriteWidth, spriteHeight);
+		this.loader = loader;
 	}
 	
 	public void drawSprite(String spriteName, int xPos, int yPos) {
 		this.getGraphicsContext2D().drawImage(loader.getSprite(spriteName), xPos, yPos);
 	}
-
 }

@@ -46,14 +46,12 @@ public class Move implements IBehavior{
 			
 		if(mEvent.getDirection().equals(Direction.RIGHT)) {
 			if(maxX == -1 || posComp.getX()+mComp.getSpeed() < maxX) {
-				spComp.setSpritePath("Viking_right.png");
 				posComp.setX(posComp.getX()+mComp.getSpeed());
 			}
 		}
 			
 		if(mEvent.getDirection().equals(Direction.LEFT)) {
 			if(posComp.getX()-mComp.getSpeed() > 0) {
-				spComp.setSpritePath("Viking_left.png");
 				posComp.setX(posComp.getX()-mComp.getSpeed());
 			}
 		}

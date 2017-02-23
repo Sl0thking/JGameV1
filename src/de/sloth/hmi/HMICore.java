@@ -3,6 +3,7 @@ package de.sloth.hmi;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.sloth.system.hmi.SpriteLoader;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -14,11 +15,11 @@ public class HMICore extends StackPane {
 	private LayeredCanvas canvas;
 	private List<GameInterfaceLayer> gameInterfaceLayers;
 	
-	public HMICore(int canvasWidth, int canvasHeight, int width, int height, int layers) {
+	public HMICore(int canvasWidth, int canvasHeight, int width, int height, int layers, SpriteLoader loader) {
 		gameInterfaceLayers = new LinkedList<GameInterfaceLayer>();
 		this.setWidth(width);
 		this.setHeight(height);
-		this.canvas = new LayeredCanvas(layers, canvasWidth, canvasHeight);
+		this.canvas = new LayeredCanvas(layers, canvasWidth, canvasHeight, loader);
 		this.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 		BorderPane bp = new BorderPane();
 		bp.setMinWidth(width);
@@ -27,11 +28,11 @@ public class HMICore extends StackPane {
 		this.getChildren().add(bp);
 	}
 	
-	public HMICore(int width, int height) {
+	public HMICore(int width, int height, SpriteLoader loader) {
 		gameInterfaceLayers = new LinkedList<GameInterfaceLayer>();
 		this.setWidth(width);
 		this.setHeight(height);
-		this.canvas = new LayeredCanvas(4, width, height);
+		this.canvas = new LayeredCanvas(4, width, height, loader);
 		this.getChildren().add(canvas);
 	}
 

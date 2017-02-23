@@ -1,5 +1,6 @@
 package de.sloth.hmi;
 
+import de.sloth.system.hmi.SpriteLoader;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
@@ -9,14 +10,12 @@ public class LayeredCanvas extends StackPane {
 	int canvasWidth;
 	int canvasHeight;
 	
-	public LayeredCanvas(int layers, int canvasWidth, int canvasHeight) {
+	public LayeredCanvas(int layers, int canvasWidth, int canvasHeight, SpriteLoader loader) {
 		this.layers = layers;
 		this.canvasWidth = canvasWidth;
 		this.canvasHeight = canvasHeight;
-		int spriteWidth = 32;
-		int spriteHeight = 32;
 		for(int i = 0; i < layers; i++) {
-			this.getChildren().add(new TripleBufferCanvas(2., canvasWidth, canvasHeight, spriteWidth, spriteHeight));
+			this.getChildren().add(new TripleBufferCanvas(canvasWidth, canvasHeight, loader));
 		}
 	}
 	
@@ -36,7 +35,6 @@ public class LayeredCanvas extends StackPane {
 	}
 
 	public TripleBufferCanvas getLayer(int layer) {
-		// TODO Auto-generated method stub
 		return (TripleBufferCanvas) this.getChildren().get(layer);
 	}
 }
