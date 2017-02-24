@@ -29,30 +29,32 @@ public class Move implements IBehavior{
 		} else {
 			movEntity = mEvent.getEntity();
 		}
-		MovableComp mComp = (MovableComp) movEntity.getComponent(MovableComp.class);	
-		Position3DComp posComp = (Position3DComp) movEntity.getComponent(Position3DComp.class);
-		SpriteComp spComp = (SpriteComp) movEntity.getComponent(SpriteComp.class);
-		if(mEvent.getDirection().equals(Direction.TOP)) {
-			if(maxY == -1 || posComp.getY() <= maxY) {
-				posComp.setY(posComp.getY()+mComp.getSpeed());
+		if(movEntity != null) {
+			MovableComp mComp = (MovableComp) movEntity.getComponent(MovableComp.class);	
+			Position3DComp posComp = (Position3DComp) movEntity.getComponent(Position3DComp.class);
+			SpriteComp spComp = (SpriteComp) movEntity.getComponent(SpriteComp.class);
+			if(mEvent.getDirection().equals(Direction.TOP)) {
+				if(maxY == -1 || posComp.getY() <= maxY) {
+					posComp.setY(posComp.getY()+mComp.getSpeed());
+				}
 			}
-		}
 		
-		if(mEvent.getDirection().equals(Direction.BOTTOM)) {
-			if(posComp.getY()-mComp.getSpeed() > 0) {
-				posComp.setY(posComp.getY()-mComp.getSpeed());
+			if(mEvent.getDirection().equals(Direction.BOTTOM)) {
+				if(posComp.getY()-mComp.getSpeed() > 0) {
+					posComp.setY(posComp.getY()-mComp.getSpeed());
+				}
 			}
-		}
-			
-		if(mEvent.getDirection().equals(Direction.RIGHT)) {
-			if(maxX == -1 || posComp.getX()+mComp.getSpeed() < maxX) {
-				posComp.setX(posComp.getX()+mComp.getSpeed());
+				
+			if(mEvent.getDirection().equals(Direction.RIGHT)) {
+				if(maxX == -1 || posComp.getX()+mComp.getSpeed() < maxX) {
+					posComp.setX(posComp.getX()+mComp.getSpeed());
+				}
 			}
-		}
-			
-		if(mEvent.getDirection().equals(Direction.LEFT)) {
-			if(posComp.getX()-mComp.getSpeed() > 0) {
-				posComp.setX(posComp.getX()-mComp.getSpeed());
+				
+			if(mEvent.getDirection().equals(Direction.LEFT)) {
+				if(posComp.getX()-mComp.getSpeed() > 0) {
+					posComp.setX(posComp.getX()-mComp.getSpeed());
+				}
 			}
 		}
 	}

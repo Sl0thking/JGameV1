@@ -3,22 +3,12 @@ package de.sloth.component;
 import de.sloth.component.Component;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class SlothComp extends Component {
-	private SimpleIntegerProperty spears;
+public class HealthComp extends Component {
 	private SimpleIntegerProperty lifes;
 
-	public SlothComp(int spears, int lifes) {
+	public HealthComp(int lifes) {
 		super();
-		this.spears = new SimpleIntegerProperty(spears);
 		this.lifes = new SimpleIntegerProperty(lifes);
-	}
-
-	public int getSpears() {
-		return spears.get();
-	}
-
-	public void setSpears(int spears) {
-		this.spears.set(spears);
 	}
 
 	public int getLifes() {
@@ -28,11 +18,7 @@ public class SlothComp extends Component {
 	public void setLifes(int lifes) {
 		this.lifes.set(lifes);
 	}	
-	
-	public SimpleIntegerProperty getSpearProperty() {
-		return this.spears;
-	}
-	
+
 	public SimpleIntegerProperty getLifeProperty() {
 		return this.lifes;
 	}

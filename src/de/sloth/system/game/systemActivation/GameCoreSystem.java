@@ -2,6 +2,7 @@ package de.sloth.system.game.systemActivation;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import de.sloth.system.game.core.ConfigLoader;
 import de.sloth.system.game.core.GameCore;
 import de.sloth.system.game.core.GameEvent;
 import de.sloth.system.game.core.GameSystem;

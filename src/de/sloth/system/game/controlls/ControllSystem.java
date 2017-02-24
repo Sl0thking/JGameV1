@@ -1,6 +1,7 @@
 package de.sloth.system.game.controlls;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import de.sloth.system.game.core.ConfigLoader;
 import de.sloth.system.game.core.GameEvent;
 import de.sloth.system.game.core.GameSystem;
 import de.sloth.system.game.core.IBehavior;

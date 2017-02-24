@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import de.sloth.system.game.systemActivation.SystemActivationEvent;
+
 public class GameSystem {
 
 	private ConcurrentLinkedQueue<GameEvent> eventQueue;
@@ -12,6 +14,7 @@ public class GameSystem {
 	private boolean isActive;
 	private String systemID;
 	private IEntityManagement entityManager;
+	private ConfigLoader cl;
 	
 	public GameSystem(String systemID, Class<? extends GameEvent> listeningEvent, IEntityManagement entityManager, ConcurrentLinkedQueue<GameEvent> eventQueue) {
 		super();

@@ -13,7 +13,7 @@ public class SystemActivationEvent extends GameEvent {
 	}
 	
 	public SystemActivationEvent(String keyword, String targetSystemID, boolean isActive) {
-		super();
+		super(keyword);
 		this.isActive = isActive;
 		this.targetSystemID = targetSystemID;
 	}
@@ -33,4 +33,11 @@ public class SystemActivationEvent extends GameEvent {
 	public void setTargetSystemID(String targetSystemID) {
 		this.targetSystemID = targetSystemID;
 	}
+
+	@Override
+	public String toString() {
+		return "SystemActivationEvent [isActive=" + isActive + ", targetSystemID=" + targetSystemID + "]";
+	}
+	
+	
 }
