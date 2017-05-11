@@ -1,4 +1,4 @@
-package de.sloth.system.game.bgmSystem;
+package de.sloth.system.game.soundSystem;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -10,13 +10,13 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 
-public class PlaySong implements IBehavior {
+public class PlayBgm implements IBehavior {
 
 	private MediaPlayer player;
 	private int counter;
 	private int currentSongCount;
 	
-	public PlaySong() {
+	public PlayBgm() {
 		counter = 0;
 		File bgmFolder = new File("./bg");
 		currentSongCount = bgmFolder.list(new FilenameFilter() {
@@ -45,6 +45,7 @@ public class PlaySong implements IBehavior {
 		}
 		Media nextSong = new Media(new File("bg/song_" + this.counter + ".mp3").toURI().toString());
 		player = new MediaPlayer(nextSong);
+		player.setVolume(0.7);
 		player.setOnEndOfMedia(new Runnable() {	
 			@Override
 			public void run() {

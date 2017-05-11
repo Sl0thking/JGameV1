@@ -44,7 +44,6 @@ public class SpriteLoader {
 		sprites.clear();
 		loadSprites(scaling);
 		loadSpritesheets(scaling);
-		System.out.println(sprites);
 	}
 	
 	private void loadSprites(double scaling) {
@@ -63,7 +62,6 @@ public class SpriteLoader {
 		File[] spritesheetsInDir = spritesheetDir.listFiles();
 		for (File sprite : spritesheetsInDir) {
 			if(!sprite.isDirectory()) {
-				System.out.println(sprite);
 				Spritesheet sheet = new Spritesheet(("file:" + sprite.getAbsolutePath()), SHEET_WIDTH*scaling, SHEET_HEIGHT*scaling, true, false);
 				int animationPhaseIndex = 0;
 				for(String animation_phase : animationNames) {
