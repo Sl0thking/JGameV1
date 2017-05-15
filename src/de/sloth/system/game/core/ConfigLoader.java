@@ -5,7 +5,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
-
+/**
+ * 
+ * @author Slothking
+ * @version V1.0.0
+ */
 public class ConfigLoader extends Properties {
 
 	/**
@@ -72,5 +76,22 @@ public class ConfigLoader extends Properties {
 			return stdValue;
 		}
 		return value;
+	}
+
+	public String getConfigName() {
+		return configName;
+	}
+
+	public void setConfigName(String configName) {
+		this.configName = configName;
+	}
+
+	public File getConfigFile() {
+		return configFile;
+	}
+
+	public void setConfigFile(String configFilePath) {
+		ConfigLoader.instance = new ConfigLoader();
+		ConfigLoader.instance.configFile = new File(configFilePath);
 	}
 }
