@@ -1,15 +1,19 @@
 package de.sloth.component;
 
 public class AnimationComp extends Component {
-	public String animationPhase;
-	public int phaseNr;
-	public int ticksForNextPhase;
+	private String animationPhase;
+	private int phaseNr;
+	private int ticksForNextPhase;
+	private int ticksForAnimation;
+	private String stdAnimationPhase;
 	
 	public AnimationComp(String animationPhase, int phaseNr, int ticksForNextPhase) {
 		super();
 		this.animationPhase = animationPhase;
+		this.setStdAnimationPhase(animationPhase);
 		this.phaseNr = phaseNr;
 		this.ticksForNextPhase = ticksForNextPhase;
+		this.setTicksForAnimation(-1);
 	}
 
 	public String getAnimationPhase() {
@@ -34,5 +38,21 @@ public class AnimationComp extends Component {
 
 	public void setTicksForNextPhase(int ticksForNextPhase) {
 		this.ticksForNextPhase = ticksForNextPhase;
+	}
+
+	public int getTicksForAnimation() {
+		return ticksForAnimation;
+	}
+
+	public void setTicksForAnimation(int ticksForAnimation) {
+		this.ticksForAnimation = ticksForAnimation;
+	}
+
+	public String getStdAnimationPhase() {
+		return stdAnimationPhase;
+	}
+
+	public void setStdAnimationPhase(String stdAnimationPhase) {
+		this.stdAnimationPhase = stdAnimationPhase;
 	}
 }

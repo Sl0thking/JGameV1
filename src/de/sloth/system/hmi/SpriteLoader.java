@@ -13,7 +13,7 @@ public class SpriteLoader {
 	private static SpriteLoader instance;
 	private int spriteWidth;
 	private int spriteHeight;
-	private final int SHEET_HEIGHT = 32;
+	private final int SHEET_HEIGHT = 64;
 	private final int SHEET_WIDTH = 128;
 	private int animationPhases;
 	private String[] animationNames;
@@ -24,7 +24,6 @@ public class SpriteLoader {
 		}
 		return instance;
 	}
-	
 	
 	private SpriteLoader() {
 		sprites = new HashMap<String, Image>();

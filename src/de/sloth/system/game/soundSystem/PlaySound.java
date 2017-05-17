@@ -16,8 +16,10 @@ public class PlaySound implements IBehavior {
 	@Override
 	public void execute(GameSystem system, GameEvent expectedEvent) {
 		PlaySoundEvent pse = (PlaySoundEvent) expectedEvent;
-		File soundFile = new File("se/" + pse.getDesiredSoundFileName() + ".mp3");
+		File soundFile = new File(".\\se\\" + pse.getDesiredSoundFileName() + ".mp3");
+		System.out.println(soundFile);
 		if(soundFile.exists()) {
+			System.out.println("SE EXISTS");
 			Media nextSong = new Media(soundFile.toURI().toString());
 			MediaPlayer player = new MediaPlayer(nextSong);
 			player.play();
