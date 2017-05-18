@@ -53,7 +53,6 @@ public class CheckCollision implements IBehavior {
 				return false;
 			}
 		
-		
 			if(direction.equals(Direction.TOP)) {
 				movY += movMov.getSpeed();
 			} else if(direction.equals(Direction.BOTTOM)) {
@@ -70,7 +69,6 @@ public class CheckCollision implements IBehavior {
 					coll3DComp.getY() + collHitbox.getHeight() < movY);
 		} else {
 			return false;
-		}
-		
+		}		
 	}
 }

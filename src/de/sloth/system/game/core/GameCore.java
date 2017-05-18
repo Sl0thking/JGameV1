@@ -10,21 +10,51 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  * Main Game Loop, basing on a animation timer
+ * 
  * @author Kevin Jolitz
+ * @version 1.0.1
+ * @date 18.05.2017
  *
  */
 public class GameCore extends AnimationTimer {
 
-	List<GameSystem> gameSystems;
-	final int MS_PER_FRAME = 1000/60;
-	FPSCalculator fpsCalc;
+	private List<GameSystem> gameSystems;
+	private int ms_per_frame; // = 1000/60;
+	private FPSCalculator fpsCalc;
+	private boolean isCapped;
+	private int loopSpeedMod;
 
 	public GameCore() {
-		//this.cRenderer = new SpriteRendererSystem(entities, eventQueue, lc, screenWidth, screenHeight);
 		this.gameSystems = new LinkedList<GameSystem>();
+		this.ms_per_frame = 1000/60;
 		this.fpsCalc = new FPSCalculator();
+		this.isCapped = true;
+		this.loopSpeedMod = 1;
+	}
+	
+	public GameCore(int loopSpeedMod) {
+		this.gameSystems = new LinkedList<GameSystem>();
+		this.ms_per_frame = 1000/60;
+		this.fpsCalc = new FPSCalculator();
+		this.isCapped = true;
+		this.loopSpeedMod = loopSpeedMod;
 	}
 
+	public GameCore(int loopSpeedMod, int fps) {
+		this.gameSystems = new LinkedList<GameSystem>();
+		this.ms_per_frame = 1000/fps;
+		this.fpsCalc = new FPSCalculator();
+		this.isCapped = true;
+		this.loopSpeedMod = loopSpeedMod;
+	}
+	
+	public GameCore(int loopSpeedMod, int fps, boolean isCapped) {
+		this.gameSystems = new LinkedList<GameSystem>();
+		this.ms_per_frame = 1000/fps;
+		this.fpsCalc = new FPSCalculator();
+		this.isCapped = isCapped;
+		this.loopSpeedMod = loopSpeedMod;
+	}	
 	
 	public SimpleIntegerProperty getFpsProperty() {
 		return this.fpsCalc.getFpsProperty();
@@ -50,17 +80,21 @@ public class GameCore extends AnimationTimer {
 		//handleUserInput();
 		double secondsBefore = new Date().getTime()/1000.0;
 		this.fpsCalc.start();
-		this.doGameLogic();
-		//cRenderer.executeSystem();
+		for(int i = 0; i < this.loopSpeedMod; i++) {
+			this.doGameLogic();
+			//cRenderer.executeSystem();
+		}
 		
 		double secondsAfter = new Date().getTime()/1000.0;
-		try {
-			long wait = (long) ((secondsBefore*1000 + MS_PER_FRAME) - secondsAfter*1000);
-			if(wait >= 0) {
-				Thread.sleep(wait);
+		if(isCapped) {
+			try {
+				long wait = (long) ((secondsBefore*1000 + ms_per_frame) - secondsAfter*1000);
+				if(wait >= 0) {
+					Thread.sleep(wait);
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
 		this.fpsCalc.stop();
 	}

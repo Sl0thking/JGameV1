@@ -48,12 +48,16 @@ public class Move implements IBehavior{
 			if(mEvent.getDirection().equals(Direction.RIGHT)) {
 				if(maxX == -1 || posComp.getX()+mComp.getSpeed() < maxX) {
 					posComp.setX(posComp.getX()+mComp.getSpeed());
+				} else {
+					posComp.setX(maxX);
 				}
 			}
 				
 			if(mEvent.getDirection().equals(Direction.LEFT)) {
 				if(posComp.getX()-mComp.getSpeed() > 0) {
 					posComp.setX(posComp.getX()-mComp.getSpeed());
+				} else {
+					posComp.setX(0);
 				}
 			}
 		}
