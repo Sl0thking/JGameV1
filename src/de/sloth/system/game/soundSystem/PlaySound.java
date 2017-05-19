@@ -10,6 +10,16 @@ import de.sloth.system.game.core.IBehavior;
 
 public class PlaySound implements IBehavior {
 
+	private double seVolume = 0.0;
+	
+	public PlaySound() {
+		this.seVolume = 0.5;
+	}
+	
+	public PlaySound(double seVolume) {
+		this.seVolume = seVolume;
+	}
+	
 	@Override
 	public void execute(GameSystem system) {}
 
@@ -17,11 +27,10 @@ public class PlaySound implements IBehavior {
 	public void execute(GameSystem system, GameEvent expectedEvent) {
 		PlaySoundEvent pse = (PlaySoundEvent) expectedEvent;
 		File soundFile = new File(".\\se\\" + pse.getDesiredSoundFileName() + ".mp3");
-		System.out.println(soundFile);
 		if(soundFile.exists()) {
-			System.out.println("SE EXISTS");
 			Media nextSong = new Media(soundFile.toURI().toString());
 			MediaPlayer player = new MediaPlayer(nextSong);
+			player.setVolume(this.seVolume);
 			player.play();
 		}
 	}

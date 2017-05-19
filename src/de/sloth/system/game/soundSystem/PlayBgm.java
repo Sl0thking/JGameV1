@@ -15,6 +15,7 @@ public class PlayBgm implements IBehavior {
 	private MediaPlayer player;
 	private int counter;
 	private int currentSongCount;
+	private double bgmVolume;
 	
 	public PlayBgm() {
 		counter = 0;
@@ -25,6 +26,19 @@ public class PlayBgm implements IBehavior {
 				return name.contains("song_") && name.contains(".mp3");
 			}
 		}).length;
+		this.bgmVolume = 0.5;
+	}
+	
+	public PlayBgm(double bgmVolume) {
+		counter = 0;
+		File bgmFolder = new File("./bg");
+		currentSongCount = bgmFolder.list(new FilenameFilter() {
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.contains("song_") && name.contains(".mp3");
+			}
+		}).length;
+		this.bgmVolume = bgmVolume;
 	}
 	
 	@Override
@@ -45,7 +59,7 @@ public class PlayBgm implements IBehavior {
 		}
 		Media nextSong = new Media(new File("bg/song_" + this.counter + ".mp3").toURI().toString());
 		player = new MediaPlayer(nextSong);
-		player.setVolume(0.7);
+		player.setVolume(this.bgmVolume);
 		player.setOnEndOfMedia(new Runnable() {	
 			@Override
 			public void run() {
