@@ -16,7 +16,6 @@ public class Spritesheet extends Image {
 	}
 
 	public Image splice(int startX, int startY, int width, int height) {
-		System.out.println("STARTX: " + startX + " STARTY: " + startY);
 		PixelReader pr = this.getPixelReader();
 		WritableImage outputImage = new WritableImage(width, height);
 		PixelWriter wr = outputImage.getPixelWriter();

@@ -1,8 +1,12 @@
 package de.sloth.system.hmi;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 import de.sloth.hmi.Spritesheet;
 import javafx.scene.image.Image;
@@ -50,10 +54,18 @@ public class SpriteLoader {
 		File[] spritesInDir = spritesDir.listFiles();
 		for (File sprite : spritesInDir) {
 			if(!sprite.isDirectory()) {
-				Image spriteAsImage = new Image(("file:" + sprite.getAbsolutePath()), spriteWidth*scaling, spriteHeight*scaling, true, false);
+				double[] dim = getDimension(sprite);
+				Image spriteAsImage = new Image(("file:" + sprite.getAbsolutePath()), dim[0]*scaling, dim[1]*scaling, true, false);
 				sprites.put(sprite.getName(), spriteAsImage);
 			}
 		}
+	}
+	
+	private double[] getDimension(File f) {
+		Image coreImage = new Image("file:" + f.getAbsolutePath());
+		double[] dim = {coreImage.getWidth(), coreImage.getHeight()};
+		return dim;
+		
 	}
 	
 	private void loadSpritesheets(double scaling) {

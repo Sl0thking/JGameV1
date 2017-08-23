@@ -4,17 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import de.sloth.system.game.systemActivation.SystemActivationEvent;
-
 public class GameSystem {
 
 	private ConcurrentLinkedQueue<GameEvent> eventQueue;
 	private Map<String, IBehavior> keywordMapping;
 	private Class<? extends GameEvent> listeningEvent;
 	private boolean isActive;
+	private boolean isQuiet;
 	private String systemID;
 	private IEntityManagement entityManager;
-	private ConfigLoader cl;
 	
 	public GameSystem(String systemID, Class<? extends GameEvent> listeningEvent, IEntityManagement entityManager, ConcurrentLinkedQueue<GameEvent> eventQueue) {
 		super();
@@ -24,6 +22,7 @@ public class GameSystem {
 		this.isActive = true;
 		this.keywordMapping = new HashMap<String, IBehavior>();
 		this.setSystemID(systemID);
+		this.setQuiet(true);
 	}
 	
 	public GameSystem(String systemID, IEntityManagement entityManager) {
@@ -34,6 +33,7 @@ public class GameSystem {
 		this.setListeningEvent(null);
 		this.keywordMapping = new HashMap<String, IBehavior>();
 		this.setSystemID(systemID);
+		this.setQuiet(true);
 	}
 	
 	public ConcurrentLinkedQueue<GameEvent> getEventQueue() {
@@ -55,27 +55,7 @@ public class GameSystem {
 	public void registerBehavior(String keyword, IBehavior behavior) {
 		this.keywordMapping.put(keyword, behavior);
 	}
-/*
-	public List<Entity> filterEntitiesByComponent(Class<?> compClass) {
-		List<Entity> matchingEntities = new LinkedList<Entity>();
-		for(Entity entity : this.entities) {
-			if(entity.getComponentClasses().contains(compClass)) {
-				matchingEntities.add(entity);
-			}
-		}
-		return matchingEntities;
-	}
-
-	public List<Entity> filterEntitiesByComponents(List<Class<?>> compClasses) {
-		List<Entity> matchingEntities = new LinkedList<Entity>();
-		for(Entity entity : this.entities) {
-			if(entity.getComponentClasses().containsAll(compClasses)) {
-				matchingEntities.add(entity);
-			}
-		}
-		return matchingEntities;
-	}
-*/	
+	
 	public GameEvent checkEvents(Class<?> triggerEventClass) {
 		for(GameEvent event:this.getEventQueue()) {
 			if(event.getClass().equals(triggerEventClass)) {
@@ -138,5 +118,13 @@ public class GameSystem {
 
 	public void setKeywordMapping(Map<String, IBehavior> keywordMapping) {
 		this.keywordMapping = keywordMapping;
+	}
+
+	public boolean isQuiet() {
+		return isQuiet;
+	}
+
+	public void setQuiet(boolean isQuiet) {
+		this.isQuiet = isQuiet;
 	}
 }
