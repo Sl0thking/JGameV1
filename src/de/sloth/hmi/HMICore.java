@@ -3,7 +3,7 @@ package de.sloth.hmi;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.sloth.system.hmi.SpriteLoader;
+import de.sloth.hmi.system.SpriteLoader;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;

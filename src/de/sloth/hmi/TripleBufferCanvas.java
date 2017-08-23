@@ -1,6 +1,6 @@
 package de.sloth.hmi;
 
-import de.sloth.system.hmi.SpriteLoader;
+import de.sloth.hmi.system.SpriteLoader;
 import javafx.scene.canvas.Canvas;
 
 public class TripleBufferCanvas extends Canvas {

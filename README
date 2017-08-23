@@ -1,0 +1,10 @@
+Version 0.0.1 [Released]
+-Festigung der Kern Engine
+-Packages neu angeordnet
+-Vorbereitung RPG Core
+
+Target version 0.1.0 [TBA]
+-Inventar System
+-Kampfsystem
+-Testumgebung
+-Refactoring Core (Anmelden der Systeme, siehe Tests)
