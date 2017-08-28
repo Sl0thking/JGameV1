@@ -69,8 +69,8 @@ public class GameCore extends AnimationTimer {
 		gameSystems.remove(system);
 	}
 	
-	public void doGameLogic() {
-		for(GameSystem system:gameSystems) {
+	public void doGameLogic() throws Exception {
+		for(GameSystem system : gameSystems) {
 			system.executeSystem();
 		}
 	}
@@ -82,7 +82,12 @@ public class GameCore extends AnimationTimer {
 		double secondsBefore = new Date().getTime()/1000.0;
 		this.fpsCalc.start();
 		for(int i = 0; i < this.loopSpeedMod; i++) {
-			this.doGameLogic();
+			try {
+				this.doGameLogic();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			//cRenderer.executeSystem();
 		}
 		

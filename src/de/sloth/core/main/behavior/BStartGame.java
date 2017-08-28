@@ -1,23 +1,6 @@
 package de.sloth.core.main.behavior;
 
 import java.util.Random;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import de.sloth.core.main.ConfigLoader;
 import de.sloth.core.main.Entity;
 import de.sloth.core.main.EntityGenerator;
@@ -30,8 +13,6 @@ import de.sloth.core.movement.event.Direction;
 import de.sloth.core.spears.component.SpearBagComp;
 import de.sloth.core.sysActivation.SystemActivationEvent;
 import de.sloth.hmi.system.HMIGameSystem;
-import javafx.beans.property.SimpleStringProperty;
-
 /**
  * Behavior for StartGameSystem. Executes necessary operations
  * to prepare a new game.

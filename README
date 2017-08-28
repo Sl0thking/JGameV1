@@ -1,10 +1,28 @@
-Version 0.0.1 [Released]
+Version 0.0.1 [Released B1]
 -Festigung der Kern Engine
 -Packages neu angeordnet
 -Vorbereitung RPG Core
 
-Target version 0.1.0 [TBA]
--Inventar System
+Version 0.1.0 [Released B2]
+-Inventar System (Add & Remove)
+	-> Behaviors (BAddItem, BRemoveItem)
+	-> Components (Inventory, UsableItems)
+	-> DataTypes (InventorySlot)
+	-> Events (InventoryEvent)
+	-> Test
+
+Target version 0.2.0 [TBA]
+-EntityGenerator -> XML
+-GameSystemGenerator -> XML
+
+Target version 0.3.0 [TBA]
+-Überarbeiten "Spear-System" -> Throw & Flying System
+-Use System & Erweiterung Inventar System (synergy)
+IDEE:
+	Inventar (oder später andere Uses) melden UseSystem per Event 
+	eine "Benutzung" (auslöser, item, ggf Ziel).
+	UseSystem dispatched UsableItemComp nach Art (booleans)
+	und schmeißt dann entsprechende Events an die Systeme.
+
+Target version 0.4.0 [TBA]
 -Kampfsystem
--Testumgebung
--Refactoring Core (Anmelden der Systeme, siehe Tests)

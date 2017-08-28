@@ -1,6 +1,6 @@
 package de.sloth.hmi.system;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.List;
 
 import de.sloth.core.main.GameEvent;
 import de.sloth.core.main.GameSystem;
@@ -19,7 +19,7 @@ public class HMIGameSystem extends GameSystem {
 	public HMIGameSystem(HMICore gameHMI, String systemID,
 			Class<? extends GameEvent> listeningEvent,
 			IEntityManagement entityManager,
-			ConcurrentLinkedQueue<GameEvent> eventQueue) {
+			List<GameEvent> eventQueue) {
 		super(systemID, listeningEvent, entityManager, eventQueue);
 		this.setGameHMI(gameHMI);
 	}

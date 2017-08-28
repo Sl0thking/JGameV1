@@ -1,7 +1,6 @@
 package de.sloth.core.controlls;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.List;
 
-import de.sloth.core.main.ConfigLoader;
 import de.sloth.core.main.GameEvent;
 import de.sloth.core.main.GameSystem;
 import de.sloth.core.main.IBehavior;
@@ -12,7 +11,7 @@ import javafx.scene.input.KeyEvent;
 
 public class ControllSystem extends GameSystem implements EventHandler<KeyEvent> {
 
-	public ControllSystem(String systemID, IEntityManagement entityManager, ConcurrentLinkedQueue<GameEvent> eventQueue) {
+	public ControllSystem(String systemID, IEntityManagement entityManager, List<GameEvent> eventQueue) {
 		super(systemID, null, entityManager, eventQueue);
 	}
 	

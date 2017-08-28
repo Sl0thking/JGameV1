@@ -1,12 +1,13 @@
 package de.sloth.core.main;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class GameSystem {
 
-	private ConcurrentLinkedQueue<GameEvent> eventQueue;
+	private List<GameEvent> eventQueue;
 	private Map<String, IBehavior> keywordMapping;
 	private Class<? extends GameEvent> listeningEvent;
 	private boolean isActive;
@@ -14,7 +15,7 @@ public class GameSystem {
 	private String systemID;
 	private IEntityManagement entityManager;
 	
-	public GameSystem(String systemID, Class<? extends GameEvent> listeningEvent, IEntityManagement entityManager, ConcurrentLinkedQueue<GameEvent> eventQueue) {
+	public GameSystem(String systemID, Class<? extends GameEvent> listeningEvent, IEntityManagement entityManager, List<GameEvent> eventQueue) {
 		super();
 		this.setEntityManager(entityManager);
 		this.eventQueue = eventQueue;
@@ -28,7 +29,7 @@ public class GameSystem {
 	public GameSystem(String systemID, IEntityManagement entityManager) {
 		super();
 		this.setEntityManager(entityManager);
-		this.eventQueue = new ConcurrentLinkedQueue<GameEvent>();
+		this.eventQueue = new LinkedList<GameEvent>();
 		this.isActive = true;
 		this.setListeningEvent(null);
 		this.keywordMapping = new HashMap<String, IBehavior>();
@@ -36,11 +37,11 @@ public class GameSystem {
 		this.setQuiet(true);
 	}
 	
-	public ConcurrentLinkedQueue<GameEvent> getEventQueue() {
+	public List<GameEvent> getEventQueue() {
 		return eventQueue;
 	}
 
-	public void setEventQueue(ConcurrentLinkedQueue<GameEvent> eventQueue) {
+	public void setEventQueue(List<GameEvent> eventQueue) {
 		this.eventQueue = eventQueue;
 	}
 	
@@ -69,19 +70,20 @@ public class GameSystem {
 		return this.keywordMapping.get(event.getKeyword());
 	}
 	
-	public void executeSystem() {
+	public void executeSystem() throws Exception {
 		if(this.isActive) {
 			if(listeningEvent != null) {
-				ConcurrentLinkedQueue<GameEvent> currEvents = this.getEventQueue();
-				for(GameEvent event:currEvents) {
+				List<GameEvent> delList = new LinkedList<GameEvent>();
+				for(GameEvent event : this.eventQueue) {
 					if(event.getClass().equals(this.listeningEvent)) {
 						IBehavior behavior = this.getBehavior(event);
 						if(behavior != null) {
 							behavior.execute(this, event);
 						}
-						this.getEventQueue().remove(event);
+						delList.add(event);
 					}
 				}
+				this.getEventQueue().removeAll(delList);
 			} else {
 				this.keywordMapping.get("Any").execute(this);
 			}

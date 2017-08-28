@@ -3,10 +3,8 @@ package de.sloth.core.collision.behavior;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import de.sloth.core.collision.event.CollisionEvent;
-import de.sloth.core.main.ConfigLoader;
 import de.sloth.core.main.GameEvent;
 import de.sloth.core.main.GameSystem;
 import de.sloth.core.main.IBehavior;
@@ -18,7 +16,7 @@ public class CollisionHandleSystem extends GameSystem {
 	
 	
 	public CollisionHandleSystem(String systemID, Class<? extends GameEvent> listeningEvent,
-			IEntityManagement entityManager, ConcurrentLinkedQueue<GameEvent> eventQueue) {
+			IEntityManagement entityManager, List<GameEvent> eventQueue) {
 		super(systemID, listeningEvent, entityManager, eventQueue);
 		collisionClassMapping = new HashMap<String, IBehavior>();
 	}
