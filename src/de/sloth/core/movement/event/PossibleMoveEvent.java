@@ -1,6 +1,6 @@
 package de.sloth.core.movement.event;
 
-import de.sloth.core.main.Entity;
+import de.sloth.core.main.entity.Entity;
 
 public class PossibleMoveEvent extends MoveEvent{
 

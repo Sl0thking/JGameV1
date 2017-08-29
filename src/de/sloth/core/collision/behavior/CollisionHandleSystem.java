@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import de.sloth.core.collision.event.CollisionEvent;
-import de.sloth.core.main.GameEvent;
-import de.sloth.core.main.GameSystem;
-import de.sloth.core.main.IBehavior;
-import de.sloth.core.main.IEntityManagement;
+import de.sloth.core.main.behavior.IBehavior;
 import de.sloth.core.main.component.Component;
+import de.sloth.core.main.event.GameEvent;
+import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.IEntityManagement;
 
 public class CollisionHandleSystem extends GameSystem {
 	private Map<String, IBehavior> collisionClassMapping; 

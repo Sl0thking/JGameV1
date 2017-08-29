@@ -1,13 +1,12 @@
 package de.sloth.core.main.behavior;
 
-import de.sloth.core.main.Entity;
-import de.sloth.core.main.GameEvent;
-import de.sloth.core.main.GameSystem;
-import de.sloth.core.main.IBehavior;
 import de.sloth.core.main.component.AnimationComp;
-import de.sloth.core.main.component.MovableComp;
-import de.sloth.core.main.component.Position3DComp;
 import de.sloth.core.main.component.SpriteComp;
+import de.sloth.core.main.entity.Entity;
+import de.sloth.core.main.event.GameEvent;
+import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.movement.component.MovableComp;
+import de.sloth.core.movement.component.Position3DComp;
 import de.sloth.hmi.system.HMIGameSystem;
 
 

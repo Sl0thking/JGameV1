@@ -4,9 +4,9 @@ import java.io.File;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import de.sloth.core.main.GameEvent;
-import de.sloth.core.main.GameSystem;
-import de.sloth.core.main.IBehavior;
+import de.sloth.core.main.behavior.IBehavior;
+import de.sloth.core.main.event.GameEvent;
+import de.sloth.core.main.system.GameSystem;
 import de.sloth.core.sound.event.PlaySoundEvent;
 
 public class BPlaySound implements IBehavior {

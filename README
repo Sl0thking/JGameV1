@@ -11,9 +11,10 @@ Version 0.1.0 [Released B2]
 	-> Events (InventoryEvent)
 	-> Test
 
-Target version 0.2.0 [TBA]
--EntityGenerator -> XML
--GameSystemGenerator -> XML
+Target version 0.2.0 [Released B3]
+-Einführung von XML Dateien für Spieleinstellungen (Laden der Systeme / Entitäten)
+-Einführung von Factories für Verhalten, Systeme und Komponenten
+-Weitere Umstrukturierungen 
 
 Target version 0.3.0 [TBA]
 -Überarbeiten "Spear-System" -> Throw & Flying System

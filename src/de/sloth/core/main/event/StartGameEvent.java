@@ -1,6 +1,6 @@
 package de.sloth.core.main.event;
 
-import de.sloth.core.main.GameEvent;
+
 
 /**
  * Event for StartGameSystem

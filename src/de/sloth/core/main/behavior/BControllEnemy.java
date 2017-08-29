@@ -7,14 +7,21 @@ import java.util.Random;
 
 
 
-import de.sloth.core.main.ConfigLoader;
-import de.sloth.core.main.Entity;
-import de.sloth.core.main.EntityGenerator;
-import de.sloth.core.main.GameEvent;
-import de.sloth.core.main.GameSystem;
-import de.sloth.core.main.IBehavior;
-import de.sloth.core.main.IEntityManagement;
-import de.sloth.core.main.VikingEnemyComp;
+
+
+
+
+
+
+
+
+
+
+import de.sloth.core.main.entity.Entity;
+import de.sloth.core.main.event.GameEvent;
+import de.sloth.core.main.loader.ConfigLoader;
+import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.IEntityManagement;
 import de.sloth.core.movement.event.Direction;
 import de.sloth.core.movement.event.PossibleMoveEvent;
 import de.sloth.core.spears.event.ThrowSpearEvent;
@@ -28,8 +35,22 @@ import de.sloth.core.spears.event.ThrowSpearEvent;
  * @date 18.05.2017
  *
  */
+@Deprecated
 public class BControllEnemy implements IBehavior {
 
+	@Override
+	public void execute(GameSystem system) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void execute(GameSystem system, GameEvent expectedEvent)
+			throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	/*
 	@Override
 	public void execute(GameSystem system) {
 		Random rand = new Random();
@@ -69,5 +90,5 @@ public class BControllEnemy implements IBehavior {
 	}
 
 	@Override
-	public void execute(GameSystem system, GameEvent expectedEvent) {}
+	public void execute(GameSystem system, GameEvent expectedEvent) {} */
 }

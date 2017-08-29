@@ -1,6 +1,6 @@
 package de.sloth.core.sound.event;
 
-import de.sloth.core.main.GameEvent;
+import de.sloth.core.main.event.GameEvent;
 
 public class PlaySoundEvent extends GameEvent {
 	private String desiredSoundFileName;

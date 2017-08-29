@@ -1,7 +1,7 @@
 package de.sloth.core.spears.behavior;
 
-import de.sloth.core.main.GameEvent;
-import de.sloth.core.main.GameSystem;
+import de.sloth.core.main.event.GameEvent;
+import de.sloth.core.main.system.GameSystem;
 import de.sloth.core.score.event.CalcScoreEvent;
 import de.sloth.core.score.other.ScoreType;
 

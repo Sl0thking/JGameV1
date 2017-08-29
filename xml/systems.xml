@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<systems>
+	<system id="moveSys" eventClass="de.sloth.core.movement.event.MoveEvent" factory="de.sloth.core.main.factory.DefaultSystemFactory">
+		<behavior className="de.sloth.core.movement.behavior.Move" eventKeyword="all" factory="de.sloth.core.main.factory.DefaultBehaviorFactory"></behavior>
+	</system>
+	<system id="moveSys" eventClass="de.sloth.core.movement.event.MoveEvent" factory="de.sloth.core.main.factory.DefaultSystemFactory">
+		<behavior className="de.sloth.core.movement.behavior.Move" eventKeyword="all" factory="de.sloth.core.main.factory.DefaultBehaviorFactory"></behavior>
+	</system>
+</systems>

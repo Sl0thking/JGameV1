@@ -1,12 +1,11 @@
 package de.sloth.core.spears.behavior;
 
-import de.sloth.core.main.ConfigLoader;
-import de.sloth.core.main.Entity;
-import de.sloth.core.main.EntityGenerator;
-import de.sloth.core.main.GameEvent;
-import de.sloth.core.main.GameSystem;
-import de.sloth.core.main.IBehavior;
-import de.sloth.core.main.IEntityManagement;
+import de.sloth.core.main.behavior.IBehavior;
+import de.sloth.core.main.entity.Entity;
+import de.sloth.core.main.event.GameEvent;
+import de.sloth.core.main.loader.ConfigLoader;
+import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.IEntityManagement;
 import de.sloth.core.spears.component.FlyingComp;
 import de.sloth.core.spears.component.SpearBagComp;
 import de.sloth.core.spears.event.ThrowSpearEvent;
@@ -26,6 +25,19 @@ import de.sloth.core.spears.event.ThrowSpearEvent;
 public class BThrowSpear implements IBehavior {
 
 	@Override
+	public void execute(GameSystem system) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void execute(GameSystem system, GameEvent expectedEvent)
+			throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	/*
+	@Override
 	public void execute(GameSystem system) {}
 
 	@Override
@@ -44,5 +56,5 @@ public class BThrowSpear implements IBehavior {
 				system.getEntityManager().addEntity(EntityGenerator.getInstance().generateFlyingSpear(tse.getThrowingEntity()));
 			}
 		}
-	}
+	} */
 }

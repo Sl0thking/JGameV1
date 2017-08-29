@@ -1,10 +1,9 @@
 package de.sloth.core.main.behavior;
 
-import de.sloth.core.main.Entity;
-import de.sloth.core.main.GameEvent;
-import de.sloth.core.main.GameSystem;
-import de.sloth.core.main.IBehavior;
 import de.sloth.core.main.component.HealthComp;
+import de.sloth.core.main.entity.Entity;
+import de.sloth.core.main.event.GameEvent;
+import de.sloth.core.main.system.GameSystem;
 
 
 

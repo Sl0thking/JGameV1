@@ -2,9 +2,9 @@ package de.sloth.hmi.system;
 
 import java.util.List;
 
-import de.sloth.core.main.GameEvent;
-import de.sloth.core.main.GameSystem;
-import de.sloth.core.main.IEntityManagement;
+import de.sloth.core.main.event.GameEvent;
+import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.IEntityManagement;
 import de.sloth.hmi.HMICore;
 
 public class HMIGameSystem extends GameSystem {

@@ -1,7 +1,7 @@
 package de.sloth.core.movement.event;
 
-import de.sloth.core.main.Entity;
-import de.sloth.core.main.GameEvent;
+import de.sloth.core.main.entity.Entity;
+import de.sloth.core.main.event.GameEvent;
 
 public class MoveEvent extends GameEvent {
 	private Direction direction;

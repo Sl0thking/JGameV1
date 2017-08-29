@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<preDefinedEntities>
+	<entity name="hero">
+		<component width="36" height="36" factory="de.sloth.core.collision.factory.HitboxFactory"></component>
+	</entity>
+</preDefinedEntities>

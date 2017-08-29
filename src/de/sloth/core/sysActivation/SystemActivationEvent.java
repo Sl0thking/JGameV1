@@ -1,6 +1,6 @@
 package de.sloth.core.sysActivation;
 
-import de.sloth.core.main.GameEvent;
+import de.sloth.core.main.event.GameEvent;
 
 public class SystemActivationEvent extends GameEvent {
 	private boolean isActive;

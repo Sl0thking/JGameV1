@@ -3,9 +3,9 @@ package de.sloth.core.sound.behavior;
 import java.io.File;
 import java.io.FilenameFilter;
 
-import de.sloth.core.main.GameEvent;
-import de.sloth.core.main.GameSystem;
-import de.sloth.core.main.IBehavior;
+import de.sloth.core.main.behavior.IBehavior;
+import de.sloth.core.main.event.GameEvent;
+import de.sloth.core.main.system.GameSystem;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;

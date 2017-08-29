@@ -2,10 +2,10 @@ package de.sloth.core.sysActivation;
 
 import java.util.List;
 
-import de.sloth.core.main.GameCore;
-import de.sloth.core.main.GameEvent;
-import de.sloth.core.main.GameSystem;
-import de.sloth.core.main.IEntityManagement;
+import de.sloth.core.main.event.GameEvent;
+import de.sloth.core.main.system.GameCore;
+import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.IEntityManagement;
 
 /**
  * Extended GameSystem, to allow access to the core and therefore

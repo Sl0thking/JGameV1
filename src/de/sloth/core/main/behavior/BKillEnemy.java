@@ -1,8 +1,8 @@
 package de.sloth.core.main.behavior;
 
 import de.sloth.core.collision.behavior.Despawn;
-import de.sloth.core.main.GameEvent;
-import de.sloth.core.main.GameSystem;
+import de.sloth.core.main.event.GameEvent;
+import de.sloth.core.main.system.GameSystem;
 import de.sloth.core.score.event.CalcScoreEvent;
 import de.sloth.core.score.other.ScoreType;
 import de.sloth.core.sound.event.PlaySoundEvent;

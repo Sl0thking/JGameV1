@@ -2,12 +2,12 @@ package de.sloth.core.spears.behavior;
 
 import java.util.List;
 
-import de.sloth.core.main.Entity;
-import de.sloth.core.main.GameEvent;
-import de.sloth.core.main.GameSystem;
-import de.sloth.core.main.IBehavior;
-import de.sloth.core.main.IEntityManagement;
-import de.sloth.core.main.component.Position3DComp;
+import de.sloth.core.main.behavior.IBehavior;
+import de.sloth.core.main.entity.Entity;
+import de.sloth.core.main.event.GameEvent;
+import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.IEntityManagement;
+import de.sloth.core.movement.component.Position3DComp;
 import de.sloth.core.movement.event.Direction;
 import de.sloth.core.movement.event.PossibleMoveEvent;
 import de.sloth.core.spears.component.FlyingComp;

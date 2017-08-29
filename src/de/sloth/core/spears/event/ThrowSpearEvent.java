@@ -1,7 +1,7 @@
 package de.sloth.core.spears.event;
 
-import de.sloth.core.main.Entity;
-import de.sloth.core.main.GameEvent;
+import de.sloth.core.main.entity.Entity;
+import de.sloth.core.main.event.GameEvent;
 
 /**
  * Event for spawning a new spear from src entity.

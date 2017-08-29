@@ -1,6 +1,6 @@
 package de.sloth.core.score.event;
 
-import de.sloth.core.main.GameEvent;
+import de.sloth.core.main.event.GameEvent;
 import de.sloth.core.score.other.ScoreType;
 
 /**
