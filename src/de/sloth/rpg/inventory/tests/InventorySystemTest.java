@@ -23,7 +23,7 @@ import de.sloth.core.main.entity.Entity;
 import de.sloth.core.main.event.GameEvent;
 import de.sloth.core.main.system.DefaultEntityManager;
 import de.sloth.core.main.system.GameCore;
-import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.DefaultGameSystem;
 import de.sloth.core.main.system.IEntityManagement;
 
 public class InventorySystemTest {
@@ -51,7 +51,7 @@ public class InventorySystemTest {
 		entityManager.addEntity(testEntityStackingInv);
 		entityManager.addEntity(testEntityNotStackingInv);
 		eventQueue = new LinkedList<GameEvent>();
-		GameSystem inventorySystem = new GameSystem("invSystem", InventoryEvent.class, entityManager, eventQueue);
+		DefaultGameSystem inventorySystem = new DefaultGameSystem("invSystem", InventoryEvent.class, entityManager, eventQueue);
 		inventorySystem.registerBehavior("addItem", new BAddItem());
 		inventorySystem.registerBehavior("delItem", new BRemoveItem());
 		inventorySystem.registerBehavior("useItem", new BUseItem());

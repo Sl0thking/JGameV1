@@ -3,7 +3,7 @@ package de.sloth.core.main.behavior;
 import de.sloth.core.main.component.HealthComp;
 import de.sloth.core.main.entity.Entity;
 import de.sloth.core.main.event.GameEvent;
-import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.DefaultGameSystem;
 
 
 
@@ -16,7 +16,7 @@ import de.sloth.core.main.system.GameSystem;
 public class BCheckForDeath implements IBehavior {
 	
 	@Override
-	public void execute(GameSystem system) {
+	public void execute(DefaultGameSystem system) {
 		Entity player = system.getEntityManager().getActivePlayabaleEntity();
 		HealthComp hComp = (HealthComp) player.getComponent(HealthComp.class);
 		if(hComp.getLifes() == 0) {
@@ -25,5 +25,5 @@ public class BCheckForDeath implements IBehavior {
 	}
 
 	@Override
-	public void execute(GameSystem arg0, GameEvent arg1) {}
+	public void execute(DefaultGameSystem arg0, GameEvent arg1) {}
 }

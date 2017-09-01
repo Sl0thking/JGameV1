@@ -11,12 +11,17 @@ Version 0.1.0 [Released B2]
 	-> Events (InventoryEvent)
 	-> Test
 
-Target version 0.2.0 [Released B3]
+Version 0.2.0 [Released B3]
 -Einf¸hrung von XML Dateien f¸r Spieleinstellungen (Laden der Systeme / Entit‰ten)
 -Einf¸hrung von Factories f¸r Verhalten, Systeme und Komponenten
 -Weitere Umstrukturierungen 
 
-Target version 0.3.0 [TBA]
+Version 0.3.0 [Released B4]
+-Vorhandene Systeme angepasst auf das neue Factory System
+-Spear & Score System nach hinten geschoben (neues Package TBA)
+
+
+Target version 0.4.0 [TBA]
 -‹berarbeiten "Spear-System" -> Throw & Flying System
 -Use System & Erweiterung Inventar System (synergy)
 IDEE:
@@ -25,5 +30,5 @@ IDEE:
 	UseSystem dispatched UsableItemComp nach Art (booleans)
 	und schmeiﬂt dann entsprechende Events an die Systeme.
 
-Target version 0.4.0 [TBA]
+Target version 0.5.0 [TBA]
 -Kampfsystem

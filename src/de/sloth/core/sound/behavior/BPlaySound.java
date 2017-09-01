@@ -6,7 +6,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import de.sloth.core.main.behavior.IBehavior;
 import de.sloth.core.main.event.GameEvent;
-import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.DefaultGameSystem;
 import de.sloth.core.sound.event.PlaySoundEvent;
 
 public class BPlaySound implements IBehavior {
@@ -22,10 +22,10 @@ public class BPlaySound implements IBehavior {
 	}
 	
 	@Override
-	public void execute(GameSystem system) {}
+	public void execute(DefaultGameSystem system) {}
 
 	@Override
-	public void execute(GameSystem system, GameEvent expectedEvent) {
+	public void execute(DefaultGameSystem system, GameEvent expectedEvent) {
 		PlaySoundEvent pse = (PlaySoundEvent) expectedEvent;
 		File soundFile = new File(".\\se\\" + pse.getDesiredSoundFileName() + ".mp3");
 		if(soundFile.exists()) {

@@ -1,11 +1,11 @@
 package de.sloth.core.main.behavior;
 
-import de.sloth.core.collision.behavior.Despawn;
+import de.sloth.core.collisionHandle.behavior.BDespawn;
 import de.sloth.core.main.event.GameEvent;
-import de.sloth.core.main.system.GameSystem;
-import de.sloth.core.score.event.CalcScoreEvent;
-import de.sloth.core.score.other.ScoreType;
+import de.sloth.core.main.system.DefaultGameSystem;
 import de.sloth.core.sound.event.PlaySoundEvent;
+import de.sloth.tba.score.event.CalcScoreEvent;
+import de.sloth.tba.score.other.ScoreType;
 
 
 
@@ -18,10 +18,10 @@ import de.sloth.core.sound.event.PlaySoundEvent;
  * @date 18.05.2017
  *
  */
-public class BKillEnemy extends Despawn {
+public class BKillEnemy extends BDespawn {
 
 	@Override
-	public void execute(GameSystem system, GameEvent expectedEvent) {
+	public void execute(DefaultGameSystem system, GameEvent expectedEvent) {
 		system.getEventQueue().add(new CalcScoreEvent(ScoreType.KILL));
 		system.getEventQueue().add(new PlaySoundEvent("pain"));
 		super.execute(system, expectedEvent);

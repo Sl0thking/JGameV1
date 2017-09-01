@@ -1,7 +1,5 @@
 package de.sloth.core.main.loader;
 
-import static org.junit.Assert.*;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +12,7 @@ import org.junit.Test;
 import de.sloth.core.main.event.GameEvent;
 import de.sloth.core.main.system.DefaultEntityManager;
 import de.sloth.core.main.system.GameCore;
-import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.DefaultGameSystem;
 import de.sloth.core.main.system.IEntityManagement;
 
 public class SystemLoaderTest {
@@ -39,9 +37,10 @@ public class SystemLoaderTest {
 	public void test() {
 		IEntityManagement iManager = new DefaultEntityManager();
 		List<GameEvent> eventQueue = new LinkedList<GameEvent>();
-		List<GameSystem> systems = SystemLoader.loadSystems(iManager, eventQueue);
 		GameCore core = new GameCore();
-		for(GameSystem sys : systems) {
+		List<DefaultGameSystem> systems = SystemLoader.loadSystems(core, iManager, eventQueue);
+
+		for(DefaultGameSystem sys : systems) {
 			core.registerSystem(sys);
 		}
 		System.out.println(core);

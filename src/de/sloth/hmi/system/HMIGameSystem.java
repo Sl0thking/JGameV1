@@ -3,11 +3,11 @@ package de.sloth.hmi.system;
 import java.util.List;
 
 import de.sloth.core.main.event.GameEvent;
-import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.DefaultGameSystem;
 import de.sloth.core.main.system.IEntityManagement;
 import de.sloth.hmi.HMICore;
 
-public class HMIGameSystem extends GameSystem {
+public class HMIGameSystem extends DefaultGameSystem {
 
 	private HMICore gameHMI;
 	

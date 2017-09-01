@@ -2,21 +2,21 @@ package de.sloth.ai.neuralNetwork.behavior;
 
 import java.util.List;
 
+import de.sloth.core.controll.event.PossibleMoveEvent;
 import de.sloth.core.main.behavior.IBehavior;
 import de.sloth.core.main.entity.Entity;
 import de.sloth.core.main.event.GameEvent;
 import de.sloth.core.main.loader.ConfigLoader;
-import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.DefaultGameSystem;
 import de.sloth.core.main.system.IEntityManagement;
 import de.sloth.core.movement.event.Direction;
-import de.sloth.core.movement.event.PossibleMoveEvent;
 import de.sloth.ai.neuralNetwork.component.NeuralNetworkComp;
 import de.sloth.ai.neuralNetwork.component.datatype.INeuralNetwork;
 import de.sloth.ai.neuralNetwork.main.EntityManagerNN;
 import de.sloth.ai.neuralNetwork.main.EntityNNInputConverter;
-import de.sloth.core.spears.component.FlyingComp;
-import de.sloth.core.spears.component.SpearBagComp;
-import de.sloth.core.spears.event.ThrowSpearEvent;
+import de.sloth.tba.spears.component.FlyingComp;
+import de.sloth.tba.spears.component.SpearBagComp;
+import de.sloth.tba.spears.event.ThrowSpearEvent;
 
 /**
  * Behavior for control of playable entity in neural network mode.
@@ -29,7 +29,7 @@ import de.sloth.core.spears.event.ThrowSpearEvent;
 public class BControllPlayerNN implements IBehavior {
 
 	@Override
-	public void execute(GameSystem system) {
+	public void execute(DefaultGameSystem system) {
 		/*EntityManagerNN nnMan = (EntityManagerNN) system.getEntityManager();
 		INeuralNetwork nn = ((NeuralNetworkComp) nnMan.getNNInformation().getComponent(NeuralNetworkComp.class)).getNetwork();
 		Entity player = system.getEntityManager().getActivePlayabaleEntity();
@@ -74,5 +74,5 @@ public class BControllPlayerNN implements IBehavior {
 	}
 
 	@Override
-	public void execute(GameSystem arg0, GameEvent arg1) {}
+	public void execute(DefaultGameSystem arg0, GameEvent arg1) {}
 }

@@ -18,14 +18,14 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class GameCore extends AnimationTimer {
 
-	private List<GameSystem> gameSystems;
+	private List<DefaultGameSystem> gameSystems;
 	private int ms_per_frame; // = 1000/60;
 	private FPSCalculator fpsCalc;
 	private boolean isCapped;
 	private int loopSpeedMod;
 
 	public GameCore() {
-		this.gameSystems = new LinkedList<GameSystem>();
+		this.gameSystems = new LinkedList<DefaultGameSystem>();
 		this.ms_per_frame = 1000/60;
 		this.fpsCalc = new FPSCalculator();
 		this.isCapped = true;
@@ -33,7 +33,7 @@ public class GameCore extends AnimationTimer {
 	}
 	
 	public GameCore(int loopSpeedMod) {
-		this.gameSystems = new LinkedList<GameSystem>();
+		this.gameSystems = new LinkedList<DefaultGameSystem>();
 		this.ms_per_frame = 1000/60;
 		this.fpsCalc = new FPSCalculator();
 		this.isCapped = true;
@@ -41,7 +41,7 @@ public class GameCore extends AnimationTimer {
 	}
 
 	public GameCore(int loopSpeedMod, int fps) {
-		this.gameSystems = new LinkedList<GameSystem>();
+		this.gameSystems = new LinkedList<DefaultGameSystem>();
 		this.ms_per_frame = 1000/fps;
 		this.fpsCalc = new FPSCalculator();
 		this.isCapped = true;
@@ -49,7 +49,7 @@ public class GameCore extends AnimationTimer {
 	}
 	
 	public GameCore(int loopSpeedMod, int fps, boolean isCapped) {
-		this.gameSystems = new LinkedList<GameSystem>();
+		this.gameSystems = new LinkedList<DefaultGameSystem>();
 		this.ms_per_frame = 1000/fps;
 		this.fpsCalc = new FPSCalculator();
 		this.isCapped = isCapped;
@@ -60,16 +60,16 @@ public class GameCore extends AnimationTimer {
 		return this.fpsCalc.getFpsProperty();
 	}
 	
-	public void registerSystem(GameSystem system) {
+	public void registerSystem(DefaultGameSystem system) {
 		gameSystems.add(system);
 	}
 	
-	public void removeSystem(GameSystem system) {
+	public void removeSystem(DefaultGameSystem system) {
 		gameSystems.remove(system);
 	}
 	
 	public void doGameLogic() throws Exception {
-		for(GameSystem system : gameSystems) {
+		for(DefaultGameSystem system : gameSystems) {
 			system.executeSystem();
 		}
 	}
@@ -84,10 +84,8 @@ public class GameCore extends AnimationTimer {
 			try {
 				this.doGameLogic();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//cRenderer.executeSystem();
 		}
 		
 		double secondsAfter = new Date().getTime()/1000.0;
@@ -104,14 +102,16 @@ public class GameCore extends AnimationTimer {
 		this.fpsCalc.stop();
 	}
 
-	public List<GameSystem> getRegistredSystems() {
+	public List<DefaultGameSystem> getRegistredSystems() {
 		return gameSystems;
 	}
 
 	@Override
 	public String toString() {
-		return "GameCore [gameSystems=" + gameSystems + ", ms_per_frame="
-				+ ms_per_frame + ", fpsCalc=" + fpsCalc + ", isCapped="
-				+ isCapped + ", loopSpeedMod=" + loopSpeedMod + "]";
+		String coreStr = "GameCore [ms_per_frame=" + ms_per_frame + ", fpsCapped=" + isCapped + ", loopSpeed="+ loopSpeedMod + "]\n";
+		for(DefaultGameSystem sys : gameSystems) {
+			coreStr += "\tRegistred system [" + sys.toString() + "]\n";
+		}
+		return coreStr;
 	}
 }

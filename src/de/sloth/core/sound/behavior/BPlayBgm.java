@@ -5,7 +5,7 @@ import java.io.FilenameFilter;
 
 import de.sloth.core.main.behavior.IBehavior;
 import de.sloth.core.main.event.GameEvent;
-import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.DefaultGameSystem;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
@@ -20,12 +20,15 @@ public class BPlayBgm implements IBehavior {
 	public BPlayBgm() {
 		counter = 0;
 		File bgmFolder = new File("./bg");
-		currentSongCount = bgmFolder.list(new FilenameFilter() {
-			@Override
-			public boolean accept(File dir, String name) {
-				return name.contains("song_") && name.contains(".mp3");
-			}
-		}).length;
+		currentSongCount = 0;
+		if(bgmFolder.exists()) {
+			currentSongCount = bgmFolder.list(new FilenameFilter() {
+				@Override
+				public boolean accept(File dir, String name) {
+					return name.contains("song_") && name.contains(".mp3");
+				}
+			}).length;
+		}
 		this.bgmVolume = 0.5;
 	}
 	
@@ -42,7 +45,7 @@ public class BPlayBgm implements IBehavior {
 	}
 	
 	@Override
-	public void execute(GameSystem system) {
+	public void execute(DefaultGameSystem system) {
 		if( player == null || player.getStatus().equals(Status.STOPPED))  {
 			this.changeSong();
 			player.play();
@@ -69,5 +72,5 @@ public class BPlayBgm implements IBehavior {
 	}
 
 	@Override
-	public void execute(GameSystem system, GameEvent expectedEvent) {}
+	public void execute(DefaultGameSystem system, GameEvent expectedEvent) {}
 }

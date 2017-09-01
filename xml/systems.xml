@@ -1,9 +1,30 @@
 <?xml version="1.0"?>
 <systems>
-	<system id="moveSys" eventClass="de.sloth.core.movement.event.MoveEvent" factory="de.sloth.core.main.factory.DefaultSystemFactory">
+	<system id="ctrlSys" factory="de.sloth.core.controll.factory.ControllSystemFactory">
+		<behavior className="de.sloth.core.controll.behavior.BProposeMove" direction="left" keyCodeName="A" factory="de.sloth.core.controll.factory.BProposeMoveFactory"></behavior>
+		<behavior className="de.sloth.core.controll.behavior.BProposeMove" direction="right" keyCodeName="D" factory="de.sloth.core.controll.factory.BProposeMoveFactory"></behavior>
+		<behavior className="de.sloth.core.controll.behavior.BProposeMove" direction="up" keyCodeName="W" factory="de.sloth.core.controll.factory.BProposeMoveFactory"></behavior>
+		<behavior className="de.sloth.core.controll.behavior.BProposeMove" direction="down" keyCodeName="S" factory="de.sloth.core.controll.factory.BProposeMoveFactory"></behavior>
+	</system>
+	<system id="colCheckSys" eventClass="de.sloth.core.controll.event.PossibleMoveEvent" factory="de.sloth.core.main.factory.DefaultSystemFactory">
+		<behavior className="de.sloth.core.collisionCheck.behavior.BCheckCollision" eventKeyword="all" factory="de.sloth.core.main.factory.DefaultBehaviorFactory"></behavior>
+	</system>
+	<system id="colHandleSys" eventClass="de.sloth.core.collisionCheck.event.CollisionEvent" factory="de.sloth.core.collisionHandle.factory.CollisionHandleFactory">
+		<behavior colSrcCompClass="de.sloth.core.collisionCheck.component.HitboxComp" colTargetCompClass="de.sloth.core.collisionCheck.component.HitboxComp" className="de.sloth.core.collisionHandle.behavior.BDamagePlayer" factory="de.sloth.core.main.factory.DefaultBehaviorFactory"></behavior>
+		<behavior colSrcCompClass="de.sloth.core.collisionCheck.component.BlockingComp" colTargetCompClass="de.sloth.core.collisionCheck.component.HitboxComp" className="de.sloth.core.collisionHandle.behavior.BDeglitch" factory="de.sloth.core.main.factory.DefaultBehaviorFactory"></behavior>
+		<behavior colSrcCompClass="de.sloth.core.collisionCheck.component.HitboxComp" colTargetCompClass="de.sloth.core.collisionCheck.component.BlockingComp" className="de.sloth.core.collisionHandle.behavior.BDespawn" factory="de.sloth.core.main.factory.DefaultBehaviorFactory"></behavior>
+	</system>
+	<system id="moveSys" eventClass="de.sloth.core.collisionCheck.event.MoveEvent" factory="de.sloth.core.main.factory.DefaultSystemFactory">
 		<behavior className="de.sloth.core.movement.behavior.Move" eventKeyword="all" factory="de.sloth.core.main.factory.DefaultBehaviorFactory"></behavior>
 	</system>
-	<system id="moveSys" eventClass="de.sloth.core.movement.event.MoveEvent" factory="de.sloth.core.main.factory.DefaultSystemFactory">
-		<behavior className="de.sloth.core.movement.behavior.Move" eventKeyword="all" factory="de.sloth.core.main.factory.DefaultBehaviorFactory"></behavior>
+	<system id="soundSys" eventClass="de.sloth.core.sound.event.PlaySoundEvent" factory="de.sloth.core.main.factory.DefaultSystemFactory">
+		<behavior className="de.sloth.core.sound.behavior.BPlaySound" eventKeyword="all" factory="de.sloth.core.main.factory.DefaultBehaviorFactory"></behavior>
+	</system>
+	<system id="bgmSys" eventClass="" factory="de.sloth.core.main.factory.DefaultSystemFactory">
+		<behavior className="de.sloth.core.sound.behavior.BPlayBgm" eventKeyword="all" factory="de.sloth.core.main.factory.DefaultBehaviorFactory"></behavior>
+	</system>
+	<system id="sysActivateSys" eventClass="de.sloth.core.sysActivation.event.SystemActivationEvent" factory="de.sloth.core.sysActivation.factory.SystemActivationFactory">
+		<behavior className="de.sloth.core.sysActivation.behavior.BActivateAllSystems" eventKeyword="all" factory="de.sloth.core.main.factory.DefaultBehaviorFactory"></behavior>
+		<behavior className="de.sloth.core.sysActivation.behavior.BActivateSystem" eventKeyword="single" factory="de.sloth.core.main.factory.DefaultBehaviorFactory"></behavior>
 	</system>
 </systems>

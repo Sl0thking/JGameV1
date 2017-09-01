@@ -4,7 +4,7 @@ import de.sloth.core.main.component.AnimationComp;
 import de.sloth.core.main.component.SpriteComp;
 import de.sloth.core.main.entity.Entity;
 import de.sloth.core.main.event.GameEvent;
-import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.DefaultGameSystem;
 import de.sloth.core.movement.component.MovableComp;
 import de.sloth.core.movement.component.Position3DComp;
 import de.sloth.hmi.system.HMIGameSystem;
@@ -36,7 +36,7 @@ public class BRender implements IBehavior {
 	}
 
 	@Override
-	public void execute(GameSystem system) {
+	public void execute(DefaultGameSystem system) {
 		HMIGameSystem hmiSys = (HMIGameSystem) system;
 		hmiSys.getGameHMI().getCanvas().clear();
 		for(Entity renderingEntity : hmiSys.getEntityManager().getAllEntities()) {
@@ -81,5 +81,5 @@ public class BRender implements IBehavior {
 	}
 	
 	@Override
-	public void execute(GameSystem system, GameEvent expectedEvent) {}
+	public void execute(DefaultGameSystem system, GameEvent expectedEvent) {}
 }

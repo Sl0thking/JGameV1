@@ -11,7 +11,7 @@ import de.sloth.core.main.behavior.IBehavior;
 import de.sloth.core.main.event.GameEvent;
 import de.sloth.core.main.event.StartGameEvent;
 import de.sloth.core.main.loader.ConfigLoader;
-import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.DefaultGameSystem;
 import de.sloth.ai.neuralNetwork.component.NeuralNetworkComp;
 import de.sloth.ai.neuralNetwork.component.datatype.NetworkSequence;
 import de.sloth.ai.neuralNetwork.main.EntityManagerNN;
@@ -36,7 +36,7 @@ public class BProcessEvoAlgorithmNN implements IBehavior {
 	private static long lastRemainingTime = -1;
 	
 	@Override
-	public void execute(GameSystem system) {}
+	public void execute(DefaultGameSystem system) {}
 	
 	private NetworkSequence getUnratedSequence(List<NetworkSequence> pop) {
 		for(NetworkSequence nseq : pop) {
@@ -48,7 +48,7 @@ public class BProcessEvoAlgorithmNN implements IBehavior {
 	}
 	
 	@Override
-	public void execute(GameSystem system, GameEvent event) {
+	public void execute(DefaultGameSystem system, GameEvent event) {
 		EntityManagerNN nnMan = (EntityManagerNN) system.getEntityManager();
 		NeuralNetworkComp nnComp = (NeuralNetworkComp) nnMan.getNNInformation().getComponent(NeuralNetworkComp.class);
 		List<NetworkSequence> pop = nnComp.getPopulation();
@@ -143,7 +143,7 @@ public class BProcessEvoAlgorithmNN implements IBehavior {
 	 * @param sys reference to executing system
 	 * @param nnComp Component which contains the neural network
 	 */
-	private void fillPopulation(GameSystem sys, NeuralNetworkComp nnComp) {
+	private void fillPopulation(DefaultGameSystem sys, NeuralNetworkComp nnComp) {
 		NetworkSequence lastSeq = null;
 		List<NetworkSequence> pop = nnComp.getPopulation();
 		while(nnComp.getMaxPopSize() - nnComp.getPopulation().size() != 0) {
@@ -182,7 +182,7 @@ public class BProcessEvoAlgorithmNN implements IBehavior {
 	 * @param comb_gen array of source sequences
 	 * @return mutated sequences
 	 */
-	private NetworkSequence[] mutate(GameSystem sys, NetworkSequence[] comb_gen) {
+	private NetworkSequence[] mutate(DefaultGameSystem sys, NetworkSequence[] comb_gen) {
 		double mutateChance = Double.valueOf(ConfigLoader.getInstance().getConfig("mutateChance", "0.1"));
 		int mutationCount = 0;
 		int sequenceNr = 1;
@@ -230,7 +230,7 @@ public class BProcessEvoAlgorithmNN implements IBehavior {
 	 * @param pop given population
 	 * @return null or a sorted array 
 	 */
-	private Object[] evaluate(GameSystem system, NeuralNetworkComp nnComp, List<NetworkSequence> pop) {
+	private Object[] evaluate(DefaultGameSystem system, NeuralNetworkComp nnComp, List<NetworkSequence> pop) {
 		NetworkSequence nnSeq = getUnratedSequence(pop);
 		if(nnSeq != null) {
 			nnSeq.setFitnessLvl(0);

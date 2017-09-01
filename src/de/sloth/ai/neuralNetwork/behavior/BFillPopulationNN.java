@@ -6,7 +6,7 @@ import java.util.Random;
 import de.sloth.core.main.behavior.IBehavior;
 import de.sloth.core.main.event.GameEvent;
 import de.sloth.core.main.event.StartGameEvent;
-import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.DefaultGameSystem;
 import de.sloth.ai.neuralNetwork.component.NeuralNetworkComp;
 import de.sloth.ai.neuralNetwork.component.datatype.NetworkSequence;
 import de.sloth.ai.neuralNetwork.main.EntityManagerNN;
@@ -24,10 +24,10 @@ public class BFillPopulationNN implements IBehavior{
 	private static final int MAX_BIT_NR = 256;
 	
 	@Override
-	public void execute(GameSystem arg0) {}
+	public void execute(DefaultGameSystem arg0) {}
 
 	@Override
-	public void execute(GameSystem system, GameEvent arg1) {
+	public void execute(DefaultGameSystem system, GameEvent arg1) {
 		NetworkSequence lastSeq = null;
 		EntityManagerNN nnMan = (EntityManagerNN) system.getEntityManager();
 		NeuralNetworkComp nnComp = (NeuralNetworkComp) nnMan.getNNInformation().getComponent(NeuralNetworkComp.class);

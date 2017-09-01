@@ -7,11 +7,11 @@ import de.sloth.core.main.component.ScoreComp;
 import de.sloth.core.main.entity.Entity;
 import de.sloth.core.main.event.GameEvent;
 import de.sloth.core.main.loader.ConfigLoader;
-import de.sloth.core.main.system.GameSystem;
+import de.sloth.core.main.system.DefaultGameSystem;
 import de.sloth.core.movement.event.Direction;
-import de.sloth.core.spears.component.SpearBagComp;
-import de.sloth.core.sysActivation.SystemActivationEvent;
+import de.sloth.core.sysActivation.event.SystemActivationEvent;
 import de.sloth.hmi.system.HMIGameSystem;
+import de.sloth.tba.spears.component.SpearBagComp;
 /**
  * Behavior for StartGameSystem. Executes necessary operations
  * to prepare a new game.
@@ -24,13 +24,13 @@ import de.sloth.hmi.system.HMIGameSystem;
 public class BStartGame implements IBehavior {
 
 	@Override
-	public void execute(GameSystem system) {
+	public void execute(DefaultGameSystem system) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void execute(GameSystem system, GameEvent expectedEvent)
+	public void execute(DefaultGameSystem system, GameEvent expectedEvent)
 			throws Exception {
 		// TODO Auto-generated method stub
 		
